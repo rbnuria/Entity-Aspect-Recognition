@@ -1,0 +1,74 @@
+\chapter{Metaheurísticas y computación evolutiva}
+En este capítulo haremos un repaso teórico sobre qué son las metaheurísticas en la Sección \ref{meta} y más concretamente qué es la programación evolutiva (Sección \ref{evolution}), ya que emplearemos estos para la optimización de forma conjunta de las herramientas de análisis de sentimientos, mediante la búsqueda de pesos que se le darán a las herramientas con el fin de reducir la tasa de error con respecto al etiquetado experto.
+
+\section{Concepto de metaheurística} \label{meta}
+En esta sección hablaremos de qué es una metaheurística y en qué casos se suelen usar (Sección \ref{conceptmeta}), así como qué componentes de una metaheurística hay que tener en cuenta a la hora de diseñarlas y desarrollarlas (Sección \ref{componentesmeta})
+
+\subsection{¿Qué son las metaheurísticas?} \label{conceptmeta}
+Para explicar qué es una metaheurística primero habría que analizar la morfología de la propia palabra. En la Inteligencia Artificial, el término \textit{heurística}, como podemos ver en \cite{meta}, se refiere a una técnica, método o procedimiento inteligente de realizar una tarea que no es producto de un riguroso análisis formal, sino de conocimiento experto sobre la tarea.  En especial, se usa el término heurístico para referirse a un procedimiento que trata de aportar soluciones a un problema con un buen rendimiento, en lo referente a la calidad de las soluciones y a los recursos empleados. Al término 'heurística' se le une el sufijo \textit{meta}, que significa 'más allá' o 'a un nivel superior'. Las \textit{metaheurísticas} son estrategias inteligentes para diseñar o mejorar procedimientos heurísticos muy generales con un alto rendimiento.
+
+Existen muchísimos problemas cuya complejidad puede suponer que un algoritmo voraz no nos pueda dar una solución o que nos la pueda dar en tiempos inadmisibles. Un claro ejemplo es el problema del Viajante de comercio (\textit{Travelling Salesman Problem o TSP}), que consiste en que, con un número de ciudades concreto y las distancias entre cada una de ellas, realizar la ruta más óptima tal que salgamos de una ciudad, pasemos por todas y, finalmente, lleguemos a la misma ciudad. Este problema es un problema NP-duro, y a partir de un número de ciudades determinado, una solución mediante algoritmos voraces puede suponer tiempos de ejecución de incluso años.
+
+La solución a estos problemas puede ser imposible de obtener. Una metaheurística es un algoritmo aproximado que pretende ofrecernos una solución óptima o de calidad aceptable a un problema. Su funcionamiento se basa en la minimización o maximización de una función objetivo, que evaluará la calidad de las soluciones, empleando para ello diferentes técnicas como la aletoriedad o, como en la programación evolutiva, 'fusión' entre soluciones de calidad.
+
+Existen varias maneras de clasificar una metaheurística. Una de las clasificaciones más empleadas distingue entre los 3 siguientes tipos de metaheurísticas:
+\begin{itemize}
+	\item \textbf{Metaheurísticas basadas en métodos constructivos. }Se caracterizan por construir una solución definiendo diferentes partes de ella en sucesivos pasos.
+	\item \textbf{Metaheurísticas basadas en trayectorias. }Son metaheurísticas en las que la heurística subordinada es un algoritmo de búsqueda local que sigue una trayectoria en el espacio de búsqueda.
+	\item \textbf{Metaheurísticas basadas en poblaciones. }En estas metaheurísticas un conjunto de soluciones se combinan para obtener nuevas soluciones que heredan algunas propiedades de las primeras. Dentro de este tipo se encuentran las metaheurísticas basadas en computación evolutiva, que son las que se emplearán en este proyecto.
+\end{itemize}
+\subsection{Componentes de las metaheurísticas} \label{componentesmeta}
+Para la implementación de una metaheurística es necesario tener claras cuáles son las componentes de estas y qué aspectos son necesarios para tenerlos en cuenta para así tener soluciones de la máxima calidad posible. Estas componentes y aspectos son los siguientes:
+\begin{itemize}
+	\item \textbf{Esquema de representación. }Se trata de la forma de representar la solución a un problema. Cada problema y metaheurística tiene una representación más o menos adecuada. Por ejemplo, en TSP \footnote{\textit{Travelling Salesman Problem} anteriormente comentado} una buena representación de la solución es una permutación de  $ \{1,...,n\} $ indicando el orden de 'visita' de cada ciudad. Poniendo otro ejemplo, en un problema de selección de características para aprendizaje automático, podría representarse como un array de booleanos.
+	\item \textbf{Función objetivo. }Se trata de la función que hay que optimizar. Esta función debe dar una valoración de una solución determinada. Por ejemplo para el TSP habría que calcular la distancia recorrida siguiendo el orden dado por la representación de la solución.
+	\item \textbf{Movimiento. }Se trata de la operación que transforma una solución en otra, normalmente tratándose esta de una solución vecina. Por ejemplo, en el TSP una posible transformación podría ser intercambiar el orden de visita de 2 ciudades.
+	\item \textbf{Exploración y explotación. }Son 2 aspectos muy importantes a la hora de la implementación. La exploración se refiere a la habilidad de nuestro algoritmo de explorar en distintos espacios de búsqueda o, menos formalmente, introduce más aleatoriedad a la generación de nuevas soluciones. La explotación, sin embargo, consiste en explotar espacios de búsqueda prometedores, es decir, a partir de una solución de calidad, analizar soluciones 'cercanas' a esta. Una buena metaheurística intenta mantener un equilibrio entre la exploración y la explotación.
+\end{itemize}
+
+\section{Computación evolutiva} \label{evolution}
+En esta sección se introducirá a lo que es la computación evolutiva. En la Sección \ref{conceptevo} se hablará del concepto de computación evolutiva. En la Sección \ref{componentesevo} mencionaremos las principales componentes de un algoritmo evolutivo.
+
+\subsection{Concepto de computación evolutiva} \label{conceptevo}
+La computación evolutiva (\cite{evolution} y \cite{evolution2}) está compuesta por modelos de evolución basados en poblaciones cuyos elementos representan soluciones a problemas. Se trata de un conjunto de técnicas de optimización probabilística que se pueden clasificar como metaheurísticas basadas en poblaciones.
+
+La computación evolutiva basa su funcionamiento en un proceso tan básico en la naturaleza como la evolución natural. Algunas de las características que la computación evolutiva hereda de la evolución natural son:
+\begin{itemize}
+	\item Capacidad de un individuo o entidad de reproducirse.
+	\item Existe variedad y diversidad dentro de la población.
+	\item La variedad está directamente asociada con la habilidad para sobrevivir en el entorno, es decir, con la adaptación del individuo al entorno.
+\end{itemize}
+
+En la figura \ref{geneticos} se puede observar la relación entre las computación evolutiva y la evolución natural.
+
+\newpage
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{imagenes/geneticos}
+	\caption{Relación metafórica entre la computación evolutiva y la evolución natural. Fuente: SCI2S UGR asignatura Metaheurísticas}
+	\label{geneticos}
+\end{figure}
+%TODO poner aquí las secciones
+
+\subsection{Componentes y proceso de un algoritmo evolutivo}\label{componentesevo}
+A la hora del desarrollo de un algoritmo evolutivo, es necesario conocer las componentes de estos y el proceso que estos suelen seguir. Las componentes indispensables en un algoritmo evolutivo son las siguientes:
+\begin{itemize}
+	\item \textbf{Una población} formada por individuos o cromosomas, que serán realmente un conjunto de soluciones.
+	\item \textbf{Un criterio de selección} que determinará qué individuos de la población actual sobrevivirán y seguirán en la siguiente generación de individuos. Este criterio de selección simula la selección natural dentro de la evolución.
+	\item \textbf{Un operador de cruce} que cree una nueva solución a partir de la recombinación de otras. A la hora del cruce hay que tener en cuenta otros aspectos como por ejemplo la probabilidad de cruce, el criterio con el que se eligen los padres o el cómo se realizará el cruce. Este operador simula la reproducción en los seres vivos.
+	\item \textbf{Operador de mutación} cuyo fin es introducir diversidad en la población. Hay que planificar de qué manera se realizará la mutación y con qué probabilidad se mutará.
+	\item \textbf{Criterio de parada} que será cuando nuestro algoritmo termine su ejecución. El criterio frecuentemente se trata de un número máximo de evaluaciones de la función objetivo o también de un límite de tiempo. 
+\end{itemize}
+
+El procedimiento de un algoritmo evolutivo puede verse representado en la figura \ref{fig:geneticosproceso}. Partimos de una población o conjunto de soluciones, normalmente generada de forma aleatoria. A partir de esta población, hacemos una selección de individuos siguiendo algún criterio determinado, como el torneo binario que posteriormente comentaremos. Después, se realizará el cruce entre individuos, siguiendo criterios determinados para seleccionar los padres y para el propio cruce. Por último, se realizan mutaciones sobre la población resultante con una determinada probabilidad de que ocurra
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{imagenes/geneticosproceso}
+	\caption{Orden del proceso en un algoritmo evolutivo. Fuente: SCI2S UGR asignatura Metaheurísticas}
+	\label{fig:geneticosproceso}
+\end{figure}
+
+
+

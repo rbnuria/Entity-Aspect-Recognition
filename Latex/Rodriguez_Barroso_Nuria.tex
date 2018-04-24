@@ -1,0 +1,287 @@
+%-------------------------- model.tex -------------------------%
+%Exemple per a usar l'estil tfm.class per a la preparaci\'o
+%de monografies de treballs final de m\`aster.
+%
+%
+%----------------------------- FMETFM ----------------------------%
+\documentclass[reqno,twoside, 12pt]{report}
+
+\usepackage[spanish,english]{babel}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{parskip}
+\usepackage{xcolor,colortbl}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{eurosym} 
+\usepackage{subcaption}
+\usepackage{lscape}
+
+%Para introducir trozos de código
+\usepackage{listings}
+\lstloadlanguages{R}
+\lstset{language=R,
+	basicstyle=\small\ttfamily,
+	stringstyle=\color{dkgreen},
+	otherkeywords={0,1,2,3,4,5,6,7,8,9},
+	morekeywords={TRUE,FALSE},
+	deletekeywords={\_},
+	keywordstyle=\color{blue},
+	commentstyle=\color{DarkGreen},
+}
+
+
+\usepackage{color}
+\definecolor{gray97}{gray}{.97}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{greentable}{rgb}{0.176, 0.682, 0.396}
+
+%hasta aquí
+\usepackage{caption} 
+\usepackage{pdflscape}
+\usepackage{appendix}
+\definecolor{blue}{rgb}{0.372, 0.847, 0.835}
+\usepackage[table]{xcolor}
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+\newtheorem{definition}{Definition}[chapter]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{}
+\fancyhead[RE,LO]{\rightmark}
+\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[LE,RO]{}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setcounter{tocdepth}{5}
+
+%%-------------------------------------------------------------%
+\begin{document}
+
+% Seleccioneu l'idioma:
+%\selectlanguage{catalan}
+\selectlanguage{spanish}
+%\selectlanguage{english}
+
+%----------------------------------------------------------------
+% Inici del document
+%------------------------------------------------------------------
+\input{portada/portada}
+
+%-----------------------------------------------------------------
+% P�gina inicial
+%-----------------------------------------------------------------
+%\title{Sentiment Analysis For Touristic Attractions: \\
+%A Case Study On The Alhambra}
+%
+%\def\autor{Ana Valdivia Garc\'{\i}a}
+%
+%\def\treball{Mater's degree thesis}
+%
+%
+%\def\advisor{Salvador Garc\'{\i}a L\'{\o}pez}
+%
+%
+%
+%\vfill
+%
+%\def\departament{Computer Science and Artificial Intelligence}
+%
+
+%-------------------------------------------------------------%
+%\maketitle
+
+%-------------------------------------------------------------%
+%%%Dedicatoria (opcional)
+%-------------------------------------------------------------%
+% \cleardoublepage
+%\includepdf[pages={1-}]{Dedicatoria.pdf}
+%\cleardoublepage
+%%-------------------------------------------------------------%
+%%-------------------------------------------------------------%
+%%%%Prefaci (opcional)
+%%-------------------------------------------------------------%
+%%----------------------------------------------------------------
+%% Declaraci� d'originalitat
+%%------------------------------------------------------------------
+%\includepdf{DeclaracionOrginalidad.pdf}
+%\cleardoublepage
+%%-----------------------------------------------------------------
+%
+%
+%%\begin{comment}
+%%\begin{preface}
+%%\thispagestyle{empty}
+%% Tot i que no �s obligat�ria la seva pres�ncia,
+%%el pr�leg i el prefaci s�n dos apartats que normalment apareixen a
+%%les obres. La funci� de tots dos �s transmetre opinions o reflexions
+%%sobre l'obra, explicar el proc�s d'elaboraci� o argumentar-ne
+%%l'oportunitat. El pr�leg el redacta una persona diferent de l'autor,
+%%i el prefaci, l'autor mateix.
+%%\end{preface}
+%%\cleardoublepage
+%%\end{comment}
+%
+%%---------------------------------------------------------------
+%% Abstract: un resum del contingut del treball (sobre 500 paraules)
+%% Ha de contenir una relaci� de paraules clau i dels codis MSC
+%%(Math. Subject Classification 2000)
+%% Ha d'estar tamb� en angl�s.
+%%---------------------------------------------------------------
+%%\includepdf[pages={1}]{pagina_en_blanc.pdf}
+%
+%\pagenumbering{roman} \setcounter{page}{7} \markboth{}{}
+%
+%\begin{abstract}
+%The development of Web 2.0 has led to an important amount of content in webpage. Users are free to express their opinions about products, places and events. This project research is aimed at introducing sentiment analysis into touristic attractions. To begin with, we scrap TripAdvisor reviews from the most touristic attraction in Spain, the Alhambra. We then create two sentiment labels: the expert sentiment which is the rate of the reviewer; and the machine sentiment which is extracted from a Natural Language Processing toolkit developed in Stanford University. After that, we build classification models so as to predict polarity sentiments. Finally, we develop a subgroup discovery method so as to extract valuable information about negative reviews.
+%
+%\vspace{1cm}
+%
+%\textbf{Key words:} opinion mining, sentiment analysis, tourism, natural language processing, subgroup discovery
+%\end{abstract}
+%
+%%\cleardoublepage
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%Notation (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{notation}
+%%\begin{tabular}{cl}
+%%$(a,b)$ & The greatest common divisor of $a$ and $b$\\[0.3em]
+%%$\parity{P}{Q}$  & Number of prime factors of $Q$, taken positively and counted with multipicity,\\[0.3em] & such that $P$ is nonresidue of them.\\[0.3em]
+%
+%%${\mathbb Z}$ & Nombres enters\\[0.3em]
+%%${\mathbb Q}$ & Nombres racionals\\[0.3em]
+%%${\mathbb R}$ & Nombres reals\\[0.3em]
+%%${\mathbb C}$ & Nombres complexos
+%%\end{tabular}
+%%\end{notation}
+
+%--------------------------------------------------------------
+% Taula de continguts
+% S'elabora autom�ticament
+%-------------------------------------------------------------
+
+\pagenumbering{roman}
+\pagestyle{plain}
+
+\setcounter{page}{10}
+\includepdf[pages={1-}]{primeraspaginas}
+\pagenumbering{gobble}
+\tableofcontents
+
+\clearpage
+
+%------------------------------------------------------------
+% Cos del treball
+%Es poden fer servir Parts, Capitols, Seccions i Subseccions
+%-------------------------------------------------------------
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\setcounter{page}{11}
+\input{Introduccion}
+\input{sentimentanalysis}
+%\input{metaheuristicas}
+%\input{preparacionexperimentos}
+%\input{analisisresultados}
+%\input{conclusiones}
+%\cleardoublepage
+\let\cleardoublepage\clearpage
+%\appendix{Fora del cos} Els ap�ndixs poden contenir demostracions
+%especialment t�cniques, prgrames d'ordinador, descripci�
+%d'algorismes, etc.
+
+
+%\printindex
+
+%\input{bibliografia}
+
+%\cleardoublepage \sloppy
+%\begin{raggedright}
+%\input{exemple_tfm.ind}
+%\end{raggedright}
+
+
+
+%--------------------------------------------------------------
+%Seccions addicionals: Ap�ndixs, Glosari, Bibliografia
+%
+%Els ap�ndixs son com capitols pero van precedits de \apendix,
+%es a dir: \apendix \chapter{Nom de l'apendix}
+%\begin{appendices}
+%	\cleardoublepage
+%	\includepdf[pages={1-}]{apendices.pdf}
+%	\input{apendices}
+%\end{appendices}
+
+%Per a la bibliografia es pot fer servir els fitxers .bib
+%(consulteu un manual de LaTex per al seu us)
+%o simplement amb \begin{thebibliography}{100} \end{thebibliography}
+%
+\bibliographystyle{apalike}
+\bibliography{References}
+%El glosari de termes es crea automaticament. Consulteu un manual
+%de LaTex
+
+%--------------------------------------------------------------
+
+
+%
+\begin{thebibliography}{99}
+	\bibitem[Daniel Bestard Delgado]{intro1} ¿Cómo se explica el crecimiento del BIG DATA en la última década? ¿Qué retos nos ha planteado esta ciencia?
+
+%	\bibitem[Tan et al., 1999]{tanetal} \hspace{-.22cm} Text mining: The state of the art and
+%	the challenges. In Proceedings of the PAKDD 1999 Workshop on Knowledge
+%	Disocovery from Advanced Databases. Tan, A.-H. et al. (1999).
+%	\bibitem[Rib , 2016]{rib} \hspace{-.22cm} SentiBench - a benchmark comparison of state-of-the-practice sentiment analysis methods. Filipe N Ribeiro, Matheus Araújo, Pollyanna Gonçalves, Marcos André Gonçalves and Fabrício Benevenuto (2016).
+%	\bibitem[Tsy. Surv., 2012]{tsy} \hspace{-.22cm}  Survey on mining subjective
+%	data on the web. Tsytsarau Mikalai, Palpanas Themis (2012).
+%	\bibitem[Wal, 2014]{wal} \hspace{-.22cm} Sentiment analysis algorithms and applications: A survey. Walaa Medhat, Ahmed Hassan, Hoda Korashy. Ain Shams University (2014).
+%	\bibitem[Liu, 2012]{liu} \hspace{-.22cm}  Sentiment analysis and opinion mining. Synthesis lectures on human language technologies. Liu, B. (2012).
+%	\bibitem[Valdivia A., 2016]{ana} \hspace{-.22cm} Sentiment Analysis For Touristic Attractions: A Case Study On The Alhambra. Master Thesis. Ana Valdivia García (2016).
+%	\bibitem[Manning, 2014]{corenlppaper} The Stanford CoreNLP Natural Language Processing Toolkit. Christopher D. Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven J. Bethard, David McClosky (2014).
+%	\bibitem[Socher R., 2013]{corenlpfuncionamiento} Recursive Deep Models for Semantic Compositionality
+%	Over a Sentiment Treebank - Richard Socher, Alex Perelygin, Jean Y. Wu, Jason Chuang,
+%	Christopher D. Manning, Andrew Y. Ng and Christopher Potts (2013).
+%	\bibitem[Thelwall M., 2011]{senti} Sentiment Strength Detection for the Social Web - University of Wolverhampton - Mike Thelwall, Kevan Buckley, Georgios Paltoglou (2011)
+%	\bibitem[Thelwall M., 2010]{senti2} Sentiment Strength Detection in Short Informal Text - University of Wolverhampton - Mike Thelwall, Kevan Buckley, Georgios Paltoglou, Di Cai (2010)
+%	\bibitem[Melian B., 2003]{meta} Metaheurísticas: una visión global - Revista Iberoamericana de Inteligencia Artificial - B. Melián, J.A. Moreno Pérez, J.M. Moreno Vega (2003)
+%	\bibitem[Fogel D.B., 1998]{evolution} Evolutionary Computation. The Fossil Record - D.B. Fogel (1998)
+%	\bibitem[Eiben A.E., 2003]{evolution2} Introduction to Evolutionary Computation - A.E. Eiben, J.E. Smith (2003)
+%	\bibitem[Kennet V.P., 2005]{differentialevo} Differential Evolution: A Practical Approach to Global Optimization (Natural Computing Series) - Kenneth V. Price, Rainer M. Storn, and Jouni A. Lampinen (2005)
+%	\bibitem[Kirkpatrick S.,1983]{enfriamiento} Optimization by simulated annealing - Kirkpatrick S, Gelatt CD Jr, Vecchi MP (1983)
+%	\bibitem[Valdivia A., 2017]{proneu} Neutrality in the Sentiment Analysis Problem Based
+%	on Fuzzy Majority - Ana Valdivia, M. Victoria Luzón, Francisco Herrera (2017)
+%	\bibitem{corenlp} Web de CoreNLP - https://stanfordnlp.github.io/CoreNLP/
+%	\bibitem{corenlpgithub} GitHub coreNLP para R - https://github.com/statsmaths/coreNLP
+%	\bibitem{azuredoc} Documentación Microsoft Azure - https://docs.microsoft.com/es-es/azure/cognitive-services/text-analytics/overview
+%	\bibitem{meaningclouddoc} Documentación de MeaningCloud - \\
+%	 https://www.meaningcloud.com/developer/documentation
+%	 \bibitem{vader} Github VADER - https://github.com/cjhutto/vaderSentiment
+%	 \bibitem{syuzhet} Github Syuzhet Package - https://bitbucket.org/matheusaraujo/sentimental-analysis-methods
+\end{thebibliography}
+\end{document}
+%--------------------------------------------------------------%
+%--------------------------------------------------------------%

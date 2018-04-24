@@ -1,0 +1,125 @@
+\documentclass[reqno,twoside, 12pt]{report}
+
+\usepackage[spanish,english]{babel}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{parskip}
+\usepackage{xcolor,colortbl}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{eurosym} 
+\usepackage{verbatim} 
+\usepackage{subcaption}
+%Para introducir trozos de código
+\usepackage{listings}
+\lstloadlanguages{R}
+\lstset{language=R,
+	basicstyle=\small\ttfamily,
+	stringstyle=\color{dkgreen},
+	otherkeywords={0,1,2,3,4,5,6,7,8,9},
+	morekeywords={TRUE,FALSE},
+	deletekeywords={\_},
+	keywordstyle=\color{blue},
+	commentstyle=\color{DarkGreen},
+}
+
+
+\usepackage{color}
+\definecolor{gray97}{gray}{.97}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{greentable}{rgb}{0.176, 0.682, 0.396}
+
+%hasta aquí
+\usepackage{caption} 
+\usepackage{pdflscape}
+\usepackage{appendix}
+\definecolor{blue}{rgb}{0.372, 0.847, 0.835}
+\usepackage[table]{xcolor}
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+\newtheorem{definition}{Definition}[chapter]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{}
+\fancyhead[RE,LO]{\rightmark}
+\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[LE,RO]{}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\pagenumbering{gobble}
+
+%%-------------------------------------------------------------%
+
+\begin{document}
+	\includepdf{pagina_en_blanc.pdf}
+	\vspace*{20pt}
+	\begingroup
+	\centering
+		\section*{Agradecimientos}
+				\endgroup
+		
+		AGRADECIMIENTOS
+
+		\vspace*{20pt}
+			\includepdf{pagina_en_blanc.pdf}
+		\newpage
+		
+		\vspace*{20pt}
+		\begingroup
+		\centering
+		\section*{Resumen}
+		\endgroup
+		
+		
+		RESUMEN EN ESPAÑOL
+		
+			\includepdf{pagina_en_blanc.pdf}
+		\newpage
+		
+		\vspace*{20pt}
+		\begingroup
+		\centering
+		\section*{Abstract}
+		\endgroup
+		
+		
+		RESUMEN EN INGLES
+		
+			\includepdf{pagina_en_blanc.pdf}
+				\newpage
+		
+		\vspace*{20pt}
+		
+		Consentimientos
+		\begin{comment}
+		Yo, \textbf{Nuria Rodríguez Barroso}, alumno de la titulación Grado en Ingeniería Informática de la \textbf{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación de la Universidad de Granada}, con DNI 54120359W certifico la autoría de este Trabajo de Fin de Grado y autorizo la ubicación de la siguiente copia en la biblioteca del centro para su consulta.
+
+		\vspace{5cm}
+		Fdo.: Miguel López Campos
+		\vspace{2cm}
+	
+		
+		\hspace{6cm}
+		Granada a 8 de septiembre de 2017
+		\end{comment}
+\end{document}

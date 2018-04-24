@@ -1,0 +1,8 @@
+\select@language {english}
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{11}{chapter.1}
+\contentsline {section}{\numberline {1.1}Contexto}{11}{section.1.1}
+\contentsline {section}{\numberline {1.2}Motivaci\IeC {\'o}n}{12}{section.1.2}
+\contentsline {section}{\numberline {1.3}Objetivos}{15}{section.1.3}
+\contentsline {chapter}{\numberline {2}An\IeC {\'a}lisis de sentimientos}{16}{chapter.2}
+\contentsline {section}{\numberline {2.1}Concepto de An\IeC {\'a}lisis de Sentimientos}{16}{section.2.1}
