@@ -18,7 +18,7 @@ from nltk.corpus import sentence_polarity as sent_pol
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
 from csv_embeddings import *
-import numpy as np
+import xml_data
 
 #Variables globales
 RANDOM_SEED = 7
@@ -64,26 +64,33 @@ def data_preparation_train_test():
         las oraciones de entrenamiento.
         test_labels: lista de enteros con la clase (0:negativo, 1:positivo) de 
         las oraciones de test.
-    """
-    #Esto lo hago porque a través de la documentación de NLTK sé como es el corpus.
-    positive_sents = sent_pol.sents(categories="pos")
-    n_pos_sents = len(positive_sents)
-    negative_sents = sent_pol.sents(categories="neg")
-    n_neg_sents = len(negative_sents)
-    #db_indexes: Cada posición se corresponde con una oración del corpus
-    db_indexes = [i for i in range(n_pos_sents + n_neg_sents)]
-    db_sents = positive_sents + negative_sents
-    #db_labels: Cada posición se corresponde con una etiqueta de opinión del corpus.
-    #Cada posición de esta lista se corresponde con cada posición de db_indexes.
-    db_labels = [1] * n_pos_sents + [0] * n_neg_sents
-    train_indexes, test_indexes, train_labels, test_labels = train_test_split(db_indexes, db_labels,test_size=0.2,shuffle=True, stratify=db_labels)
-    
-    train_sents = [db_sents[i] for i in train_indexes]
-    test_sents = [db_sents[i] for i in test_indexes]
 
-    print(train_sents)
+        En cuanto a las etiquetas tenemos 3 clases: 
+            - 0 -> O
+            - 1 -> B
+            - 2 -> I
+    """
+
+        #Hacemos en este caso el ejemplo con xml
+        data = XMLData("Laptop_Train_v2.xml")
+        iob_data = data.getIobData()
+
+        #Queremos obtener por un lado las frases y por otro las etiquetas
+
+
+
+        
+        for phrase in data:
+
+
+
+
+
+
     
-    return (train_sents, test_sents, train_labels, test_labels)
+
+    
+    return (train_phrases, test_phrases, train_labels, test_labels)
     
 def build_vocabulary(input_corpus, index_start):
     """Genera un vocabulario a partir de un conjunto de oraciones/documentos de
@@ -371,6 +378,4 @@ if __name__ == '__main__':
     
 
 
-    
-    
     
