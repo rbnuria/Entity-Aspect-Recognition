@@ -13,6 +13,12 @@ class CSVEmbeddings:
 	def __init__(self):
 		self.embeddings = []
 
+	def __init__(self, source):
+		self.embeddings = []
+
+		with open(source, 'r') as csvfile:
+			self.embeddings = list(csv.reader(csvfile))
+
 	def getEmbeddings(self, source):
 	    '''
 	    	Método que se encarga de leer un archivo CSV ubicado en la ruta pasada como argumento.
@@ -24,8 +30,8 @@ class CSVEmbeddings:
 	    return self.embeddings
 
 if __name__ == "__main__":
-	object_ = CSVEmbeddings()
 	source = '/Users/nuria/TFG/AmazonWE/sentic2vec.csv'
-	embeddings = object_.getEmbeddings(source)
+	object_ = CSVEmbeddings(source)
+	print(object_.embeddings[1])
 
 

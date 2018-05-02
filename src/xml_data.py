@@ -79,8 +79,5 @@ class XMLData:
 
 if __name__ == "__main__":
 	source = '/Users/nuria/TFG/SemEval14/Laptop_Train_v2.xml'
-	object_ = XMLData(source)
-
-	data = object_.getIobData()
-	print(data[0])
+	object_ = XMLData(source).getIobData()
 
