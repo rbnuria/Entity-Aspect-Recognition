@@ -46,6 +46,7 @@ def create_matrix(sentences, windows_size, word_to_index, label_to_index):
 
 			#Para cada palabra en la ventana que estamos contemplando -> (?) ¿NO SERÍA EL TAMAÑO DE VENTANA / 2 -1?
 			for index in range(sentence_idx - windows_size//2, sentence_idx + windows_size//2 + 1):
+			#for index in range(sentence_idx - windows_size, sentence_idx + windows_size + 1):
 				#Si nos salimos de la frase rellenamos con 0 (padding_index)
 				if index < 0 or index >= len(sentence):
 					wordIndices.append(padding_index)
@@ -142,6 +143,7 @@ num_hiddens_units = 100
 
 #Creamos funciones de entrenamiento y predicción
 n_in = windows_size
+#n_in = windows_size*2 +1
 n_out = len(label_to_index)
 
 #Capas
