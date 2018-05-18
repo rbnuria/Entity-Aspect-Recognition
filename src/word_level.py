@@ -198,27 +198,28 @@ labels_test = np.array(labels_test)
 # 								FUNCIONES CALCULO ERROR										 #
 ##############################################################################################
 
-'''def compute_precision(labels_predicted, labels):
+'''
+def compute_precision(labels_predicted, labels):
     n_correct = 0
     count = 0
     
     idx = 0
     while idx < len(labels_predicted):
-        if labels_predicted[idx][0] == 'B': #He encontrado entidad
+        if labels_predicted[idx] == 2: #He encontrado entidad
         	count += 1
 
         	if labels_predicted[idx] == labels[idx]:
         		idx += 1
         		found = True
 
-        		while idx < len(labels_predicted) and labels_predicted[idx][0] == 'I': #Mientras sigo dentro de la misma entidad
+        		while idx < len(labels_predicted) and labels_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
         			if labels_predicted[idx] != labels[idx]:
         				found = False
 
         			idx += 1
 
         		if idx < len(labels_predicted):
-        			if labels[idx][0] == 'I': #Si la entidad tenía más tokens de los predichos
+        			if labels[idx] == 3: #Si la entidad tenía más tokens de los predichos
         				found = False
 
         		if found: #Sumamos 1 al número de encontrados
@@ -234,7 +235,8 @@ labels_test = np.array(labels_test)
     if count > 0:
     	precision = float(n_correct) / count
 
-    return precision'''
+    return precision
+'''
 
 def compute_precision(labels_predicted, labels):
 	n_correct = 0
