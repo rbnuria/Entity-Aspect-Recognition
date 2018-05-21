@@ -11,8 +11,7 @@
 	El procedimiento usual de un sistema PLN se divide en tres fases principales: análisis sintáctico, semántico y pragmático. En la práctica, estas fases no son suficientes. Esto se debe a que no es viable realizar el análisis sintáctico de un texto sin haber identificado las palabras y las oraciones además de la información morfológica de las palabras que componen la frase. Así, a las tres fases anteriores habría que añadir dos nuevas fases: \textit{tokenización} y análisis léxico.
 	
 	
-	En la figura \ref{fig:flujo} observamos el flujo de trabajo que seguiría un sistema PLN. La funcionalidad de la cada una de las fases sería:
-
+	A continuación observamos el flujo de trabajo que seguiría un sistema PLN. La funcionalidad de la cada una de las fases sería:
 
 		\begin{minipage}{.65\textwidth}
 			\begin{enumerate}% never number things manually!
@@ -24,17 +23,9 @@
 			\end{enumerate}
 		\end{minipage}
 		\begin{minipage}{.35\textwidth}
-				\includegraphics[width=1\linewidth]{imagenes/flujo}
+			\includegraphics[width=1\linewidth]{imagenes/flujo}
 		\end{minipage}
-
-
-
-			
-
-
-
-	
-
+		
 	La búsqueda del entendimiento del lenguaje no es la única misión del PLN. También persigue la generación automática de lenguaje, aunque no va a ser en lo que centremos esta memoria.
 	
 	
@@ -76,3 +67,13 @@
 	\subsection{Niveles de clasificación}\label{nivelesSA}
 	
 	%Aqui hacer mucho énfasis en lo importante que es hacerlo por entidades -> Dar importancia a mi trabajo
+	
+	Como ya hemos introducido, el objetivo final del Análisis de sentimientos es la clasificación de un texto según su polaridad. Ahora bien, a la hora de clasificar la polaridad de un texto podemos considerar tres niveles:
+	
+	\begin{enumerate}
+		\item \textbf{Nivel de texto: } Analiza el documento completo y asigna una polaridad global al documento en su conjunto. Es el nivel más general y, por tanto, menos preciso.
+		\item \textbf{Nivel de sentencias: } Detecta el sentimiento en frases. Está muy relacionado con la subjetividad ya que esta se expresa en frases y no en documentos largos. Obtendríamos uan clasificación más precisa del sentimiento.
+		\item \textbf{Nivel de aspectos o entidades: } Detecta el sentimiento u opinión y la entidad a la que se refiere. Es el nivel más preciso de análisis, pues no produce generalizaciones si no que se identifica una polaridad con un aspecto concreto.
+	\end{enumerate}
+	
+	 Como ya hemos comentado, nuestro proyecto se centrará en el último de estos niveles de clasificación. La importancia de esta especificación queda reflejada en el ejemplo que pusimos en la sección \ref{opinion}. Además, una vez tengamos clasificada la polaridad de los diferentes aspectos o entidades, es fácilmente extrapolable al resto de niveles de clasificación. Podemos obtener la clasificación a nivel de sentencias simplemente con la combinación de la polaridad de cada uno de los aspectos que aparecen en la sentencia y análogamente con la clasificación a nivel de texto.

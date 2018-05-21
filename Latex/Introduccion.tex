@@ -57,7 +57,7 @@
 	 Esto hace que se presente como una campo de estudio muy llamativo, con muchas mejoras por hacer y con un futuro muy prometedor. Cada día más gente centra su interés en esta materia (Figura \ref{fig:interes}). De ahí que a lo largo de esta memoria nos dediquemos al estudio de una parte de este amplio campo.
 	 
 
-	Como ya podemos imaginar, el término Análisis de Sentimientos abarca un gran conjunto de tareas. El trabajo se va a centrar en una de esas tareas en concreto: la extracción de características. 
+	Como ya podemos imaginar, el término Análisis de Sentimientos abarca un gran conjunto de tareas. El trabajo se va a centrar en una de esas tareas en concreto: la extracción de entidades o aspectos, que sería el primer paso del Análisis de Opiniones a Nivel de Aspecto (ABSA). Esta tarea tiene como fin identificar todas las entidades y sus aspectos y clasificar la opinión que sobre ellos se está expresando en un fragmento de texto. 
 
 	Para explicar en qué consiste y su importancia, trabajaremos sobre un ejemplo concreto. Imaginemos que queremos analizar la siguiente opinión:
 	
@@ -73,52 +73,58 @@
 
 	Si tuviéramos que establecer una polaridad a dichar frase, sería una tarea complicada incluso para una persona. En la frase se nombran tres componentes de un mismo ordenador y se da un opinión sobre cada una de ellas. Así, \textit{buen procesador} tendría connotaciones positivas mientras que \textit{la pantalla tiene poca resolución} y \textit{el precio es muy elevado} negativas. La polaridad general del producto dependerá de la importancia que se le dé a cada una de las partes. Como no podemos saber a priori un orden de prioridad establecido, sería muy útil poder dar una polaridad a cada una de las componentes.
 	
-	Ahora bien, para poder realizar este proceso de forma automatizada nos encontraríamos con dos tareas: en primer lugar la identificación de la característica y, en segundo lugar, la detección de la polaridad de esta. En este trabajo nos centraremos en la primera de estas tareas. 
+	Ahora bien, para poder realizar este proceso de forma automatizada nos encontraríamos con dos tareas: en primer lugar la identificación del aspecto y, en segundo lugar, la detección de la polaridad de esta. En este trabajo nos centraremos en la primera de estas tareas. 
 
 	\section{Objetivos} \label{objetivos}
 	
-	En este trabajo se pretende dar una pequeña introducción al Análisis de sentimientos, ciencia muy amplia de la que nos centraremos en resolver un tipo de problema concreto. Nuestro objetivo será resolver el problema de extracción de características.
+	El objetivo del proyecto será comparar el uso de redes neuronales de convolución (CNN) y redes neuronales recurrentes basadas en puertas, en concreto la arquitectura Long-Term Short Memory (LSTM) en la tarea de la extracción de aspectos y entidades. 
 	
-	Para ponernos en contexto, realizaremos una breve introducción teórica al Análisis de sentimientos. En ella hablaremos sobre el procesamiento del Lenguaje Natural al mismo tiempo que definiremos formalmente el concepto de opinión y hablaremos de los diferentes niveles del Análisis de sentimientos donde daremos a relucir la importancia de nuestro problema concreto. 
+	De este modo, se desarrollarán dos modelos neuronales distintos, y se comparará tanto el rendimiento de los mismos como la exactitud en los resultados obtenidos. 
 	
-	A continuación, realizaremos una introducción matemática al Deep Learning ( (?) no sé muy bien qué voy a hacer en la parte matemática) para fundamentar de forma teórica las bases de los métodos que aplicaremos en el resto del trabajo.
-	
-	En cuanto a la solución propuesta para resolver nuestro problema de clasificación, partiremos del modelo propuesto en el artículo de [(?) citar paper Poria]  en el que se aborda el problema con el uso de Redes Neuronales Convolutivas (CNN). Posteriormente, propondremos mejoras y/o modelos diferentes que finalmente compararemos.
+	Desde un punto de vista más teórico se estudiarán las bases del deep learning, centrándonos en la base matemática de las redes neuronales contempladas.  En concreto, nos centraremos en el estudio matemático  de las redes neuronales recurrentes pues son de gran interés para nuestro problema.
 	
 	Así, la estructura del trabajo constaría de los siguientes tomos:
 	
 	 \begin{enumerate}
 	 	\item Introducción teórica al Análisis de sentimientos.
 	 	\item Fundamentos matemáticos del Deep Learning.
-	 	\item Implementación del modelo base.
-	 	\item Desarrollo de mejoras y/o nuevos modelos.
+	 	\item Implementación del modelo basado en CNN.
+	 	\item Implementación del modelo basado en LSTM.
 	 	\item Comparativa entre los modelos desarrollados.
 	 \end{enumerate}
 
 	 
 	\section{Requerimientos}\label{requerimientos}
 	
-	Como ya hemos introducido en la Sección \ref{objetivos}, queremos desarrollar un software para resolver el problema de la extracción de características.
+%	Como ya hemos introducido en la Sección \ref{objetivos}, queremos desarrollar un software para resolver el problema de la extracción de entidades o aspectos.
+%	
+%	Para ello, nuestro sistema aceptará un conjunto de frases con un formato determinado como entrada produciendo una secuencia de etiquetas que nos identifiquen las entidades (tanto simples como compuestas). Para ello utilizaremos el sistema de notación \textit{IOB} (IN/ OUT/ BEGING). Con este sistema, la etiqueta \textit{B} se correspondería con el inicio de una entidad. Si esta es compuesta, la siguiente palabra estaría etiquetada con la etiqueta \textit{I}. El resto de palabras que no representan una entidad serían etiquetadas con \textit{O}. 
+%	
+%	Un ejemplo de etiquetado \textit{IOB} sería el siguiente:
+%	
+%	\begin{center}
+%		\begin{minipage}{0.9\linewidth}
+%			\vspace{5pt}%margen superior de minipage
+%			{\small
+%				[1] \textit{My favourite city is New York}
+%				
+%				[2] \textit{(My, O) (favourite, O)  (city, B) (is, O) (New, B) (York, I)}
+%			}
+%			\vspace{5pt}%margen inferior de la minipage
+%		\end{minipage}
+%	\end{center}
+%	
+%	
+%	Para la representación de las palabras utilizaremos \textit{word embeddings} ya entrenados en diccionarios en inglés. Por lo que nuestro sistema funcionará solamente en inglés.
+%	
+
+	Los requerimientos del proyecto que desarrollaremos se resumen en:
 	
-	Para ello, nuestro sistema aceptará un conjunto de frases con un formato determinado como entrada produciendo una secuencia de etiquetas que nos identifiquen las entidades (tanto simples como compuestas). Para ello utilizaremos el sistema de notación \textit{IOB} (IN/ OUT/ BEGING). Con este sistema, la etiqueta \textit{B} se correspondería con el inicio de una entidad. Si esta es compuesta, la siguiente palabra estaría etiquetada con la etiqueta \textit{I}. El resto de palabras que no representan una entidad serían etiquetadas con \textit{O}. 
-	
-	Un ejemplo de etiquetado \textit{IOB} sería el siguiente:
-	
-	\begin{center}
-		\begin{minipage}{0.9\linewidth}
-			\vspace{5pt}%margen superior de minipage
-			{\small
-				[1] \textit{My favourite city is New York}
-				
-				[2] \textit{(My, O) (favourite, O)  (city, B) (is, O) (New, B) (York, I)}
-			}
-			\vspace{5pt}%margen inferior de la minipage
-		\end{minipage}
-	\end{center}
-	
-	
-	Para la representación de las palabras utilizaremos \textit{word embeddings} ya entrenados en diccionarios en inglés. Por lo que nuestro sistema funcionará solamente en inglés.
-	
+	\begin{enumerate}
+		\item Clasificar/extraer entidades o aspectos mediante una arquitetura basada en CNN.
+		\item Clasificar/extraer entidades o aspectos mediante una arquitetura basada en LSTM.
+		\item Comparar los resultados obtenidos por las arquitecturas implementadas.
+	\end{enumerate}
 
 		
 
