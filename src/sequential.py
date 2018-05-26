@@ -4,6 +4,7 @@ from xml_data import *
 import tensorflow as tf 
 from sklearn.model_selection import train_test_split
 import random
+from keras import backend as K
 from keras.models import Model
 from keras.models import Sequential
 from keras.layers.normalization import BatchNormalization
@@ -20,7 +21,8 @@ from keras.layers.core import Dense
 from keras.layers import TimeDistributed
 from keras.layers import Permute
 from keras.layers import Reshape
-
+from keras.layers import maximum
+from keras.layers import Lambda
 #*************************************************************#
 #						PREPROCESAMIENTO 					  #
 #*************************************************************#
@@ -217,6 +219,7 @@ for sentence in data:
 		fila_sentences.append(word)
 		words[word] = True
 
+	fila_labels = np.array(fila_labels)
 	labels.append(fila_labels)
 	sentences.append(fila_sentences)
 
@@ -316,9 +319,9 @@ y_test = data['test']['labels']
 
 
 print('X_train shape:', x_train.shape)
-print('X_test shape:', y_test.shape)
-print('Y_train shape:', y_train.shape)
-print('Y_test shape;', y_test.shape)
+print('X_test shape:', x_test.shape)
+#print('Y_train shape:', y_train.shape)
+#print('Y_test shape;', y_test.shape)
 
 
 
@@ -400,7 +403,8 @@ def compute_f1(predictions, dataset_y):
 
 
 
-
+def max_nuria(x):
+	return tf.to_float(K.argmax(x,axis=2))
 
 #*************************************************************#
 #					CREACIÓN DE LA RED						  #
@@ -420,78 +424,41 @@ nb_epoch = 1
 input_size = MAX_LENGTH
 
 #DEFINIMOS EL MODELO
+sequence_input = Input(shape = (input_size, ), dtype = 'float64')
 embedding_layer = Embedding(word_embeddings.shape[0], word_embeddings.shape[1], weights=[word_embeddings],trainable=False, input_length = input_size) #Trainable false
-sequence_input = Input(shape = (input_size, ))
 embedded_sequence = embedding_layer(sequence_input)
-
 #Primera convolución
-x = Conv1D(filters = 100, kernel_size = 2, activation = "tanh", input_shape = (None, 65,300))(embedded_sequence)
+x = Conv1D(filters = 100, kernel_size = 2, activation = "tanh")(embedded_sequence)
 x = MaxPooling1D(pool_size = 2)(x)
 x = Dropout(0.5)(x)
-
 #Segunda
 x = Conv1D(filters = 50, kernel_size = 3, activation = "tanh")(x)
 x = MaxPooling1D(pool_size = 2)(x)
 x = Dropout(0.5)(x)
-
 #Transponemos -> Dense -> transponemos
-x = Permute((2,1), input_shape = (15,50))(x)
+x = Permute((2,1))(x)
 x = Dense(65, activation = "relu")(x)
-x = Permute((2, 1), input_shape=(50, 65))(x)
+x = Permute((2, 1))(x)
 
 #Una probabilidad por etiqueta
-preds = TimeDistributed(Dense(4, activation = "softmax"))(x)
+preds = TimeDistributed(Dense(4, activation="softmax"))(x)
+preds = Lambda(max_nuria)(preds)
+
 
 model = Model(sequence_input, preds)
 
 model.summary()
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+def customize_loss_function(y_true, y_pred):
+	return K.mean(y_true, axis = -1)
 
 
-'''
-model = Sequential()
-
-#model.add(Input(batch_shape = (batch_size, input_size, word_embeddings.shape[1])))
-#model.add(Embedding(word_embeddings.shape[0], word_embeddings.shape[1], weights=[word_embeddings],trainable=False, input_length = input_size))
-
-#Primera convolución
-model.add(Conv1D(filters = 100, kernel_size = 2, strides = 1, input_shape = (None, input_size, 300)))
-model.add(Activation("tanh"))
-#model.add(MaxPooling1D(pool_size=2, padding='valid'))
-model.add(Dropout(0.5))
-
-#Segunda capa convolución
-model.add(Conv1D(filters = 50, kernel_size = 3, strides = 1))
-model.add(Activation("tanh"))
-#model.add(MaxPooling1D(pool_size=2, padding='valid'))
-model.add(Dropout(0.5))
-
-#Dimensiones (15x50) --> (65x50)
-#Permutamos
-model.add(Permute((2, 1), input_shape=(15, 50)))
-#Añadimos capa densa tamaño 65
-model.add(Dense(65))
-#Volvemos a permutar
-model.add(Permute((2, 1), input_shape=(50, 65)))
-
-#Reshape
-model.add(Reshape((50, 65)))
-
-#Softmax
-model.add(TimeDistributed(Dense(4, activation='softmax',  kernel_regularizer= tf.contrib.layers.l2_regularizer(0.01)), input_shape = (65,50)))
+model.compile(loss=customize_loss_function, optimizer = 'adam', metrics=['accuracy'])
 
 
-model.summary()
+model.fit(x = x_train, y = y_train, batch_size = 128)
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-'''
-#Ejecutamos la red durante las épocas que hayamos definido 
-for epoch in range(nb_epoch):
-    print("\n------------- Epoch %d ------------" % (epoch+1))
-    model.fit(x_train, y_train, batch_size=128, epochs=1)
-
-    pred = model.predict(x_test)
+pred = model.predict(x_test)
 
     # Compute precision, recall, F1 on dev & test data
     #pre_test, rec_test, f1_test = compute_f1(predictions, y_test)

@@ -282,8 +282,6 @@ for epoch in range(number_of_epochs):
     print("\n------------- Epoch %d ------------" % (epoch+1))
     model.fit(tokens_train, labels_train, epochs=1, batch_size=minibatch_size, verbose=True, shuffle=True)   
     
-    predictions = predict_classes(model.predict([tokens_test]))
-
     # Compute precision, recall, F1 on dev & test data
     pre_test, rec_test, f1_test = compute_f1(predict_classes(model.predict([tokens_test])), labels_test)
 
