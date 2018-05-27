@@ -4,6 +4,7 @@ from xml_data import *
 import tensorflow as tf 
 from sklearn.model_selection import train_test_split
 import random
+from keras.utils import to_categorical
 from keras import backend as K
 from keras.models import Model
 from keras.models import Sequential
@@ -404,7 +405,9 @@ def compute_f1(predictions, dataset_y):
 
 
 def max_nuria(x):
-	return tf.to_float(K.argmax(x,axis=2))
+	aux = tf.to_float(K.argmax(x,axis=-1))
+
+	return tf.to_float(K.argmax(x,axis=-1))
 
 #*************************************************************#
 #					CREACIÓN DE LA RED						  #
@@ -442,23 +445,32 @@ x = Permute((2, 1))(x)
 
 #Una probabilidad por etiqueta
 preds = TimeDistributed(Dense(4, activation="softmax"))(x)
-preds = Lambda(max_nuria)(preds)
+
+print(K.int_shape(preds))
+#preds = Lambda(max_nuria)(preds)
 
 
 model = Model(sequence_input, preds)
 
 model.summary()
 
-def customize_loss_function(y_true, y_pred):
-	return K.mean(y_true, axis = -1)
+model.compile(loss='categorical_crossentropy', optimizer = 'adam', metrics=['accuracy'])
 
+#Pasamos las etiquetas a categóricas 
+y_train_categorical = []
+for label in y_train:
+	y_train_categorical.append(to_categorical(label,4))
 
-model.compile(loss=customize_loss_function, optimizer = 'adam', metrics=['accuracy'])
+#Comprobamos que lo hemos hecho bien
+print(y_train[0])
+print(y_train_categorical[0])
 
+#Pasamos lista -> numpy array
+y_train_categorical = np.array(y_train_categorical)
 
-model.fit(x = x_train, y = y_train, batch_size = 128)
+model.fit(x = x_train, y = y_train_categorical, batch_size = 128, epochs = 10)
 
-pred = model.predict(x_test)
+#pred = model.predict(x_test)
 
     # Compute precision, recall, F1 on dev & test data
     #pre_test, rec_test, f1_test = compute_f1(predictions, y_test)
