@@ -23,5 +23,5 @@ batch_size = 128
 
 lstm_model = LSTM_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
 
-lstm_model.trainModel(2)
+lstm_model.trainModel(1)
 lstm_model.fitModel(epochs = 10)
