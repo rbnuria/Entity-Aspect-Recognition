@@ -17,11 +17,12 @@ MAX_LENGTH = 65
 #Definimos batch_size
 batch_size = 128
 
-cnn_model = CNN_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
 
 #*************************************************************#
 #					CREACIÓN DE LA RED - CNN 				  #
 #*************************************************************#
+
+cnn_model = CNN_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
 
 cnn_model.trainModel()
 cnn_model.fitModel(epochs = 10)

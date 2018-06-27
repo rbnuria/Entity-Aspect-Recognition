@@ -21,6 +21,9 @@ class CNN_Model(Model_RRNN):
 		self.model = None
 
 	def trainModel(self):
+		'''
+			Definición y compilación del modelo.
+		'''
 		loss_object = Lossfunction(self.batch_size)
 		input_size = self.max_length
 		sequence_input = Input(shape = (input_size, ), dtype = 'float64')
@@ -49,6 +52,11 @@ class CNN_Model(Model_RRNN):
 		self.model.compile(loss=loss_object.loss, optimizer = 'adam', metrics=['accuracy'])
 
 	def fitModel(self, epochs):
+		'''
+			Ajuste del modelo con los datos del train.
+			TO DO: ajustar para datos de evaluación.
+		'''
+
 		#Pasamos las etiquetas a categóricas 
 		y_train_categorical = []
 		for label in self.y_train:
@@ -60,6 +68,9 @@ class CNN_Model(Model_RRNN):
 		self.model.fit(x = self.x_train, y = y_train_categorical, batch_size = self.batch_size, epochs = epochs)
 
 	def predictModel(self):
+		'''
+			Predicción de las etiquetas de test.
+		'''
 		y_pred = self.model.predict(self.x_train)
 		return y_pred
 
