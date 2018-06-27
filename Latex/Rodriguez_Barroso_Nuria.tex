@@ -29,6 +29,8 @@
 \usepackage{subcaption}
 \usepackage{lscape}
 \usepackage{lipsum}
+\usepackage{amsfonts}
+
 
 %Para introducir trozos de código
 \usepackage{listings}
@@ -204,10 +206,10 @@
 \setcounter{page}{11}
 \input{Introduccion}
 \input{sentimentanalysis}
-%\input{metaheuristicas}
-%\input{preparacionexperimentos}
-%\input{analisisresultados}
-%\input{conclusiones}
+\input{fundamentos_matematicos}
+\input{aprendizaje_automatico}
+\input{deep_learning}
+
 %\cleardoublepage
 \let\cleardoublepage\clearpage
 %\appendix{Fora del cos} Els ap�ndixs poden contenir demostracions
@@ -227,32 +229,16 @@
 
 
 %--------------------------------------------------------------
-%Seccions addicionals: Ap�ndixs, Glosari, Bibliografia
-%
-%Els ap�ndixs son com capitols pero van precedits de \apendix,
-%es a dir: \apendix \chapter{Nom de l'apendix}
-%\begin{appendices}
-%	\cleardoublepage
-%	\includepdf[pages={1-}]{apendices.pdf}
-%	\input{apendices}
-%\end{appendices}
 
-%Per a la bibliografia es pot fer servir els fitxers .bib
-%(consulteu un manual de LaTex per al seu us)
-%o simplement amb \begin{thebibliography}{100} \end{thebibliography}
-%
-\bibliographystyle{apalike}
-\bibliography{References}
-%El glosari de termes es crea automaticament. Consulteu un manual
-%de LaTex
 
 %--------------------------------------------------------------
 
 
 %
 \begin{thebibliography}{99}
-	\bibitem[Daniel Bestard Delgado]{intro1} ¿Cómo se explica el crecimiento del BIG DATA en la última década? ¿Qué retos nos ha planteado esta ciencia?
-	\bibitem[Liu, 2012]{liu} \hspace{-.22cm}  Sentiment analysis and opinion mining. Synthesis lectures on human language technologies. Liu, B. (2012).
+	%\bibitem[Daniel Bestard Delgado]{intro1} ¿Cómo se explica el crecimiento del BIG DATA en la última década? ¿Qué retos nos ha planteado esta ciencia?
+	%\bibitem[Liu, 2012]{liu} \hspace{-.22cm}  Sentiment analysis and opinion mining. Synthesis lectures on human language technologies. Liu, B. (2012).
+	\bibitem[Mitchell, 1997]{mitchell} \hspace{-.22cm} \textit{Machine Learning.} McGraw-Hill, New York.
 
 \end{thebibliography}
 \end{document}

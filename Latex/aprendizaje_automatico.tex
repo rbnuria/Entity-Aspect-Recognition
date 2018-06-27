@@ -1,0 +1,96 @@
+\chapter{Aprendizaje Automático}
+
+	En este capítulo desarrollaremos los principios básicos de aprendizaje automático para introducir el \textit{Deep Learning} en capítulos posteriores. Motivaremos su uso con algunos ejemplos y nos adentraremos en el problema de clasificación pues es el que desarrollaremos durante el resto de la memoria. 
+	
+	Finalmente hablaremos del gradiente descendente, algoritmo de optimización en el cual se inspirará el Deep Learning.
+	
+	
+\section{Concepto de Aprendizaje Automático}\label{introap}
+
+	Un algoritmo de \textbf{Aprendizaje Automático} es un algoritmo que es capaz de aprender información a partir de ciertos datos.  Pero, ¿qué entendemos por aprender? Según \cite{mitchell}, ``Un programa de ordenador se dice que aprende de una experiencia \textit{E} con respecto a un conjunto de tareas \textit{T} y medida de rendimiento \textit{P}, si su rendimiento como tarea en \textit{T}, medido con \textit{P}, mejora tras conocer la experiencia \textit{E}''. Como podemos imaginar, estas tareas y experiencias son muy diversas, de donde surgen gran variedad de técnicas de aprendizaje con estas características.
+	
+	Desde  el punto de vista de las tareas \textit{T}, el aprendizaje automático es interesante pues nos permite tratar con tareas que son muy difíciles de resolver con programas escritos y diseñados por humanos, ya sea por la complejidad de la solución o por el tamaño de la tarea.
+	
+	Han sido muchas las aplicaciones de esta clase de algoritmos. En la literatura podemos encontrar varios ejemplos:
+	
+	\begin{itemize}
+		\item Clasificación
+		\item Clasificación con valores perdidos
+		\item Regresión
+		\item Transcripción
+		\item Detección de anomalías
+		\item Predicción de valores pedidos
+		\item Estimación de densidad
+	\end{itemize}
+	
+	Con respecto a la medida de rendimiento, \textit{P}, debemos diseñar una medida cuantitativa. La medida por excelencia para casos de clasificación y transcripción es la exactitud o \textit{accuracy} de la solución, definida como la proporción de muestras para las que el modelo ha producido una salida correcta. También puede ser útil en algunos casos la tasa de error o \textit{error rate}, que mide la proporción de muestras para las que el modelo ha producido uan salida incorrecta. 
+	
+	Para aquellas tareas como la estimación de densidad, en las que la salida es continua no tiene sentido utilizar las medidas anteriormente comentadas. En estos casos se utilizarán medidas que proporcionen resultados continuos.
+	
+	\subsection{Tipos de aprendizaje automático.}
+	
+	En función de la experiencia \textit{E}, podemos clasificar los algoritmos de aprendizaje automático en dos grandes grupos: algoritmos supervisados y no supervisados.
+	
+	
+	\begin{itemize}
+		\item \textbf{Aprendizaje Automático no supervisado}: hablamos de este tipo de aprendizaje cuando los datos con los que trabajamos se conforman de un conjunto de datos que representan diferentes características de cada una de las muestras. De este modo, el objetivo suele ser encontrar propiedades importantes para la estructura del conjunto de datos. Un ejemplo clásico de problema de este tipo es el \textit{clustering}, que consiste en la agrupación de los datos en diferentes subconjutnos que contengan características similares.
+		
+		\item \textbf{Aprendizaje Automático supervisado}: se obtiene información de un conjunto con características pero donde cada muestra tiene asociada una etiqueta. Así, el objetivo de este tipo de problemas es encontrar una relación entre la etiqueta y las características, pudiendo etiquetar muestras futuras. Un ejemplo de este tipo de problema es la clasificación, en el que entraremos en más detalle a continuación.
+	\end{itemize}
+
+	Prácticamente todo el Deep Learning está motivado por el \textbf{Gradiente Descendente Estocástico}. Este algoritmo es una extensión del Gradiente Descendente. Por tanto, a continuación haremos una breve introducción a estos dos conceptos.
+	
+	
+	\section{Problema de clasificación}
+	
+	\textcolor{red}{Encontrar referencia formal donde pueda yo explicar esto}
+	
+	\section{Optimización basada en Gradiente Descendente}
+	
+	La mayoría de los algoritmos de Deep Learninginvolucran algún tipo de optimización. La función que queremos optimizar $f(x)$ se denomina \textbf{función objetivo}. 
+	
+	Suponemos que tenemos una función $y = f(x)$ con $x,y \in \mathbb{R}$. La derivada de esta función, $f'(x)$ nos el crecimiento/decrecimiento de la misma. Es decir, nos indica cómo escalar un pequeño cambio en la entrada, para obtener el correspondiente cambio en la salida. Esto es, usando la definición clásica de derivada con valores muy pequeños de $\epsilon$:
+	
+	$$
+		f'(x) = \lim_{\epsilon \rightarrow 0} \frac{f(x+ \epsilon) - f(x)}{\epsilon} \Rightarrow f(x+ \epsilon) \approx f(x) + \epsilon f'(x)
+	$$
+	
+	De este modo podríamos minimizar la funciñon $f$ pues sabríamos cómo variar $x$ para realizar una mejora en $y$. Por ejemplo, si $f(x - \epsilon$sign$(f'(x))) < f(x)$ para $\epsilon > 0$ arbitrario, entonces podemos reducir $f(x)$ sin más que mover $x$  en el sentido contrario al signo de la derivada. Esta técnica es lo que se conoce como gradiente descendente para una variable. 
+	
+	En el caso de varias variables, el procedimiento es muy similar. Consideraremos el gradiente de la función $f: \mathbb{R^n} \rightarrow \mathbb{R}$ en $x$, $\nabla_x f(x)$ y nos movemos una cantidad $\epsilon > 0$ en misma dirección y sentido contrario de la forma:
+	
+	$$
+		x' = x - \epsilon \nabla_x f(x)	
+	$$ 
+
+	El algoritmo multivariante termina cuando $\nabla_x f(x)$ es 0 o muy cercano según una tolerancia prefijada.
+	
+	Destacar que la velocidad con la que avance el método variará en función del valor tomado para $\epsilon$ en ambos casos. Así, si elegimos un valor de $\epsilon$ muy pequeño, el método puede avanzar de forma demasiado lenta mientras que si elegimos un valor muy alto puede producirse un efecto \textit{zigzag} alrededor de un óptimo local
+	
+	\textcolor{red}{Ejemplos?}
+
+	\subsection{Gradiente Descendente Estocástico}
+	
+	Un problema del Aprendizaje Automático radica en que para obtener suficiente generalización, el conjunto de datos sobre el que entrenamos los datos debe ser lo suficientemente grande. Esto conlleva una carga muy elevada de cómputo, pues normalmente la función de coste se calcula como la suma del valor en cada uno de los valores de la muestra.
+	
+	El Gradiente Descendente Estocástico (GDS) se basa en la idea de subsanar este problema utilizando solo un conjunto pequeño de muestras, llamado \textbf{minibatch} $\mathbb{B} = \{x^{(1)}, ..., x^{(m)}\}$, donde $m$ representa una pequeña muestra en función con el total del conjunto de datos.
+	
+	De esta forma, la estimación del gradiente sería
+	
+	$$ 
+		g = \frac{1}{m} \nabla_{\theta} \sum_{i = 1}^{m} L(x^{(i)}, y^{(i)}, \theta)
+	$$
+	
+	donde $x \in \mathbb{B}$. A continuación, mediante el algoritmo del Gradiente Estocástico descendente se estimaría el gradiente de la siguiente forma
+	
+	$$ 
+		\theta \leftarrow \theta - \epsilon g
+	$$
+	
+	donde $\epsilon$ es la tasa de aprendizaje.
+	
+	
+	El Deep Learning se ve motivado porque el Aprendizaje Automático no había conseguido resolver los problemas centrales de la Inteligencia Artificial, como por ejemplo el reconocimiento de imágenes o procesamiento natural del lenguaje.
+	
+
+

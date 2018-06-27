@@ -1,8 +1,8 @@
 
 
-\chapter{Análisis de sentimientos}
+\chapter{Análisis de Opiniones}
 
-	Para definir el concepto de Análisis de sentimientos es necesaria una breve introducción al Procesamiento del Lenguaje Natural.
+	Para definir el concepto de Análisis de Opiniones es necesaria una breve introducción al Procesamiento del Lenguaje Natural.
 
 \section{Procesamiento del Lenguaje Natural} \label{conceptsentiment}	
 	
@@ -30,11 +30,11 @@
 	
 	
 	
-\section{Concepto de Análisis de sentimientos}\label{conceptoSA}
+\section{Concepto de Análisis de opiniones}\label{conceptoSA}
 
-	El Análisis de sentimientos (AS) recibe muchos nombres dado a la evolución histórica que ha tenido: Análisis de Opiniones, Minería de Opiniones, etc. A partir de ahora y durante todo el proyecto nos referiremos a él como Análisis de sentimientos.
+	El Análisis de opiniones (AO) recibe muchos nombres dado a la evolución histórica que ha tenido: Análisis de Sentimientos, Minería de Opiniones, etc. A partir de ahora y durante todo el proyecto nos referiremos a él como Análisis de Opiniones.
 	
-	Definimos el Análisis de sentimientos como el estudio computacional de opiniones, sentimientos y emociones expresadas en un texto. Puede ser considerado como un proceso de clasificación cuyo fin es decidir la polaridad del sentimiento expresada en el texto. La dificultad de esta ciencia recaerá en el objeto de estudio pues se trata de información desestructurada, teniendo que convertirlos en datos estructurados. 
+	Definimos el Análisis de Opiniones como el estudio computacional de opiniones, sentimientos y emociones expresadas en un texto. Puede ser considerado como un proceso de clasificación cuyo fin es decidir la polaridad del sentimiento expresada en el texto. La dificultad de esta ciencia recaerá en el objeto de estudio pues se trata de información desestructurada, teniendo que convertirlos en datos estructurados. 
 	
 	\subsection{Concepto de Opinión}\label{opinion}
 	
@@ -55,7 +55,7 @@
 		\end{center}
 	
 
-	Si observamos el texto anterior con la intención de extraer una opinión global sobre el restaurante, encontramos que se da información ``contradictoria'' pues hay oraciones que expresan sentimientos negativos, positivos e incluso neutros. La oración [1] expresa un hecho, sin ningún juicio de valor. Por su parte, las oraciones [2], [4] y[5] expresan sentimiento positivo mientras que las oraciones [3] y [6] expresan alguna opinión negativa. Vemos que cada una de estos juicios se realizan a ciertos elementos del restaurante, por lo que será algo a tener en cuenta dependiendo de si queremos determinar opinión de la entidad (restaurante) o de cada uno de sus componentes. Otro detalle presente en el ejemplo es que no siempre la persona que juzga algo es el autor del texto. En este caso, en la frase [4] el autor expresa que a su amiga le encantó su postre. Destacar también la importancia del tiempo a la hora de realizar un juicio de valor pues nuesta opinión puede variar a lo largo del tiempo. 
+	Si observamos el texto anterior con la intención de extraer una opinión global sobre el restaurante, encontramos que se da información ``contradictoria'' pues hay oraciones que expresan opiniones negativas, positivas e incluso neutras. La oración [1] expresa un hecho, sin ningún juicio de valor. Por su parte, las oraciones [2], [4] y[5] expresan sentimiento positivo mientras que las oraciones [3] y [6] expresan alguna opinión negativa. Vemos que cada una de estos juicios se realizan a ciertos elementos del restaurante, por lo que será algo a tener en cuenta dependiendo de si queremos determinar opinión de la entidad (restaurante) o de cada uno de sus componentes. Otro detalle presente en el ejemplo es que no siempre la persona que juzga algo es el autor del texto. En este caso, en la frase [4] el autor expresa que a su amiga le encantó su postre. Destacar también la importancia del tiempo a la hora de realizar un juicio de valor pues nuesta opinión puede variar a lo largo del tiempo. 
 	
 	En este punto, podemos considerar la opinión como una cuádrupla \textit{(o, p, h, t)} donde \textit{o} representa el objeto sobre el que recae la opinión, \textit{p} la polaridad de la misma, \textit{h} el autor y \textit{t} el tiempo en el que se produjo.
 	
@@ -68,7 +68,7 @@
 	
 	%Aqui hacer mucho énfasis en lo importante que es hacerlo por entidades -> Dar importancia a mi trabajo
 	
-	Como ya hemos introducido, el objetivo final del Análisis de sentimientos es la clasificación de un texto según su polaridad. Ahora bien, a la hora de clasificar la polaridad de un texto podemos considerar tres niveles:
+	Como ya hemos introducido, el objetivo final del Análisis de Opiniones es la clasificación de un texto según su polaridad. Ahora bien, a la hora de clasificar la polaridad de un texto podemos considerar tres niveles:
 	
 	\begin{enumerate}
 		\item \textbf{Nivel de texto: } Analiza el documento completo y asigna una polaridad global al documento en su conjunto. Es el nivel más general y, por tanto, menos preciso.
