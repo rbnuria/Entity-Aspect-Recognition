@@ -218,17 +218,141 @@ Para extender estos modelos de forma que representen funciones no lineales de $x
 		
 	\subsubsection{Unidades sigmoidales}
 	
-		Este tipo de unidades se utilizan para tareas que requieren la predicción de una variable binaria $y$. La probabilidad condicionada aplicada en la técnica de máxima verosimilitud en este caso se correspondería con la definición de una distribución de Bernouilli sobre $y$ condicionada a $x$. Esta distribución se define con un número en el intervalo [0,1] determinado por la probabilidad  $P(y = 1 | x)$.
+		Este tipo de unidades se utilizan para tareas que requieren la predicción de una variable binaria $y$. La probabilidad condicionada aplicada en la técnica de máxima verosimilitud en este caso se correspondería con la definición de una distribución de Bernouilli sobre $y$ condicionada a $x$. Esta distribución se define con un número en el intervalo $[0,1]$ determinado por la probabilidad  $P(y = 1 | x)$. 
+		
+		Para cumplir la restricción de permanecer en el intervalo $[0,1]$ podríamos considerar la función de probabilidad
+		
+		$$
+			P(y = 1|x) = \max\{0, \min\{ 1, w^Th + b\}\}
+		$$
+		
+		Sin embargo, esto tiene un problemapues cada vez que el valor de la expresión $w^Th + b$ quedara fuera del intervalo, el gradiente valdría 0, lo cual supondría un mal funcionamiento del método.
+		
+		Para asegurar un buen funcionamiento del método, asegurándonos de que el gradiente no es muy cercano a cero se utiliza un enfoque diferente. Consiste en utilizar una salida sigmoidal combinada con el criterio de máxima verosimilitud.
+		
+		Así, a salida de una unidad de salida sigmoidal estaría definida por 
+		
+		$$
+			\hat{y} = \sigma (w^Th + b) = \frac{1}{1 + e^{-(w^Th + b)}}
+		$$
+		
+		Podemos ver esta salida como una unidad que tiene dos componentes:
+		\begin{enumerate}
+			\item En primer lugar se aplica una capa lineal para calcular $z = w^Th + b$
+			\item En segundo lugar se aplica una \textbf{función de activación sigmoidal} para convertir $z$ en una probabilidad.
+		\end{enumerate}
+		
+		Para construir la distribución de probabilidad sobre $y$ podemos partir de una distribución de probabilidad $\tilde{P}(y)$ no normalizada (no suma 1). A partir de aqui, podemos obtener una distribución de probabilidad dividiendo entre la constante adecuada y que $y \in \{0,1\}$, obteniendo:
+ 		
+ 		$$
+	 		log \tilde{P}(y) = yz,
+	 	$$
+	 	$$
+		 	\tilde{P}(y) = e^{yz},
+	 	$$
+	 	$$
+	 		P(y) = \frac{e^{yz}}{e^{yz} + e^{(1-y)z}} = \frac{1}{1 + \frac{e^z}{e^{2yz}}} = \frac{1}{1 + e^{(1-2y)z}},
+	 	$$
+	 	$$
+	 		P(y) = \sigma((2y-1)z) 		
+ 		$$
+ 		
+ 		Hemos obtenido que la función de distribución sobre $y$ es una Bernouilli determinada por la transformación logística de $z$.
+ 		
+ 		Susituyendo esta función de probabilidad en la fórmula de la entropía cruzada obtenemos:
+ 		
+ 		$$
+	 		J(\theta) = -\log P(y|x) = -\log \sigma((2y-1)z)  		
+ 		$$
+ 		
+ 		que está bien definida pues $\sigma$ está definida en $(0,1)$ abierto por lo que su logaritmo es finito y bien definido.
+ 		
+ 		\begin{figure}[h!]
+ 			\centering
+ 			\includegraphics[width=0.7\linewidth]{imagenes/log}
+ 			\caption{Gráfica de la función logística. Toma valores en (0,1)}
+ 			\label{fig:log}
+ 		\end{figure}
+ 		 
 		
 	\subsubsection{Unidades con activación softmax}
 		
+		Cada vez que queramos representar una distribución de probabilidad sobre una variable discreta que toma $n$ valores diferentes, usaremos la\textbf{función de activación \textit{softmax}}. Podemos ver esta función como una generalalización de una función sigmoidal.
 		
+		En la práctica, este tipo de unidades de salida son muy utilizadas en los algoritmos de clasificación, para representar la distribución de probabilidad de pertenecer a las diferentes $n$ clases. De forma extraordinaria también se pueden utilizar en las capas intermedias del modelo si queremos que el modelo elija entre una de las $n$ diferentes opciones en alguna variable interna.
+		
+		Para generalizar el caso anterior a una variable discretade $n$ valores, necesitamos producir un vector $\hat{y}$ con $\hat{y}_i=P(y=i|x)$. En este caso se añade a la condición de que cada $\hat{y}_i$ esté entre 0 y 1 que la suma del vector sea 1 para que represente una distribución de probabilidad. 
+		
+		Utilizando la misma filosofía que en el caso anterior definimos una probabilidad logarítmica no normalizada
+		
+		$$
+			z = W^Th +b
+		$$
+		
+		donde $z_i = \log \tilde{P}(y = i | x)$. 
+		
+		Pasando a exponencial y normalizando obtenemos la función \textit{softmax}
+		
+		$$
+			softmax(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}
+		$$
+		
+		De nuevo, la función de coste se obtendría sustituyendo el valor en la función de entropía cruzada.
 
+	\subsection{Unidades ocultas}
 	
-\section{Redes Neuronales Convolucionales}
-
-
-
-\section{Redes Neuronales Recurrentes}
-
-\subsection{Long-Short Term Memory}
+	Aunque cualquiera de las funciones de activación comentadas en la sección anterior se pueden aplicar en las unidades de una capa oculta, existen otras más adecuadas para ello. De hecho, el diseño de las unidades ocultas es un campo de investigación muy activo. A lo largo de esta sección desarrollaremos algunas de las más comunes.
+	
+	\subsubsection{Unidades lineales rectificadas (ReLu) y generalizaciones}
+	 
+	 Las unidades lineales rectificadas usan como función de activación
+	 
+	 $$
+		 g(z) = \max\{0,z\}
+	 $$
+	 
+	 Estas unidades son fácil de optimizar dado que son muy similares a las unidades lineales. La única diferencia radica en que la unidad lineal rectificada toma el valor 0 en la mitad del su dominio. Observamos la gráfica en la Figura \ref{fig:relu}.
+	 
+	 \begin{figure}[h!]
+	 	\centering
+	 	\includegraphics[width=0.7\linewidth]{imagenes/relu}
+	 	\caption{Gráfico de la función de activación de las unidades lineales rectificadas.}
+	 	\label{fig:relu}
+	 \end{figure}
+ 
+	 Existen muchas modificaciones de las unidades lineales rectificadas. Una desventaja de este tipo de unidades es que no pueden aprender usando métodos basados en gradiente en los ejemplos cuya activación sea 0. Muchas de las 8generalizaciones intentan solventar este problema. Definen $h_i = g(z, \alpha)_i = \max(0, z_i) + \alpha_i \min(0, z_i)$ y varían en el valor de las $\alpha_i$:
+	 
+	 \begin{enumerate}
+		 \item \textbf{Rectificación valor absoluto}: fija $\alpha_i = -1$ para obtener $g(z) = |z|$.
+		 \item \textbf{\textit{Leaky} ReLu: } fijan $\alpha_i$ a un valor pequeño por ejemplo $0.01$.
+		 \item \textbf{ReLu paramétrica: } utiliza valores de $\alpha_i$ no fijos, paramétricos.
+	 
+	\end{enumerate}
+	 
+	 
+	 \subsubsection{Sigmoidal y tangente hiperbólica}
+	
+	Antes de la introducción de las unidades lineales rectificadas, la mayoría de las redes neuronales usaban la función sigmoidal de activación 
+	
+	$$
+		g(z) = \sigma(z) = \frac{1}{1 + e^-z}
+	$$
+	
+	cuya gráfica podemos observar en la Figura \ref{fig:log} o la tangente hiperbólica como función de activación
+	
+	$$
+		g(z) = \tanh(z)
+	$$
+	
+	cuya gráfica es 
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\linewidth]{imagenes/tanh}
+		\caption{Gráfica de la tangente hiperbólica.}
+		\label{fig:tanh}
+	\end{figure}
+	
+	Ambas funciones de activación están relacionadas mediante la fórmula $\tanh(z) = 2 \sigma(2z) - 1$.
+	
+	

@@ -22,7 +22,7 @@
 \BOOKMARK [2][-]{subsection.5.1.2}{Unidades de salida}{section.5.1}% 22
 \BOOKMARK [3][-]{section*.7}{Unidades lineales}{subsection.5.1.2}% 23
 \BOOKMARK [3][-]{section*.8}{Unidades sigmoidales}{subsection.5.1.2}% 24
-\BOOKMARK [3][-]{section*.9}{Unidades con activaci\363n softmax}{subsection.5.1.2}% 25
-\BOOKMARK [1][-]{section.5.2}{Redes Neuronales Convolucionales}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.3}{Redes Neuronales Recurrentes}{chapter.5}% 27
-\BOOKMARK [2][-]{subsection.5.3.1}{Long-Short Term Memory}{section.5.3}% 28
+\BOOKMARK [3][-]{section*.10}{Unidades con activaci\363n softmax}{subsection.5.1.2}% 25
+\BOOKMARK [2][-]{subsection.5.1.3}{Unidades ocultas}{section.5.1}% 26
+\BOOKMARK [3][-]{section*.11}{Unidades lineales rectificadas \(ReLu\) y generalizaciones}{subsection.5.1.3}% 27
+\BOOKMARK [3][-]{section*.13}{Sigmoidal y tangente hiperb\363lica}{subsection.5.1.3}% 28
