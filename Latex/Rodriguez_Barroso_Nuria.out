@@ -9,14 +9,20 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Concepto de Opini\363n}{section.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.2}{Niveles de clasificaci\363n}{section.2.2}% 10
 \BOOKMARK [0][-]{chapter.3}{Fundamentos matem\341ticos}{}% 11
-\BOOKMARK [0][-]{chapter.4}{Aprendizaje Autom\341tico}{}% 12
-\BOOKMARK [1][-]{section.4.1}{Concepto de Aprendizaje Autom\341tico}{chapter.4}% 13
-\BOOKMARK [2][-]{subsection.4.1.1}{Tipos de aprendizaje autom\341tico.}{section.4.1}% 14
-\BOOKMARK [1][-]{section.4.2}{Problema de clasificaci\363n}{chapter.4}% 15
-\BOOKMARK [1][-]{section.4.3}{Optimizaci\363n basada en Gradiente Descendente}{chapter.4}% 16
-\BOOKMARK [2][-]{subsection.4.3.1}{Gradiente Descendente Estoc\341stico}{section.4.3}% 17
-\BOOKMARK [0][-]{chapter.5}{Deep Learning}{}% 18
-\BOOKMARK [1][-]{section.5.1}{Redes Neuronales Prealimentadas}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.2}{Redes Neuronales Convolucionales}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.3}{Redes Neuronales Recurrentes}{chapter.5}% 21
-\BOOKMARK [2][-]{subsection.5.3.1}{Long-Short Term Memory}{section.5.3}% 22
+\BOOKMARK [1][-]{section.3.1}{Probabilidad}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Aprendizaje Autom\341tico}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Concepto de Aprendizaje Autom\341tico}{chapter.4}% 14
+\BOOKMARK [2][-]{subsection.4.1.1}{Tipos de aprendizaje autom\341tico.}{section.4.1}% 15
+\BOOKMARK [1][-]{section.4.2}{Problema de clasificaci\363n}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.3}{Optimizaci\363n basada en Gradiente Descendente}{chapter.4}% 17
+\BOOKMARK [2][-]{subsection.4.3.1}{Gradiente Descendente Estoc\341stico}{section.4.3}% 18
+\BOOKMARK [0][-]{chapter.5}{Deep Learning}{}% 19
+\BOOKMARK [1][-]{section.5.1}{Redes Neuronales Prealimentadas}{chapter.5}% 20
+\BOOKMARK [2][-]{subsection.5.1.1}{Funci\363n de coste}{section.5.1}% 21
+\BOOKMARK [2][-]{subsection.5.1.2}{Unidades de salida}{section.5.1}% 22
+\BOOKMARK [3][-]{section*.7}{Unidades lineales}{subsection.5.1.2}% 23
+\BOOKMARK [3][-]{section*.8}{Unidades sigmoidales}{subsection.5.1.2}% 24
+\BOOKMARK [3][-]{section*.9}{Unidades con activaci\363n softmax}{subsection.5.1.2}% 25
+\BOOKMARK [1][-]{section.5.2}{Redes Neuronales Convolucionales}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{Redes Neuronales Recurrentes}{chapter.5}% 27
+\BOOKMARK [2][-]{subsection.5.3.1}{Long-Short Term Memory}{section.5.3}% 28
