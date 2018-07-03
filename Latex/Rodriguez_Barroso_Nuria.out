@@ -30,6 +30,10 @@
 \BOOKMARK [1][-]{section.6.1}{La operaci\363n de Convoluci\363n}{chapter.6}% 30
 \BOOKMARK [2][-]{subsection.6.1.1}{Ejemplo de convoluci\363n}{section.6.1}% 31
 \BOOKMARK [1][-]{section.6.2}{Pooling}{chapter.6}% 32
-\BOOKMARK [0][-]{chapter.7}{Redes Neuronales Recurrentes}{}% 33
-\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 34
-\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 35
+\BOOKMARK [1][-]{section.6.3}{Adaptaci\363n a procesamiento de datos secuencial}{chapter.6}% 33
+\BOOKMARK [0][-]{chapter.7}{Modelado de secuencias: Redes Neuronales Recurrentes}{}% 34
+\BOOKMARK [1][-]{section.7.1}{Motivaci\363n}{chapter.7}% 35
+\BOOKMARK [1][-]{section.7.2}{Despliegue de Grafos Computacionales}{chapter.7}% 36
+\BOOKMARK [1][-]{section.7.3}{Redes Neuronales Recurrentes}{chapter.7}% 37
+\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 38
+\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 39

@@ -1,1 +1,279 @@
-\chapter{Redes Neuronales Recurrentes}
+\chapter{Modelado de secuencias: Redes Neuronales Recurrentes}
+Al igual que en el capítulo anterior, en este vamos a desarrollar una clase concreta de redes neuronales, las redes neuronales recursivas y recurrentes. Esta familia de redes neuronales se utilizan para el procesamiento de datos secuencial, por lo que será natural su uso en el problema que se trata en este proyecto. 
+
+\section{Motivación}
+
+La innovación con respecto a las redes neuronales convencionales será el aplicar a estas nuevas técnicas de \textit{deep learning} una de las primeras ideas que surgieron en el aprendizaje automático y los modelos estadísticos: compartir los parámetros a lo largo de todo el aprendizaje. El hecho de compartir parámetros durante el aprendizaje del modelo hará posible la extensión y aplicación del modelo a ejemplos de diferentes longitudes y generalizar a través de ellos. 
+
+Podemos entender la importancia del hecho de compartir parámetros durante el modelo en un ejemplo sencillo de procesamiento del lenguaje natural. Supongamos las frases [1] y [2]:
+
+	\begin{center}
+	\begin{minipage}{0.4\linewidth}
+		\vspace{5pt}%margen superior de minipage
+		{\small
+			\textit{[1] Estuve en  Nepal en 2017.}
+			\\\textit{[2] En 2017 estuve en Nepal.}
+		}
+		\vspace{5pt}%margen inferior de la minipage
+	\end{minipage}
+\end{center}
+
+Si quisiéramos diseñar un algoritmo de aprendizaje automático que reconociera en qué año estuvo el narrador en Nepal, debería de reconocerse el año 2017 como la parte importante de información, independientemente de que aparezca en la quinta o en la segunda palabra de la oración. Una red neuronal tradicional usaría parámetros independientes para cada entrada, por lo que necesitaría aprender todas las reglas del lenguaje de forma independiente para cada posición en la frase. Este problema se solventaría considerando una red neuronal recurrente que comparta los mismos pesos a lo largo de todos los pasos necesarios durante el aprendizaje.
+
+Para simplificar la notación durante el capítulo consideraremos que la red actúa sobre una secuencia que contiene vectores $x^{(t)}$ aunque en la práctica las redes suelen operar sobre conjuntos de ellas (\textit{minibatches}).
+
+Al igual que en capítulo \ref{cnn} se definía la estructura del modelo de las redes neuronales convolucionales como un grafo acíclico, la recurrencia de este tipo de redes ampliará el concepto a grafos cíclicos. Estos ciclos representarán la influencia del valor actual de la variable en su propio valor en el siguiente paso del aprendizaje. 
+
+\section{Despliegue de Grafos Computacionales}
+
+	Un \textbf{grafo computacional } es una forma de formalizar la estructura de un conjunto de cálculos, como aquellos que involucran un conjunto de entradas y parámetros para producir una salida y pérdida.
+	
+	En esta sección desarrollaremos la idea de \textbf{desplegar} un cálculo recurrente en un grafo computacional con su correspondiente estructura de cadena de eventos. 
+	
+	Por ejemplo, consideramos la fórmula clásica de un sistema dinámico:
+	
+	\begin{equation}\label{recursive}
+		s^{(t)} = f(s^{(t-1)}; \theta)
+	\end{equation}
+		
+	
+	donde $s^{(t)}$ es el estado del sistema.
+	
+	Es claro que esta fórmula es recurrente porque en la definición de un estado concreto de $s$ en el tiempo $t$ se utiliza el valor del mismo estado en el momento de tiempo $t-1$.
+	
+	Si consideramos un número de pasos finito $\tau$, el grafo puede ser desplegado aplicando la definición $\tau -1 $ veces.  Por ejemplo, para $\tau = 3$ tenemos:
+	
+	\begin{equation}\label{recursive2}
+		s^{(3)} = f(s^{(2)}; \theta) = f(f(s^{(1)}; \theta); \theta)
+	\end{equation}
+		
+	
+	Desplegando sucesivamente la fórmula con la definición de $s$ hemos obtenido una expresión que no involucra recurrencia y que puede ser expresada con un gráfico acíclico. De esta forma el grafo para la fórmula \ref{recursive2} sería:
+	
+\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}[
+	init/.style={
+		draw,
+		circle,
+		font = \Large,
+		inner sep=2pt,
+		join = by -latex
+	},
+	squa/.style={
+		draw,
+		inner sep=2pt,
+		join = by -latex
+	},
+	start chain=2,node distance=13mm
+	]
+	
+	\node[on chain=2, init] 
+	(s1) {$s^{(1)}$};
+	
+	\begin{scope}[start chain=3]
+		\node[init] at (3, 0cm)  
+		(s2) {$s^{(2)}$};
+	\end{scope}
+	
+	\begin{scope}[start chain=4]
+	\node[init] at (6, 0cm)  
+		(s3) {$s^{(3)}$};
+	\end{scope}
+	
+	\draw[-latex] (s1) -- (s2);
+	\draw[-latex] (s2) -- (s3);
+	
+	\end{tikzpicture}
+	\label{fig:recursive2}
+\end{figure}
+
+\vspace{0.5cm}
+
+	Y de forma genérica, para la fórmula \ref{recursive} tendríamos el siguiente grafo
+	
+\vspace{0.5cm}
+
+\begin{figure}[h!]
+
+	\centering
+\begin{tikzpicture}[
+init/.style={
+	draw,
+	circle,
+	minimum size=1.3cm,
+	inner sep=2pt,
+	join = by -latex
+},
+squa/.style={
+	draw,
+	inner sep=2pt,
+	join = by -latex
+},
+start chain=2,node distance=13mm
+]
+
+\node[on chain=2, init] 
+(s1) {$s^{(...)}$};
+
+\begin{scope}[start chain=3]
+\node[init] at (3, 0cm)  
+(s2) {$s^{(t-1)}$	};
+\end{scope}
+
+\begin{scope}[start chain=4]
+\node[init] at (6, 0cm)  
+(s3) {$s^{(t)}$};
+\end{scope}
+
+\begin{scope}[start chain=5]
+\node[init] at (9, 0cm)  
+(s4) {$s^{(t+1)}$};
+\end{scope}
+
+\begin{scope}[start chain=6]
+\node[init] at (12, 0cm)  
+(s5) {$s^{(...)}$};
+\end{scope}
+
+\draw[-latex, dashed] (s1) -- (s2);
+\draw[-latex] (s2) -- (s3);
+\draw[-latex] (s3) -- (s4);
+\draw[-latex, dashed] (s4) -- (s5);
+
+\end{tikzpicture}
+\label{fig:recursive}
+\end{figure}
+
+\vspace{0.5cm}
+
+La mayoría de las redes neuronales recurrentes utilizan la fórmula \ref{hidden} para definir el valor de salida de las capas ocultas. 
+
+\begin{equation}\label{hidden}
+	h^{(t)} = f(h^{(t-1)}, x^{(t)}; \theta)
+\end{equation} 
+	
+Cuando una red neuronal recurrente se entrena para una tarea que requiere predecir un resultado a partir de unos datos, aprende usando $h^{(t)}$ como un tipo de resumen de pérdida de los aspectos relevantes para la tarea de la secuencia de entradas hasta el momento $t$. 
+
+\vspace{0.5cm}
+
+La ecuación \ref{hidden} se puede representar de dos formas diferentes:
+\begin{enumerate}
+	\item Considerando un nodo por cada uno de los estados por los que pasa cada una de las variables del modelo como en la Figura \ref{fig:forma1}.
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[
+		init/.style={
+			draw,
+			circle,
+			minimum size=1.3cm,
+			inner sep=2pt,
+			join = by -latex
+		},
+		squa/.style={
+			draw,
+			inner sep=2pt,
+			join = by -latex
+		},
+		start chain=2,node distance=13mm
+		]
+		
+		\node[on chain=2, init] 
+		(s1) {$h^{(...)}$};
+		
+		\begin{scope}[start chain=3]
+		\node[init] at (3, 0cm)  
+		(s2) {$h^{(t-1)}$};
+		\node[init] at (3, -2cm)  
+		(x2) {$x^{(t-1)}$};
+		\end{scope}
+		
+		\begin{scope}[start chain=4]
+		\node[init] at (6, 0cm)  
+		(s3) {$h^{(t)}$};
+		
+		\node[init] at (6, -2cm)  
+		(x3) {$x^{(t)}$};
+		\end{scope}
+		
+		\begin{scope}[start chain=5]
+		\node[init] at (9, 0cm)  
+		(s4) {$h^{(t+1)}$};
+		
+		\node[init] at (9, -2cm)  
+		(x4) {$x^{(t+1)}$};
+		\end{scope}
+		
+		\begin{scope}[start chain=6]
+		\node[init] at (12, 0cm)  
+		(s5) {$h^{(...)}$};
+		\end{scope}
+		
+		\draw[-latex, dashed] (s1) -- (s2);
+		\draw[-latex] (s2) -- (s3);
+		\draw[-latex] (s3) -- (s4);
+		\draw[-latex, dashed] (s4) -- (s5);
+		\draw[-latex] (x2) -- (s2);
+		\draw[-latex] (x3) -- (s3);
+		\draw[-latex] (x4) -- (s4);
+		
+		\end{tikzpicture}
+		\caption{Representación extendida de las operaciones de las capas ocultas en una red neuronal recursiva.}
+		\label{fig:forma1}
+	\end{figure}
+
+	\item Considerando una forma resumida, donde cada nodo representa las componentes que existirían en una implementación física del modelo como en la Figura \ref{fig:forma2}. 
+
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}[
+		init/.style={
+			draw,
+			circle,
+			pin edge={loop,thin,black},
+			minimum size=1.3cm,
+			inner sep=2pt,
+			join = by -latex
+		},
+		nit/.style={
+			pin edge={loop,thin,black},
+			minimum size=1.3cm,
+			inner sep=2pt,
+			join = by -latex
+		},
+		squa/.style={
+			draw,
+			inner sep=2pt,
+			join = by -latex
+		},
+		start chain=2,node distance=13mm
+		]
+		
+		\node[on chain=2, init, pin = {[nit]}, label={[label distance=1.3cm]above:f}] 
+		(h) {\textbf{h}};
+		
+		\begin{scope}[start chain=3]
+		\node[init] at (0, -2cm)  
+		(x) {\textbf{x}};
+		\end{scope}
+		
+		
+		\draw[-latex] (x) -- (h);
+
+		
+		\end{tikzpicture}
+		\caption{Representación esquematizada de las operaciones de las capas ocultas en una red neuronal recursiva.}
+		\label{fig:forma2}
+	\end{figure}
+
+\end{enumerate}
+	
+	Ambas formas de representación tienen sus ventajas, mientras que la segunda es compacta, la primera nos ofrece una descripción explícita de los cálculos que se llevarán a cabo. A lo largo del capítulo utilizaremos indiferentemente ambas notaciones. 
+	
+	\section{Redes Neuronales Recurrentes}
+	
+	Una vez hemos introducido la idea de compartir parámetros durante todo el aprendizaje y el despliegue de grafos computacionales podemos diseñar una gran variedad de redes neuronales recurrentes. 
+	
+	

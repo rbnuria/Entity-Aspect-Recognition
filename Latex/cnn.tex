@@ -1,8 +1,9 @@
-\chapter{Redes Neuronales Convolucionales}
+\chapter{Redes Neuronales Convolucionales}\label{cnn}
 
 	Las Redes Neuronales Convolucionales o \textit{CNN} son un tipo especializado de red neuronal para el procesamiento de datos con estructura de cuadrícula específica. 
 	
 	Durante el capítulo describiremos la operación matemática en la que se basan este tipo de redes, conocida como convolución. Posteriormente describiremos otra operación que suelen implementar este tipo de redes, el \textit{pooling}. 
+	
 	
 	\section{La operación de Convolución}
 	
@@ -62,7 +63,7 @@
 		\end{TAB}
 	\end{center}
 
-	donde $S(1,1) = f(I_{(1,1)}, I_{(1,2)}, I_{(2,1)}, I_{(2,2)}, I_{(3,1)}), I_{(3,2)}$ y así sucesivamente.
+	donde $S(1,1) = f(I_{(1,1)}, I_{(1,2)}, I_{(2,1)}, I_{(2,2)}, I_{(3,1)}, I_{(3,2)})$ y así sucesivamente.
 	
 	\section{\textit{Pooling}}
 	
@@ -78,4 +79,5 @@
 	
 	En todos los casos, el aplicar \textit{pooling} hace la representación prácticamente invariante frente a pequeñas variaciones en la entrada, consiguiendo más capacidad de generalización. 
 	
+	\section{Adaptación a procesamiento de datos secuencial}	
 	
