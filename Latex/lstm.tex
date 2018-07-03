@@ -276,4 +276,236 @@ La ecuación \ref{hidden} se puede representar de dos formas diferentes:
 	
 	Una vez hemos introducido la idea de compartir parámetros durante todo el aprendizaje y el despliegue de grafos computacionales podemos diseñar una gran variedad de redes neuronales recurrentes. 
 	
+	Podemos observar un esquema de red recurrente en la Figura  \ref{fig:rnrgenerica}.
 	
+		\begin{figure}[h!]
+
+		\begin{tikzpicture}[
+		init/.style={
+			draw,
+			circle,
+			pin edge={loop,thin,black},
+			minimum size=1.3cm,
+			inner sep=2pt,
+		},
+		nit/.style={
+			pin edge={loop,thin,black,},
+			minimum size=1.3cm,
+			inner sep=2pt,
+			join = by -latex
+		},
+		squa/.style={
+			draw,
+			inner sep=2pt,
+			join = by -latex
+		},
+		start chain=2,node distance=13mm
+		]
+		
+		
+		
+		\node[on chain=2, init] 
+		(y) {\textbf{y}};
+		
+		\node[on chain=2, init]  at (5, 0cm)  
+		(y2) {$y^{(t-1)}$};
+		
+		\node[on chain=2, init] at (7, 0cm)  
+		(y3) {$y^{(t)}$};
+		
+		\node[on chain=2, init] at (9, 0cm)  
+		(y4){$y^{(t+1)}$};
+		
+		\begin{scope}[start chain=3]
+		\node[init] at (0, -2cm)  
+		(L) {\textbf{L}};
+		
+		\node[init] at (6.95, -2cm)  
+		(L2) {$L^{(t-1)}$};
+		
+		\node[init] at (8.95, -2cm)  
+		(L3) {$L^{(t)}$};
+		
+		\node[init] at (10.95, -2cm)  
+		(L4) {$L^{(t+1)}$};
+		\end{scope}
+		
+		\begin{scope}[start chain=4]
+		\node[init] at (0, -4cm)  
+		(o) {\textbf{o}};
+		
+		\node[init] at (6.95, -4cm)  
+		(o2) {$o^{(t-1)}$};
+		
+		\node[init] at (8.95, -4cm)  
+		(o3) {$o^{(t)}$};
+		
+		\node[init] at (10.95, -4cm)  
+		(o4) {$o^{(t+1)}$};
+		\end{scope}
+		
+		\begin{scope}[start chain=5]
+		\node[init,  label={[label distance=1cm]right:\textbf{W}}, label = {[label distance = 0.1cm]75:\textbf{V}}] at (0, -6cm)  
+		(h) {\textbf{h}};
+		
+		\node[init, label = {[label distance = 0.01cm]15:\textbf{W}}] at (4.95, -6cm)  
+		(h2) {$h^{(...)}$};
+		
+		\node[init,  label = {[label distance = 0.01cm]15:\textbf{W}}, label = {[label distance = 0.1cm]75:\textbf{V}}] at (6.95, -6cm)  
+		(h3) {$h^{(t-1)}$};
+		
+		\node[init,  label = {[label distance = 0.01cm]15:\textbf{W}}, label = {[label distance = 0.1cm]75:\textbf{V}}] at (8.95, -6cm)  
+		(h4) {$h^{(t)}$};
+		
+		\node[init,  label = {[label distance = 0.01cm]15:\textbf{W}}, label = {[label distance = 0.1cm]75:\textbf{V}}] at (10.95, -6cm)  
+		(h5) {$h^{(t+1)}$};
+		
+		\node[init,  label = {[label distance = 0.01cm]15:\textbf{W}}] at (12.95, -6cm)  
+		(h6) {$h^{(...)}$};
+		
+		\end{scope}
+		
+		\begin{scope}[start chain=6]
+		\node[init,  label = {[label distance = 0.1cm]75:\textbf{U}}] at (0, -8cm)  
+		(x) {\textbf{x}};
+		
+		\node[init,  label = {[label distance = 0.1cm]75:\textbf{U}}] at (6.95, -8cm)  
+		(x2) {$x^{(t-1)}$};
+		
+		\node[init,  label = {[label distance = 0.1cm]75:\textbf{U}}] at (8.95, -8cm)  
+		(x3) {$x^{(t)}$};
+		
+		\node[init,  label = {[label distance = 0.1cm]75:\textbf{U}}] at (10.95, -8cm)  
+		(x4) {$x^{(t+1)}$};
+		\end{scope}
+		
+		
+		\draw[-latex] (y) -- (L);
+		\draw[-latex] (o) -- (L);
+		\draw[-latex] (h) -- (o);
+		\draw[-latex] (x) -- (h);
+
+		
+		\draw[-latex] (y2) -- (L2);
+		\draw[-latex] (o2) -- (L2);
+		\draw[-latex] (h3) -- (o2);
+		\draw[-latex] (x2) -- (h3);
+
+		
+		\draw[-latex] (y3) -- (L3);
+		\draw[-latex] (o3) -- (L3);
+		\draw[-latex] (h4) -- (o3);
+		\draw[-latex] (x3) -- (h4);
+
+		
+		\draw[-latex] (y4) -- (L4);
+		\draw[-latex] (o4) -- (L4);
+		\draw[-latex] (h5) -- (o4);
+		\draw[-latex] (x4) -- (h5);
+		
+		\draw[-latex, dashed] (h2) -- (h3);
+		\draw[-latex] (h3) -- (h4);
+		\draw[-latex] (h4) -- (h5);
+		\draw[-latex, dashed] (h5) -- (h6);
+		
+		\draw[-latex] (h) to [out=20,in=340,looseness=8](h);
+				
+		\end{tikzpicture}
+		\caption{Representaciones de una red neuronal recurrente genérica.}
+		\label{fig:rnrgenerica}
+	\end{figure}
+
+	En cuanto a la notación, establecemos como \textbf{x}  los valores de entrada y \textbf{o} con la secuencia de valores de salida. Por su parte, una medida \textbf{L} determina cómo de acertado es cada valor de \textbf{o} para la correspondiente etiqueta de entrenamiento \textbf{y}. La entrada de las capas ocultas están parametrizadas por una matriz de pesos \textbf{U}, mientras que las conexiones entre capas ocultas recurrentes se parametrizan con la matriz de pesos \textbf{W} compartida, y la conexión de las capas ocultas con la salida está parametrizada por la matriz de pesos \textbf{V}. 
+	
+	Una vez establecida la arquitectura de la red, nos centramos en desarrollar las ecuaciones propagación hacia delante (\textit{forward propagation}).  En este caso supondremos que la función de activación de las capas ocultas será una tangente hiperbólica (\textit{tanh}) y que la salida es discreta. Una forma común de representar variables discretas es considerar la salida \textbf{o} como una probabilidad logarítmica no normalizada para cada posible valor de la variable discreta. Entonces, podemos aplicar una operación \textit{softmax} a dichas probabilidades como se explica en la sección \ref{softmax}.
+	
+	Con todas estas consideraciones, tomando $t \in [0, \tau]$ podemos definir las siguientes ecuaciones:
+	
+	\begin{equation}\label{1}
+		\textbf{a}^{(t)} = \textbf{b} + \textbf{W h}^{(t-1)} +\textbf{ Ux}^{(t)}
+	\end{equation} 
+	
+	\begin{equation}	
+		\textbf{h}^{(t)} = \tanh(\textbf{a}^{(t)})
+	\end{equation}
+	
+	\begin{equation}
+		\textbf{o}^{(t)} = \textbf{c} + \textbf{Vh}^{(t)}
+	\end{equation}
+	
+	\begin{equation}\label{2}
+		\hat{\textbf{{y}}}^{(t)} = softmax(\textbf{o}^{(t)} )
+	\end{equation}
+	
+	donde los parámetros son los vectores de sesgo \textbf{b} y \textbf{c} junto con las matrices de pesos anteriormente comentadas \textbf{U}, \textbf{V} y \textbf{W}. 
+	
+	En cuanto a la función de pérdida para una secuencia de entrada \textbf{x} emparejada con una secuencia de valores \textbf{y} sería simplemente la suma de las pérdidas. Por ejemplo, considerando la entropía cruzada $\mathcal{L}^{(t)}$ de $y^{(t)}$ dados $\textbf{x}^{(t)}, ..., \textbf{x}^{(t)}$ entonces tenemos:
+	
+	\begin{equation}
+			\mathcal{L}(\{ \textbf{x}^{(1)}, ..., \textbf{x}^{(\tau)} \}, \{ \textbf{y}^{(1)}, ..., \textbf{y}^{(\tau)} \}) = \sum_{t}\mathcal{L}^{(t)} ) = 
+			- \sum_{t} \log p(y^{(t)} | \textbf{x}^{(1)}, ..., \textbf{x}^{(t)} \})
+	\end{equation}
+	
+	Calcular el gradiente de esta función de pérdida con respecto a los parámetros es una operación costosa. Su cálculo require de una propagación hacia delante de izquierda a derecha seguida de una propagación hacia atrás de derecha a izquierda en nuestro grafo. El tiempo de ejecución sería $\mathcal{O}(\tau)$ y no se puede reducir con paralización porque el grafo es inherentemente secuencial, cada paso de tiempo tiene que ser ejecutado después de haber ejecutado el anterior. Los cálculos realizados en la propagación hacia delante se almacenan utilizándose en la propagación hacia atrás, así conseguimos una coste de memoria de $\mathcal{O}(\tau)$ nuevamente.  
+	
+	El algoritmo de propagación hacia atrás (\textit{backpropagation}) utilizado recorrer el grafo en $\mathclap{O}(\tau)$ se llama \textbf{\textit{back-propagation through time} (BPTT)} o retro-propagación a través del tiempo y lo estudiamos en la siguiente sección.
+	
+	\subsection{Cálculo del Gradiente}
+	 
+	El cálculo del gradiente en una red neuronal recurrente es sencillo, basta con aplicar el algoritmo \textit{back-propagation} clásico al gráfico extendido. 
+	
+	Para entender mejor el comportamiento del método \textit{BPTT}, lo aplicaremos sobre las ecuaciones \ref{1} a la \ref{2}:
+	
+	Para cada nodo \textbf{N} necesitamos calcular el gradiente $\nabla_{\textbf{N}}L$ recursivamente basándonos en el gradiente calculado en los nodos que lo siguen en el grafo.
+	
+	Empezamos la recurrencia con los nodos que siguen inmediantamente a la pérdida final:
+	
+	\begin{equation}
+		\frac{\partial L}{ \partial L^{(t)}} = 1
+	\end{equation}
+	
+	Asumiendo que las salidas $\textbf{o}^{(t)}$ se usan como argumento para una función \textit{softmax} que nos proporciona el vector de probabilidades $\hat{\textbf{y}}$ sobre la salida, el gradiente $\nabla_{\textbf{o}^{(t)}}L$ de las salidas en el paso de tiempo $t$, para todo $i,t$ es:
+	
+	\begin{equation}
+		(\nabla_{\textbf{o}^{(t)}}L)_i = \frac{\partial L}{\partial o_i{(t)}} = \frac{\partial L}{\partial L^{(t)}}\frac{\partial L^{(t)}}{\partial o_i{(t)}} = \hat{y}_i^{(t)} - \textbf{1}_{i,y^{(t)}}
+	\end{equation}
+	
+	Como estamos cálculando hacia atrás, empezando por el final de la secuencia. En el paso final $\tau$, $\textbf{h}^{\tau}$ solo tendría $\textbf{o}^{\tau}$ como descendiente, por lo que su gradiente es sencillo:
+	
+	\begin{equation}
+		\nabla_{\textbf{h}^{(\tau)}}L = \textbf{V}^T \nabla_{\textbf{o}^{(\tau)}}L
+	\end{equation}
+	
+	Iterando ahora de forma descendente desde $t  = \tau - 1$ hasta $t = 1$, observamos que $\textbf{h}^{(t)}$ tendría como descendientes a $\textbf{o}^{(t)}$ y  $\textbf{h}^{(t-1)}$. Entonces, el gradiente se calcula de la siguiente manera:
+	
+	\begin{equation}
+		\nabla_{\textbf{h}^{(t)}}L = \left( \frac{\partial \textbf{h}^{(t+1)}}{\partial \textbf{h}^{(t)}}  \right)^T (\nabla_{\textbf{h}^{(t+1)}}L) + \left(\frac{\partial \textbf{o}^{(t)}}{\partial \textbf{h}^{(t)}} \right)^T(\nabla_{\textbf{o}^{(t)}}L) =
+	\end{equation}
+	
+	$$
+		= \textbf{W}^T (\nabla_{\textbf{h}^{(t+1)}}L) diag\left(1 - (\textbf{h}^{(t+1)})^2\right) + \textbf{V}^T(\nabla_{\textbf{o}^{(t)}}L)
+	$$
+	
+	Donde diag$\left(1 - (\textbf{h}^{(t+1)})^2\right) $ se corresponde con la matriz diagonal cuyos elementos son $1 - ( \textbf{h}_i^{(t+1)})^2$ que es la matriz Jacobiana de la tangente hiperbólica asociada a la unidad oculta $i$ en el momento de tiempo $t+1$.
+	
+	Una vez que hemos obtenido el gradiente de los nodos internos del grafo de cómputo, podemos obtener los gradientes en los nodos de parámetros. A la hora de calcular el gradiente de esas variables tenemos que tener en cuenta que los parámetros se comparten a lo largo de los pasos. Usando $\nabla_{\textbf{W}^{(t)}}$ para notar la contribución de los pesos en el instante de tiempo $t$ al gradiente, las expresiones de los gradientes del resto de parámetros son:
+	
+	\begin{equation}
+		\nabla_{\textbf{c}}L = \sum_{t}\left( \frac{\partial \textbf{o}^{(t)}}{\partial \textbf{c}} \right)^T \nabla_{\textbf{o}^{(t)}}L = \sum_{t} \nabla_{\textbf{o}^{(t)}}L
+	\end{equation}
+	
+	\begin{equation}
+	\nabla_{\textbf{b}}L = \sum_{t}\left( \frac{\partial \textbf{h}^{(t)}}{\partial \textbf{b}^{(t)}} \right)^T \nabla_{\textbf{h}^{(t)}}L = \sum_{t} diag\left(1 - \left(\textbf{h}^{(t)}\right)^2\right)    \nabla_{\textbf{h}^{(t)}}L
+	\end{equation}
+	
+	\begin{equation}
+	\nabla_{\textbf{v}}L = \sum_{t} \sum_{i} \left( \frac{\partial L}{\partial o_o^{(t)}}\right) \nabla_{\textbf{v}}{o_i^{(t)}} = \sum_{t} (\nabla_{\textbf{o}^{(t)}}L) \textbf{h}^{(t)^T}
+	\end{equation}
+	
+	\begin{equation}
+		\nabla_{\textbf{W}}L = \sum_{t} \sum_{i} \left(\frac{\partial L}{ \partial h_i^{(t)}}\right) \nabla_{\textbf{W}^{(t)}} h_i^{(t)} = \sum_{t}diag\left( 1 - \left(\textbf{h}^{(t)}\right)^2\right) (\nabla_{\textbf{h}^{(t)}}L)\textbf{h}^{(t-1)^T}
+	\end{equation}
+	
+	\begin{equation}
+		\nabla_{\textbf{U}}L = \sum_{t} \sum_{i} \left(\frac{\partial L}{\partial h_i^{(t)}} \right) \nabla_{\textbf{U}^{(t)}}h_i^{(t)} = \sum_t diag \left(1 - \left(h^(t)\right)^2\right) (\nabla_{\textbf{h}^{t}}L)\textbf{x}^{(t)^T}
+	\end{equation}

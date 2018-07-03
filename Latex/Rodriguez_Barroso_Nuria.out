@@ -35,5 +35,6 @@
 \BOOKMARK [1][-]{section.7.1}{Motivaci\363n}{chapter.7}% 35
 \BOOKMARK [1][-]{section.7.2}{Despliegue de Grafos Computacionales}{chapter.7}% 36
 \BOOKMARK [1][-]{section.7.3}{Redes Neuronales Recurrentes}{chapter.7}% 37
-\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 38
-\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 39
+\BOOKMARK [2][-]{subsection.7.3.1}{C\341lculo del Gradiente}{section.7.3}% 38
+\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 39
+\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 40

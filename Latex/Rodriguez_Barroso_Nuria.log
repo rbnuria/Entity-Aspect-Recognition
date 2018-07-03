@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.21)  3 JUL 2018 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.21)  3 JUL 2018 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1276,7 +1276,7 @@ LaTeX Info: Redefining \% on input line 89.
  (./portada/portada.tex
 \centeroffset=\skip68
 
-<imagenes/logo_ugr.jpg, id=163, 777.90625pt x 231.86626pt>
+<imagenes/logo_ugr.jpg, id=167, 777.90625pt x 231.86626pt>
 File: imagenes/logo_ugr.jpg Graphic file (type jpg)
 
 <use imagenes/logo_ugr.jpg>
@@ -1296,7 +1296,7 @@ Overfull \hbox (22.5pt too wide) in paragraph at lines 8--23
 | $[]$ 
  []
 
-<imagenes/etsiit_logo.png, id=164, 110.814pt x 40.4712pt>
+<imagenes/etsiit_logo.png, id=168, 110.814pt x 40.4712pt>
 File: imagenes/etsiit_logo.png Graphic file (type png)
 
 <use imagenes/etsiit_logo.png>
@@ -1335,7 +1335,7 @@ Package babel Info: Redefining spanish shorthand "?
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 nes/logo_ugr.jpg> <./imagenes/etsiit_logo.png>])
-<primeraspaginas.pdf, id=175, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=179, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
  <use primeraspaginas.pdf>
 Package pdftex.def Info: primeraspaginas.pdf used on input line 195.
@@ -1346,7 +1346,7 @@ File: primeraspaginas.pdf Graphic file (type pdf)
 Package pdftex.def Info: primeraspaginas.pdf used on input line 195.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
-<primeraspaginas.pdf, id=178, page=1, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=182, page=1, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 1>
@@ -1366,7 +1366,7 @@ File: primeraspaginas.pdf Graphic file (type pdf)
 Package pdftex.def Info: primeraspaginas.pdf, page1 used on input line 195.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 
-<primeraspaginas.pdf, id=179, page=2, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=183, page=2, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 2>
@@ -1406,7 +1406,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [10 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=193, page=3, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=197, page=3, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 3>
@@ -1446,7 +1446,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [11 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=209, page=4, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=213, page=4, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 4>
@@ -1486,7 +1486,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [12 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=215, page=5, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=219, page=5, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 5>
@@ -1526,7 +1526,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [13 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=220, page=6, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=224, page=6, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 6>
@@ -1566,7 +1566,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [14 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=226, page=7, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=230, page=7, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 7>
@@ -1606,7 +1606,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 195.
  [15 <./primeraspaginas.pdf>]
-<primeraspaginas.pdf, id=232, page=8, 614.295pt x 794.97pt>
+<primeraspaginas.pdf, id=236, page=8, 614.295pt x 794.97pt>
 File: primeraspaginas.pdf Graphic file (type pdf)
 
 <use primeraspaginas.pdf, page 8>
@@ -1804,7 +1804,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 23.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 23.
- <imagenes/grafica-intro.png, id=295, 761.84625pt x 430.60875pt>
+ <imagenes/grafica-intro.png, id=300, 761.84625pt x 430.60875pt>
 File: imagenes/grafica-intro.png Graphic file (type png)
 
 <use imagenes/grafica-intro.png>
@@ -1844,7 +1844,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 40.
 [12 <./imagenes/grafica-intro.png>]
-<imagenes/interes.png, id=303, 1159.33125pt x 339.2675pt>
+<imagenes/interes.png, id=308, 1159.33125pt x 339.2675pt>
 File: imagenes/interes.png Graphic file (type png)
 
 <use imagenes/interes.png>
@@ -2038,7 +2038,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 7.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 7.
-<imagenes/flujo.png, id=334, 318.18875pt x 491.8375pt>
+<imagenes/flujo.png, id=339, 318.18875pt x 491.8375pt>
 File: imagenes/flujo.png Graphic file (type png)
 
 <use imagenes/flujo.png>
@@ -2276,17 +2276,17 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 19.
+(babel)             in language  on input line 21.
 ) (./aprendizaje_automatico.tex
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 1.
@@ -2608,7 +2608,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 14.
 [28
 
-] <imagenes/Neurona.jpg, id=404, 1606.0pt x 639.38875pt>
+] <imagenes/Neurona.jpg, id=409, 1606.0pt x 639.38875pt>
 File: imagenes/Neurona.jpg Graphic file (type jpg)
 
 <use imagenes/Neurona.jpg>
@@ -2834,7 +2834,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 233.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 233.
-[33] <imagenes/log.png, id=434, 547.04375pt x 506.89375pt>
+[33] <imagenes/log.png, id=439, 547.04375pt x 506.89375pt>
 File: imagenes/log.png Graphic file (type png)
 
 <use imagenes/log.png>
@@ -2950,7 +2950,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 306.
 
-<imagenes/relu.png, id=451, 552.0625pt x 508.90125pt>
+<imagenes/relu.png, id=456, 552.0625pt x 508.90125pt>
 File: imagenes/relu.png Graphic file (type png)
  <use imagenes/relu.png>
 Package pdftex.def Info: imagenes/relu.png used on input line 318.
@@ -3038,7 +3038,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 342.
 [37 <./imagenes/relu.png>]
-<imagenes/tanh.png, id=467, 749.80125pt x 507.8975pt>
+<imagenes/tanh.png, id=472, 749.80125pt x 507.8975pt>
 File: imagenes/tanh.png Graphic file (type png)
  <use imagenes/tanh.png>
 Package pdftex.def Info: imagenes/tanh.png used on input line 351.
@@ -3469,7 +3469,158 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 278.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 278.
-[46]) (./model1.tex
+[46]
+Overfull \hbox (37.6895pt too wide) in paragraph at lines 413--414
+[][] 
+ []
+
+LaTeX Info: Redefining \. on input line 421.
+LaTeX Info: Redefining \% on input line 421.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 421.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 421.
+[47]
+LaTeX Info: Redefining \. on input line 450.
+LaTeX Info: Redefining \% on input line 450.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 450.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 450.
+[48]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 453.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 453.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 453.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 453.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 453.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 453.
+LaTeX Info: Redefining \. on input line 480.
+LaTeX Info: Redefining \% on input line 480.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 480.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 480.
+[49]
+LaTeX Info: Redefining \. on input line 511.
+LaTeX Info: Redefining \% on input line 511.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 511.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 511.
+[50]) (./model1.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 
@@ -3503,7 +3654,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1.
-[47]
+[51]
 Cap\'{\i }tulo 8.
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 1.
@@ -3542,7 +3693,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1.
- [48
+ [52
 
 ]
 Cap\'{\i }tulo 9.
@@ -3583,7 +3734,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 244.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 244.
- [49
+ [53
 
 ]
 Underfull \hbox (badness 2229) in paragraph at lines 249--250
@@ -3615,7 +3766,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 252.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 252.
-[50
+[54
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
@@ -3628,7 +3779,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 252.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 252.
 Package rerunfilecheck Info: File `Rodriguez_Barroso_Nuria.out' has not changed
 .
-(rerunfilecheck)             Checksum: F8DF52796A9807487F8E151F5711B69D;2838.
+(rerunfilecheck)             Checksum: 810AA1B26E051F75A450DA061CFA5E56;2916.
 
 
 LaTeX Warning: There were undefined references.
@@ -3636,34 +3787,35 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 252.
  ) 
 Here is how much of TeX's memory you used:
- 24159 strings out of 493089
- 442112 string characters out of 6134842
+ 24291 strings out of 493089
+ 443894 string characters out of 6134842
  656648 words of memory out of 5000000
- 26981 multiletter control sequences out of 15000+600000
- 14377 words of font info for 53 fonts, out of 8000000 for 9000
+ 27093 multiletter control sequences out of 15000+600000
+ 14998 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,18n,94p,1075b,978s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Rodriguez_Barroso_Nuria.pdf (51 pages, 967076 bytes).
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Rodriguez_Barroso_Nuria.pdf (55 pages, 993022 bytes).
 PDF statistics:
- 633 PDF objects out of 1000 (max. 8388607)
- 529 compressed objects within 6 object streams
- 137 named destinations out of 1000 (max. 500000)
- 425 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 680 PDF objects out of 1000 (max. 8388607)
+ 571 compressed objects within 6 object streams
+ 155 named destinations out of 1000 (max. 500000)
+ 433 words of extra memory for PDF output out of 10000 (max. 10000000)
 

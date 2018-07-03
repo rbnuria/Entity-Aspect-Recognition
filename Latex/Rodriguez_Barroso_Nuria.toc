@@ -37,5 +37,6 @@
 \contentsline {section}{\numberline {7.1}Motivaci\IeC {\'o}n}{43}{section.7.1}
 \contentsline {section}{\numberline {7.2}Despliegue de Grafos Computacionales}{44}{section.7.2}
 \contentsline {section}{\numberline {7.3}Redes Neuronales Recurrentes}{47}{section.7.3}
-\contentsline {chapter}{\numberline {8}Primera arquitectura}{48}{chapter.8}
-\contentsline {chapter}{\numberline {9}Segunda arquitectura}{49}{chapter.9}
+\contentsline {subsection}{\numberline {7.3.1}C\IeC {\'a}lculo del Gradiente}{49}{subsection.7.3.1}
+\contentsline {chapter}{\numberline {8}Primera arquitectura}{52}{chapter.8}
+\contentsline {chapter}{\numberline {9}Segunda arquitectura}{53}{chapter.9}
