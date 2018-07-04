@@ -16,8 +16,10 @@ class LSTM_Model(Model_RRNN):
 	def __init__(self,embeddings_path, data_path, max_length, batch_size, test_size):
 		super(LSTM_Model, self).__init__(embeddings_path, data_path, max_length, batch_size, test_size)
 		
-		self.model = None
+		#Iniciamos session
+		K.set_session(tf.Session())
 
+		self.model = None
 
 	def custom_loss(self,y_pred, y_true):
 		'''
@@ -29,9 +31,10 @@ class LSTM_Model(Model_RRNN):
 		labels_predicted = K.argmax(y_pred, axis = -1)
 		labels = K.argmax(y_true, axis = -1)
 
-		print("********")
-		print(type(tf.Session().run(labels_predicted))) 
-		print("**-----*")
+		#No funciona aqui!!
+		labels_predicted = K.eval(labels_predicted)
+		labels = K.eval(labels)
+	
 
 		n_correct = 0
 		count = 0
@@ -40,56 +43,48 @@ class LSTM_Model(Model_RRNN):
 		batch = 1
 
 		while batch < self.batch_size:
-			print(batch)
-			while idx < self.max_length:
-				print(K.shape(labels_predicted[batch][idx]))
-				if K.equal(labels_predicted[batch][idx],2) is not None: #He encontrado entidad
-					
-					count += 1
+		    while idx < len(labels_predicted):
+		        if labels_predicted[idx] == 2: #He encontrado entidad
+		        	count += 1
 
-					if K.equal(labels_predicted[batch][idx], labels[batch][idx]) is not None:
-						idx += 1
-						found = True
-						while idx < self.max_length and K.equal(labels_predicted[batch][idx],3) is not None: #Mientras sigo dentro de la misma entidad
-							if K.equal(labels_predicted[batch][idx], labels[batch][idx]) is  None:
-								found = False
-								print("found false")
+		        	if labels_predicted[idx] == labels[idx]:
+		        		idx += 1
+		        		found = True
 
-							idx += 1
+		        		while idx < len(labels_predicted) and labels_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+		        			if labels_predicted[idx] != labels[idx]:
+		        				found = False
 
-						if idx < self.max_length:
-							if K.equal(labels[batch][idx],3) is not None: #Si la entidad tenía más tokens de los predichos
-								found = False
-								print("found false")
+		        			idx += 1
 
-						if found: #Sumamos 1 al número de encontrados
-							n_correct += 1
-							print("found true")
+		        		if idx < len(labels_predicted):
+		        			if labels[idx] == 3: #Si la entidad tenía más tokens de los predichos
+		        				found = False
 
-					else:
-						print(idx)
-						idx += 1
+		        		if found: #Sumamos 1 al número de encontrados
+		        			n_correct += 1
 
-				else:
-					idx += 1
+		        	else:
+		        		idx += 1
 
-			
-			if count > 0:
-				precision_aux = float(n_correct) / count
+		        else: 
+		        	idx += 1
 
-			precision = (precision + precision_aux)
-			batch +=1
-			idx = 0
-			precision_aux = 0
-			n_correct = 0
-			count = 0
+		    
+		    if count > 0:
+		    	#Acumulamos para devolver la media
+		    	precision = precision + float(n_correct)/count
 
+		#Devolvemos la media de las precisiones
 		return precision/self.batch_size
+
 
 	def trainModel(self, loss_type):
 		'''
 			Definición y compilación del modelo.
 		'''
+
+
 
 		input_size = self.max_length
 		sequence_input = Input(shape = (input_size, ), dtype = 'float64')
