@@ -15,7 +15,7 @@ data_path = 'Laptop_Train_v2.xml'
 #Establecemos el tamaño máximo a 65
 MAX_LENGTH = 65
 #Definimos batch_size
-batch_size = 128
+batch_size = 16
 
 
 #*************************************************************#
@@ -25,9 +25,31 @@ batch_size = 128
 cnn_model = CNN_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
 
 cnn_model.trainModel()
-cnn_model.fitModel(epochs = 30)
+cnn_model.fitModel(epochs = 50)
 
 pred = cnn_model.predictModel()
 
 print(pred[0])
 print((cnn_model.getLabelsTest())[0])
+
+print("******************")
+
+print(pred[1])
+print((cnn_model.getLabelsTest())[1])
+
+print("******************")
+
+print(pred[2])
+print((cnn_model.getLabelsTest())[2])
+
+
+print("******************")
+
+print(pred[3])
+print((cnn_model.getLabelsTest())[3])
+
+
+print("******************")
+
+print(pred[4])
+print((cnn_model.getLabelsTest())[4])

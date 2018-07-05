@@ -16,6 +16,7 @@ class Model_RRNN:
 		self.y_train = None
 		self.y_test = None
 		self.word_embeddings = None
+		self.sequence_lengths = []
 
 		self.readData()
 		
@@ -124,9 +125,11 @@ class Model_RRNN:
 	        sent_size = len(training_sentences[i])
 	        if sent_size > self.max_length:
 	            training_sentences[i] = training_sentences[i][:self.max_length]
+	            self.sequence_lengths.append(self.max_length)
 	        elif sent_size < self.max_length:
 	            training_sentences[i] += [0] * (self.max_length - sent_size)
-	    
+	            self.sequence_lengths.append(sent_size)
+	    	
 	    return training_sentences 
 	            
 

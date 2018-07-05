@@ -18,33 +18,32 @@ class CNN_Model(Model_RRNN):
 	def __init__(self,embeddings_path, data_path, max_length, batch_size, test_size):
 		super(CNN_Model, self).__init__(embeddings_path, data_path, max_length, batch_size, test_size)
 		
+		self.loss_object = Lossfunction(self.batch_size, self.sequence_lengths)
 		self.model = None
-		self.loss_object = None
 
 	def trainModel(self):
 		'''
 			Definición y compilación del modelo.
 		'''
-		self.loss_object = Lossfunction(self.batch_size)
 		input_size = self.max_length
 		sequence_input = Input(shape = (input_size, ), dtype = 'float64')
 		embedding_layer = Embedding(self.word_embeddings.shape[0], self.word_embeddings.shape[1], weights=[self.word_embeddings],trainable=False, input_length = input_size) #Trainable false
 		embedded_sequence = embedding_layer(sequence_input)
 		#Primera convolución
-		x = Conv1D(filters = 100, kernel_size = 2, activation = "tanh")(embedded_sequence)
-		x = MaxPooling1D(pool_size = 2)(x)
+		x = Conv1D(filters = 100, kernel_size = 2, padding="same", activation = "tanh")(embedded_sequence)
+		x = MaxPooling1D(pool_size = 2, strides=1, padding="same")(x)
 		x = Dropout(0.5)(x)
 		#Segunda
-		x = Conv1D(filters = 50, kernel_size = 3, activation = "tanh")(x)
-		x = MaxPooling1D(pool_size = 2)(x)
+		x = Conv1D(filters = 50, kernel_size = 3, padding="same", activation = "tanh")(x)
+		x = MaxPooling1D(pool_size = 2, strides=1, padding="same")(x)
 		x = Dropout(0.5)(x)
 		#Transponemos -> Dense -> transponemos
-		x = Permute((2,1))(x)
-		x = Dense(65, activation = "relu")(x)
-		x = Permute((2, 1))(x)
+		#x = Permute((2,1))(x)
+		preds = Dense(4, activation = "softmax")(x)
+		#x = Permute((2, 1))(x)
 
 		#Una probabilidad por etiqueta
-		preds = TimeDistributed(Dense(4, activation="softmax"), dtype = "int32")(x)
+		#preds = TimeDistributed(Dense(4, activation="softmax"), dtype = "int32")(x)
 
 		self.model = Model(sequence_input, preds)
 
