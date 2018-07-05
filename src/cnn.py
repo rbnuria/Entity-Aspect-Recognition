@@ -25,4 +25,9 @@ batch_size = 128
 cnn_model = CNN_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
 
 cnn_model.trainModel()
-cnn_model.fitModel(epochs = 10)
+cnn_model.fitModel(epochs = 30)
+
+pred = cnn_model.predictModel()
+
+print(pred[0])
+print((cnn_model.getLabelsTest())[0])

@@ -19,12 +19,13 @@ class CNN_Model(Model_RRNN):
 		super(CNN_Model, self).__init__(embeddings_path, data_path, max_length, batch_size, test_size)
 		
 		self.model = None
+		self.loss_object = None
 
 	def trainModel(self):
 		'''
 			Definición y compilación del modelo.
 		'''
-		loss_object = Lossfunction(self.batch_size)
+		self.loss_object = Lossfunction(self.batch_size)
 		input_size = self.max_length
 		sequence_input = Input(shape = (input_size, ), dtype = 'float64')
 		embedding_layer = Embedding(self.word_embeddings.shape[0], self.word_embeddings.shape[1], weights=[self.word_embeddings],trainable=False, input_length = input_size) #Trainable false
@@ -49,7 +50,7 @@ class CNN_Model(Model_RRNN):
 
 		self.model.summary()
 
-		self.model.compile(loss=loss_object.loss, optimizer = 'adam', metrics=['accuracy'])
+		self.model.compile(loss=self.loss_object.loss, optimizer = 'adam', metrics=['accuracy'])
 
 	def fitModel(self, epochs):
 		'''
@@ -70,7 +71,21 @@ class CNN_Model(Model_RRNN):
 	def predictModel(self):
 		'''
 			Predicción de las etiquetas de test.
+			Utilizamos algoritmo viterbi para obtener la mejor secuencia.
 		'''
-		y_pred = self.model.predict(self.x_train)
-		return y_pred
+		logits = self.model.predict(self.x_test)
+		trans_params = K.eval(self.loss_object.getTransitionParams())
+
+		viterbi_sequences = []
+
+		array_lengths = np.repeat(65, self.batch_size)
+		sequence_lengths = K.constant(array_lengths, name = "sequence_lengths")
+
+		for logit, sequence_length in zip(logits, array_lengths):
+			logit = logit[:sequence_length]
+			viterbi_seq, viterbi_score = tf.contrib.crf.viterbi_decode(logit, trans_params)
+			viterbi_sequences += [viterbi_seq]
+
+		return viterbi_sequences
+
 

@@ -204,5 +204,8 @@ class Model_RRNN:
 
 		return (x_matrix, y_matrix)
 
+	def getLabelsTest(self):
+		return self.y_test;
+
 
 
