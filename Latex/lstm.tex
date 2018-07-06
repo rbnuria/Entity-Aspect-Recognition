@@ -509,3 +509,183 @@ La ecuación \ref{hidden} se puede representar de dos formas diferentes:
 	\begin{equation}
 		\nabla_{\textbf{U}}L = \sum_{t} \sum_{i} \left(\frac{\partial L}{\partial h_i^{(t)}} \right) \nabla_{\textbf{U}^{(t)}}h_i^{(t)} = \sum_t diag \left(1 - \left(h^(t)\right)^2\right) (\nabla_{\textbf{h}^{t}}L)\textbf{x}^{(t)^T}
 	\end{equation}
+	
+%	\subsection{Redes Neuronales Recurrentes como Modelos de Grafos Dirigidos}
+%	
+%	En el caso anteriormente desarrollado, las pérdidas $L^{(t)}$ eran la entropía cruzada entre las etiquetas de entrenamiento $\textbf{y}^{(t)}$ y las salidas $\textbf{o}^{(t)}$. 
+%	
+%	Cuando usamos como función objetivo la una probabilidad predictiva, como el estimador de máxima verosimilitud, entrenamos a nuestro modelo para que estime la distribución condicional del siguiente elemento de la secuencia $\textbf{y}^{(t)}$ dadas las entradas anteriores. Esto es, queremos minimizar
+%	
+%	\begin{equation}
+%		\log p(\textbf{y}^{(t)}|\textbf{x}^{(1)}, ..., \textbf{x}^{(t)}),
+%	\end{equation}
+%	
+%	o, en los modelos que  incluyen conexiones desde las salidas de un paso al siguiente paso,
+%	
+%	\begin{equation}
+%		\log p(\textbf{y}^{(t)}|\textbf{x}^{(1)}, ..., \textbf{x}^{(t)}, \textbf{y}^{(1)}, ..., \textbf{y}^{(t)}),
+%	\end{equation}
+
+	%\subsection{Modelando Secuencias condicionadas al Contexto}
+	
+	\subsection{El problema de las dependencias a largo plazo}\label{dependenciaslargoplazo}
+	
+	El problema de aprender dependencias a largo plazo en las redes recurrentes radica en que el gradiente propagado durante muchas etapas tiende a desaparecer (la mayoría de las veces) o a explotar. Incluso si asumimos que los parámetros del modelo son aquellos que hacen a la red estable, la dificultad de las dependencias a largo plazo surgen de los pesos exponencialmente más pequeños dados en las iteracciones a largo plazo (involucrando multiplizaciones de varias matrices Jacobianas) en comparación con las de corto plazo. Durante esta sección expondremos el problema con más precisión.
+	
+	Las redes recurrentes involucran la composición de la misma función múltiples veces, una por paso. Estas composiciones pueden provocar un comportamiento extremadamente alejado de lo lineal. En particular, la composición de funciones empleada en las redes neuronales recurrentes son similares a la multiplicación de matrices. Podemos pensar en la relación recurrente 
+	
+	\begin{equation}
+		\textbf{h}^{(t)} = \textbf{W}^T\textbf{h}^{(t-1)}
+	\end{equation}
+	
+	como una red neuronal recurrente muy simple sin función de activación y sin entradas. Podemos simplificar esta expresión de la forma
+	
+	\begin{equation}
+		\textbf{h}^{(t)} = (\textbf{W}^{t})^T\textbf{h}^{(0)},
+	\end{equation}
+	
+	y si $\textbf{W}$ admite descomposición en valores propios de la forma
+	
+	\begin{equation}
+		\textbf{W} = \textbf{Q} \Lambda \textbf{Q}^T
+	\end{equation}
+	
+	con $\textbf{Q}$ matriz ortogonal, la recurrencia podría ser simplificada aún más
+	
+	\begin{equation}
+		\textbf{h}^{(t)} = \textbf{Q}^T \Lambda^t \textbf{Q}\textbf{h}^{(0)}
+	\end{equation}
+	
+	Los valores propios se elevan a la potencia $t$, produciendo valores propios con magnitud menos de uno para tender desvanecerse y valores propios con magnitud mayor que uno para explotar. Así, toda componente de $\textbf{h}^{(0)}$ que no esté alineada con el mayor valor propio tenderá a ser descartada.
+	
+	\subsection{Redes neuronales recurrentes con memoria a corto-largo plazo}
+	
+	Las redes neuronales recurrentes con memoria a corto-largo plazo o \textit{long short-term memory (LSTM)} tratan de solucionar el problema de las dependencias a largo plazo \ref{dependenciaslargoplazo}. 
+	
+	Estas redes son el ejemplo canónico de un subgrupo de redes neuronales, las \textbf{redes neuronales recurrentes con puertas} o \textit{\textbf{gated RNNs}}. Se basan en la idea de crear caminos a través del tiempo que tengan derivadas que no se desvanezcan ni exploten. 
+	
+	Las \textit{LSTM} surgen de la idea de introducir auto-bucles para producir caminos donde el gradiente puede fluir durante largos períodos de tiempo. Además, introduen la innovación de que los pesos del auto-bucle estén condicionados al contexto. Al controlar los pesos del auto-bucle a través otra  unidad oculta, la escala de tiempo de integración puede cambiar dinámicamente. Es decir, incluso para una \textit{LSTM} de parámetros fijos, la escala de tiempo de integración podría cambiar en función de la secuencia de entrada. Las \textit{LSTM} han producido resultados exitosos en muchas aplicaciones, entre ellas el Procesamiento del Lenguaje Natural (PLN), motivo por el que las desarrollamos durante esta memoria.
+	
+		
+	\begin{figure}[h!]
+		
+		\begin{tikzpicture}[
+		init/.style={
+			shade,
+			circle,
+			pin edge={loop,thin,black},
+			minimum size=1.3cm,
+			inner sep=2pt,
+		},
+		init2/.style={
+			draw,
+			circle,
+			pin edge={loop,thin,black},
+			minimum size=1.3cm,
+			inner sep=2pt,
+		},
+		squa/.style={
+			draw,
+			inner sep=2pt,
+			join = by -latex
+		},
+		start chain=2,node distance=13mm
+		]
+		
+		
+		
+		\node[on chain=2, init, label = {[label distance = 0.01cm]below:input}] 
+		(i1) {$\backsim$};
+		
+		\node[on chain=2, init, label = {[label distance = 0.01cm]below:input gate}]  at (2, 0cm)  
+		(i2) {$\backsim$};
+		
+		\node[on chain=2, init, label = {[label distance = 0.01cm]below:forget gate}] at (6, 0cm)  
+		(i3) {$\backsim$};
+		
+		\node[on chain=2, init, label = {[label distance = 0.01cm]below:output gate}] at (10, 0cm)  
+		(i4){$\backsim$};
+		
+		\begin{scope}[start chain=3]
+			\node[on chain=3, init2] at (0, 3cm)
+			(i5) {$\times$};
+			
+		\end{scope}
+		
+		\begin{scope}[start chain=3]
+			\node[on chain=3, init, label = {[label distance = 0.01cm]350:state} , label = {[label distance = 1cm]45:self-loop}] at (0, 6cm)
+			(i6) {$+$};
+			
+			\node[on chain=3, init2] at (2, 6cm)
+			(i8) {$\times$};
+		\end{scope}
+		
+		\begin{scope}[start chain=3]
+			\node[on chain=3, init, label = {[label distance = 0.5cm]80:output}] at (0, 9cm)
+			(i7) {$+$};
+		\end{scope}
+		
+
+		\draw[-latex] (i1) -- (i5);
+		\draw[-latex] (i2) -- (i5);
+		\draw[-latex] (i3) -- (i8);
+		\draw[-latex] (i3) -- (i8);
+		\draw[-latex] (i5) -- (i6);
+		\draw[-latex] (i8) -- (i6);
+		\draw[-latex] (i6) -- (i7);
+		\path[every node/.style={font=\sffamily\small}]
+			(i4) edge[-latex, bend right] node [left] {} (i7);
+		\path[every node/.style={font=\sffamily\small}]
+			(i6) edge[-latex, bend right = -90] node [left] {} (i8);
+		\path[every node/.style={font=\sffamily\small}]
+			(i6) edge[-latex, bend right = 90] node [left] {} (i1);
+		\path[every node/.style={font=\sffamily\small}]
+			(i6) edge[-latex, bend right = 90] node [left] {} (i2);
+		\path[every node/.style={font=\sffamily\small}]
+			(i6) edge[-latex, bend right = 20] node [left] {} (i3);
+		\path[every node/.style={font=\sffamily\small}]
+			(i6) edge[-latex, bend right = 20] node [left] {} (i4);
+			
+		
+		\end{tikzpicture}
+		\caption{Representaciones de una red neuronal recurrente genérica.}
+		\label{fig:celllstm}
+	\end{figure}
+	
+	En la Figura \ref{fig:celllstm} se esquematiza el diagrama de bloque que representa una celda de una \textit{LSTM}. Las celdas se conectan entre ellas recurrentemente, reemplazando las unidades ocultas de las redes neuronales comunes. Estas celdas tienen una recurrencia interna (\textit{self-loop}) además de la recurrencia interna entre celdas. Cada celda tiene las mismas entradas y salidas que una red recurrente normal, pero tiene más parámetros y sistemas de puertas que controlan el flujo de información. 
+	
+	La componente más importante de esta estructura es el estado $s_i^{(t)}$, el cual tiene una auto-bucle lineal. Los pesos de este auto-bucle están determinados por una unidad de olvido o \textit{forget gate unit} $f_i^{(t)}$, la cual fija los pesos a un valor en $[0,1]$ mediante una unidad sigmoidal:
+	
+	\begin{equation}
+		f_i^{(t)}=\sigma \left( b_i^f  + \sum_{j}U_{i,j}^f x_j^{(t)} + \sum_{j} W_{i,j}^f h_j^{(t-1)}\right),
+	\end{equation}
+
+	donde $\textbf{x}^{(t)}$ es el actual vector de entrada y $\textbf{h}^{(t)}$ es el vector de la actual capa oculta, que contiene las salidas de todas las celdas previas y $\textbf{b}^{(t)}$ , $\textbf{U}^{(t)}$  y $\textbf{W}^{(t)}$ son los sesgos, pesos de entrada y pesos recurrentes de las unidades de olvido respectivamente. 
+	
+	El valor del estado interno de la celda se actualiza mediante la siguiente fórmula:
+	
+	\begin{equation}
+		s_i^{(t)} = f_i^{(t)} s_i^{(t-1)} + g_i^{(t)} \sigma \left( b_i+ \sum_{j}U_{i,j} x_j^{(t)} + \sum_{j} W_{i,j} h_j^{(t-1)}\right)
+	\end{equation} 
+	
+	La unidad de entrada externa o \textit{external input gate unit} $g_i^{(t)}$ se calcula de forma similar a la unidad de olvido (mediante una unidad sigmoidal) pero con sus propios parámetros:
+	
+	\begin{equation}
+	g_i^{(t)} =  \sigma \left( b_i^g+ \sum_{j}U_{i,j}^g x_j^{(t)} + \sum_{j} W_{i,j}^g h_j^{(t-1)}\right)
+	\end{equation} 
+	
+	La salida $h_i^{(t)}$ de la celda se puede expresar en función de la unidad de salida $q_i^{(t)}$ que también utiliza una unidad sigmoidal:
+	
+	\begin{equation}
+		h_i^{(t)} = \tanh \left(s_i^{(t)} \right) q_i^{(t)},
+	\end{equation}
+	
+	\begin{equation}
+	q_i^{(t)} =  \sigma \left( b_i^o+ \sum_{j}U_{i,j}^o x_j^{(t)} + \sum_{j} W_{i,j}^o h_j^{(t-1)}\right)
+	\end{equation} 
+	
+	cuyos parámetros $\textbf{b}^o$,   $\textbf{U}^o$ y  $\textbf{W}^o$ son los sesgos, pesos de entrada y pesos recurrentes respectivamente. 
+
+	\vspace{1cm}
+
+	Las redes neuronales a corto-largo plazo han mostrado aprender las dependencias a largo plazo más fácilmente que las arquitecturas recurrentes dado que solucionan su principal inconveniente, por lo que serán las que se utilizarán en la práctica.

@@ -36,5 +36,7 @@
 \BOOKMARK [1][-]{section.7.2}{Despliegue de Grafos Computacionales}{chapter.7}% 36
 \BOOKMARK [1][-]{section.7.3}{Redes Neuronales Recurrentes}{chapter.7}% 37
 \BOOKMARK [2][-]{subsection.7.3.1}{C\341lculo del Gradiente}{section.7.3}% 38
-\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 39
-\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 40
+\BOOKMARK [2][-]{subsection.7.3.2}{El problema de las dependencias a largo plazo}{section.7.3}% 39
+\BOOKMARK [2][-]{subsection.7.3.3}{Redes neuronales recurrentes con memoria a corto-largo plazo}{section.7.3}% 40
+\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 41
+\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 42

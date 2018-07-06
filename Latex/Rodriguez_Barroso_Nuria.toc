@@ -38,5 +38,7 @@
 \contentsline {section}{\numberline {7.2}Despliegue de Grafos Computacionales}{44}{section.7.2}
 \contentsline {section}{\numberline {7.3}Redes Neuronales Recurrentes}{47}{section.7.3}
 \contentsline {subsection}{\numberline {7.3.1}C\IeC {\'a}lculo del Gradiente}{49}{subsection.7.3.1}
-\contentsline {chapter}{\numberline {8}Primera arquitectura}{52}{chapter.8}
-\contentsline {chapter}{\numberline {9}Segunda arquitectura}{53}{chapter.9}
+\contentsline {subsection}{\numberline {7.3.2}El problema de las dependencias a largo plazo}{51}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Redes neuronales recurrentes con memoria a corto-largo plazo}{52}{subsection.7.3.3}
+\contentsline {chapter}{\numberline {8}Primera arquitectura}{55}{chapter.8}
+\contentsline {chapter}{\numberline {9}Segunda arquitectura}{56}{chapter.9}
