@@ -4,7 +4,7 @@ from LossFunction import *
 from keras.utils import to_categorical
 from keras.layers import Embedding
 from keras.layers import Input
-from keras.layers.core import Dropout
+from keras.layers.core import Dropout, Flatten
 from keras.layers.core import Dense
 from keras.layers import TimeDistributed
 from keras.layers import Permute
@@ -18,7 +18,7 @@ class CNN_Model(Model_RRNN):
 	def __init__(self,embeddings_path, data_path, max_length, batch_size, test_size):
 		super(CNN_Model, self).__init__(embeddings_path, data_path, max_length, batch_size, test_size)
 		
-		self.loss_object = Lossfunction(self.batch_size, self.sequence_lengths)
+		#self.loss_object = Lossfunction(self.batch_size, self.sequence_lengths)
 		self.model = None
 
 	def trainModel(self):
@@ -26,7 +26,9 @@ class CNN_Model(Model_RRNN):
 			Definición y compilación del modelo.
 		'''
 		input_size = self.max_length
-		sequence_input = Input(shape = (input_size, ), dtype = 'float64')
+		sequence_input = Input(shape = (input_size, ), dtype = 'float64', name="input_x_data")
+		sequence_input_lengths = Input(shape=(1,), dtype="int32", name="input_x_sequence_lengths")
+		self.loss_object = Lossfunction(self.batch_size, sequence_input_lengths)
 		embedding_layer = Embedding(self.word_embeddings.shape[0], self.word_embeddings.shape[1], weights=[self.word_embeddings],trainable=False, input_length = input_size) #Trainable false
 		embedded_sequence = embedding_layer(sequence_input)
 		#Primera convolución
@@ -39,13 +41,12 @@ class CNN_Model(Model_RRNN):
 		x = Dropout(0.5)(x)
 		#Transponemos -> Dense -> transponemos
 		#x = Permute((2,1))(x)
-		preds = Dense(4, activation = "softmax")(x)
+		preds = Dense(4, activation = "tanh")(x)
 		#x = Permute((2, 1))(x)
 
 		#Una probabilidad por etiqueta
 		#preds = TimeDistributed(Dense(4, activation="softmax"), dtype = "int32")(x)
-
-		self.model = Model(sequence_input, preds)
+		self.model = Model(inputs=[sequence_input, sequence_input_lengths], outputs=[preds])
 
 		self.model.summary()
 
@@ -65,14 +66,14 @@ class CNN_Model(Model_RRNN):
 		#Pasamos lista -> numpy array
 		y_train_categorical = np.array(y_train_categorical)
 
-		self.model.fit(x = self.x_train, y = y_train_categorical, batch_size = self.batch_size, epochs = epochs)
+		self.model.fit(x = {"input_x_data":self.x_train, "input_x_sequence_lengths":np.array(self.sequence_lengths_train)}, y = y_train_categorical, batch_size = self.batch_size, epochs = epochs)
 
 	def predictModel(self):
 		'''
 			Predicción de las etiquetas de test.
 			Utilizamos algoritmo viterbi para obtener la mejor secuencia.
 		'''
-		logits = self.model.predict(self.x_test)
+		logits = self.model.predict([self.x_test,np.array(self.sequence_lengths_test)])
 		trans_params = K.eval(self.loss_object.getTransitionParams())
 
 		viterbi_sequences = []

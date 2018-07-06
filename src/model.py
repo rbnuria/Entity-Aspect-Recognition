@@ -16,7 +16,8 @@ class Model_RRNN:
 		self.y_train = None
 		self.y_test = None
 		self.word_embeddings = None
-		self.sequence_lengths = []
+		self.sequence_lengths_train = []
+		self.sequence_lengths_test = []
 
 		self.readData()
 		
@@ -53,12 +54,12 @@ class Model_RRNN:
 			#Si es la primera vez que entramos creamos los embeddings para palabras desconocidas y padding
 			if len(word_to_index) == 0:
 				word_to_index["PADDING"] = len(word_to_index)
-				vector_aux = np.zeros(300)
+				vector_aux = np.zeros(200)
 				wordEmbeddings.append(vector_aux)
 
 
 				word_to_index["UNKOWN"] = len(word_to_index)
-				vector_aux = np.random.uniform(-0.25, 0.25, 300)
+				vector_aux = np.random.uniform(-0.25, 0.25, 200)
 				wordEmbeddings.append(vector_aux)
 
 
@@ -73,20 +74,27 @@ class Model_RRNN:
 		embeddings = {'wordEmbeddings': wordEmbeddings, 'word2Idx': word_to_index}
 
 
-		tokens, labels = self.dataPreparation(sentences, labels, word_to_index)
-		tokens_train, tokens_test, labels_train, labels_test = train_test_split(tokens, labels, test_size=self.test_size, shuffle=False)
+		
+		tokens_train, tokens_test, labels_train, labels_test = train_test_split(sentences, labels, test_size=self.test_size, shuffle=False)
 		tokens_train, labels_train = self.fixTrainSize(tokens_train, labels_train)
+		
+		tokens_train_prepared, labels_train_prepared = self.dataPreparation(tokens_train, labels_train, word_to_index)
+		tokens_test_prepared, labels_test_prepared = self.dataPreparation(tokens_test, labels_test, word_to_index)
+		
+		self.sequence_lengths_train = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in tokens_train]
+		self.sequence_lengths_test = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in tokens_test]
+		#tokens_train_prepared, labels_train_prepared = self.fixTrainSize(tokens_train_prepared, labels_train_prepared)
 
-		tokens_train = np.array(tokens_train)
-		tokens_test = np.array(tokens_test)
-		labels_train = np.array(labels_train)
-		labels_test = np.array(labels_test)
+		tokens_train_prepared = np.array(tokens_train_prepared)
+		tokens_test_prepared = np.array(tokens_test_prepared)
+		labels_train_prepared = np.array(labels_train_prepared)
+		labels_test_prepared = np.array(labels_test_prepared)
 
 
 		data = {
 		    'wordEmbeddings': wordEmbeddings, 'word2Idx': word_to_index,
-		    'train': {'sentences': tokens_train, 'labels': labels_train},
-		    'test':  {'sentences': tokens_test, 'labels': labels_test}
+		    'train': {'sentences': tokens_train_prepared, 'labels': labels_train_prepared},
+		    'test':  {'sentences': tokens_test_prepared, 'labels': labels_test_prepared}
 		    }
 
 		self.word_embeddings = data['wordEmbeddings']
@@ -97,7 +105,9 @@ class Model_RRNN:
 		self.y_train = data['train']['labels']
 		self.y_test = data['test']['labels']
 
-
+		print(self.x_train[:10])
+		print("labels")
+		print(self.y_train[:10])
 		print('X_train shape:', self.x_train.shape)
 		print('X_test shape:', self.x_test.shape)
 		print('Y_train shape:', self.y_train.shape)
@@ -125,10 +135,10 @@ class Model_RRNN:
 	        sent_size = len(training_sentences[i])
 	        if sent_size > self.max_length:
 	            training_sentences[i] = training_sentences[i][:self.max_length]
-	            self.sequence_lengths.append(self.max_length)
+	            #self.sequence_lengths.append(self.max_length)
 	        elif sent_size < self.max_length:
 	            training_sentences[i] += [0] * (self.max_length - sent_size)
-	            self.sequence_lengths.append(sent_size)
+	            #self.sequence_lengths.append(sent_size)
 	    	
 	    return training_sentences 
 	            
@@ -189,6 +199,7 @@ class Model_RRNN:
 					wordIndices.append(unkown_index)
 
 			x_matrix.append(wordIndices)
+			
 
 		#Padding a todas las frases
 		x_matrix = self.padding_truncate(x_matrix)

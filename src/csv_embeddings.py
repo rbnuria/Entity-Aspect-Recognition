@@ -17,8 +17,8 @@ class CSVEmbeddings:
 		self.embeddings = []
 
 		with open(source, 'r') as csvfile:
-			self.embeddings = list(csv.reader(csvfile))
-
+			self.embeddings = [str.split(line) for line in csvfile]
+			#self.embeddings = list(csv.reader(csvfile))
 	def getEmbeddings(self, source):
 	    '''
 	    	Método que se encarga de leer un archivo CSV ubicado en la ruta pasada como argumento.

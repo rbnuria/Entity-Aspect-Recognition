@@ -6,6 +6,7 @@ import random
 
 #Obtenemos word_embeddings
 embeddings_path = '../AmazonWE/sentic2vec.csv'
+#embeddings_path = "/home/geniugr/Documentos/trabajo/investigacion/recursos/embeddings/glove/glove.twitter.27B/glove.twitter.27B.200d.txt"
 #Fijamos la semilla para poder reproducir experimentos
 random.seed(123456)
 #tamaño de test
@@ -23,7 +24,6 @@ batch_size = 16
 #*************************************************************#
 
 cnn_model = CNN_Model(embeddings_path, data_path, MAX_LENGTH, batch_size, test_size)
-
 cnn_model.trainModel()
 cnn_model.fitModel(epochs = 50)
 
