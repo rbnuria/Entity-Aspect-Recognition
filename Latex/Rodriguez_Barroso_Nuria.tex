@@ -6,6 +6,7 @@
 %----------------------------- FMETFM ----------------------------%
 \documentclass[reqno,twoside, 12pt]{report}
 
+\usepackage{ tabto }
 \usepackage{ amssymb }
 \usepackage[spanish,english]{babel}
 \usepackage[table,xcdraw]{xcolor}
@@ -206,16 +207,19 @@
 \pagenumbering{arabic}
 \pagestyle{fancy}
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
-\setcounter{page}{11}
+\input{separador1}
+\setcounter{page}{12}
 \input{Introduccion}
 \input{sentimentanalysis}
-\input{fundamentos_matematicos}
 \input{aprendizaje_automatico}
+\input{separador2}
+\setcounter{page}{28}
+\input{fundamentos_matematicos}
 \input{deep_learning}
 \input{cnn}
 \input{lstm}
-\input{model1}
-\input{model2}
+\input{separador3}
+
 
 %\cleardoublepage
 \let\cleardoublepage\clearpage

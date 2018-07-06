@@ -8,14 +8,14 @@
 \BOOKMARK [1][-]{section.2.2}{Concepto de An\341lisis de opiniones}{chapter.2}% 8
 \BOOKMARK [2][-]{subsection.2.2.1}{Concepto de Opini\363n}{section.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.2}{Niveles de clasificaci\363n}{section.2.2}% 10
-\BOOKMARK [0][-]{chapter.3}{Fundamentos matem\341ticos}{}% 11
-\BOOKMARK [1][-]{section.3.1}{Probabilidad}{chapter.3}% 12
-\BOOKMARK [0][-]{chapter.4}{Aprendizaje Autom\341tico}{}% 13
-\BOOKMARK [1][-]{section.4.1}{Concepto de Aprendizaje Autom\341tico}{chapter.4}% 14
-\BOOKMARK [2][-]{subsection.4.1.1}{Tipos de aprendizaje autom\341tico.}{section.4.1}% 15
-\BOOKMARK [1][-]{section.4.2}{Problema de clasificaci\363n}{chapter.4}% 16
-\BOOKMARK [1][-]{section.4.3}{Optimizaci\363n basada en Gradiente Descendente}{chapter.4}% 17
-\BOOKMARK [2][-]{subsection.4.3.1}{Gradiente Descendente Estoc\341stico}{section.4.3}% 18
+\BOOKMARK [0][-]{chapter.3}{Aprendizaje Autom\341tico}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Concepto de Aprendizaje Autom\341tico}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.1.1}{Tipos de aprendizaje autom\341tico.}{section.3.1}% 13
+\BOOKMARK [1][-]{section.3.2}{Problema de clasificaci\363n}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{Optimizaci\363n basada en Gradiente Descendente}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.3.1}{Gradiente Descendente Estoc\341stico}{section.3.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Fundamentos matem\341ticos}{}% 17
+\BOOKMARK [1][-]{section.4.1}{Probabilidad}{chapter.4}% 18
 \BOOKMARK [0][-]{chapter.5}{Deep Learning}{}% 19
 \BOOKMARK [1][-]{section.5.1}{Redes Neuronales Prealimentadas}{chapter.5}% 20
 \BOOKMARK [2][-]{subsection.5.1.1}{Funci\363n de coste}{section.5.1}% 21
@@ -38,5 +38,3 @@
 \BOOKMARK [2][-]{subsection.7.3.1}{C\341lculo del Gradiente}{section.7.3}% 38
 \BOOKMARK [2][-]{subsection.7.3.2}{El problema de las dependencias a largo plazo}{section.7.3}% 39
 \BOOKMARK [2][-]{subsection.7.3.3}{Redes neuronales recurrentes con memoria a corto-largo plazo}{section.7.3}% 40
-\BOOKMARK [0][-]{chapter.8}{Primera arquitectura}{}% 41
-\BOOKMARK [0][-]{chapter.9}{Segunda arquitectura}{}% 42
