@@ -7,7 +7,7 @@ class Lossfunction:
 	def __init__(self, batch_size, sequence_lengths):
 		self.transition_params = None
 		self.batch_size = batch_size
-		self.sequence_lengths = sequence_lengths
+		self.sequence_lengths = K.squeeze(sequence_lengths, axis=-1)
 
 	def loss(self, y_true, y_pred):
 		'''
@@ -19,10 +19,7 @@ class Lossfunction:
 		y_true = tf.argmax(y_true, axis = -1)
 		y_true = tf.cast(y_true, tf.int32)
 
-		sequence_lengths_batch = self.sequence_lengths[:self.batch_size]
-		self.sequence_lengths = self.sequence_lengths[self.batch_size:]
-
-		log_likelihood, transition_params = tf.contrib.crf.crf_log_likelihood(y_pred, y_true, sequence_lengths = np.array(sequence_lengths_batch), transition_params=self.transition_params)
+		log_likelihood, transition_params = tf.contrib.crf.crf_log_likelihood(y_pred, y_true, sequence_lengths = self.sequence_lengths, transition_params=self.transition_params)
 
 		#Actualización matriz de pesoss
 		self.transition_params = transition_params

@@ -5,6 +5,7 @@ import random
 
 
 #Obtenemos word_embeddings
+#embeddings_path = '../deps.words.bz2'#
 embeddings_path = '../AmazonWE/sentic2vec.csv'
 #Fijamos la semilla para poder reproducir experimentos
 random.seed(123456)
