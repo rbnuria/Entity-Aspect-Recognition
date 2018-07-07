@@ -55,7 +55,6 @@ class Model_RRNN:
 			#Si es la primera vez que entramos creamos los embeddings para palabras desconocidas y padding
 			if len(word_to_index) == 0:
 				word_to_index["PADDING"] = len(word_to_index)
-				print(word_to_index["PADDING"])
 				vector_aux = np.zeros(300)
 				wordEmbeddings.append(vector_aux)
 
@@ -121,7 +120,21 @@ class Model_RRNN:
 		self.y_test = data['test']['labels']
 
 		print(self.x_train[0])
+		print(self.x_train[1])
+		print(self.x_train[2])
+		print(self.x_train[3])
+		print(self.x_train[4])
+
+
+		print("************************")
+
 		print(self.y_train[0])
+		print(self.y_train[1])
+		print(self.y_train[2])
+		print(self.y_train[3])
+		print(self.y_train[4])
+
+
 
 		print('X_train shape:', self.x_train.shape)
 		print('X_test shape:', self.x_test.shape)
