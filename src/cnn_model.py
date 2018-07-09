@@ -15,8 +15,8 @@ from keras.layers.convolutional import MaxPooling1D
 from keras.layers import GlobalMaxPooling1D
 
 class CNN_Model(Model_RRNN):
-	def __init__(self,embeddings_path, data_path, max_length, batch_size, test_size):
-		super(CNN_Model, self).__init__(embeddings_path, data_path, max_length, batch_size, test_size)
+	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size, test_size):
+		super(CNN_Model, self).__init__(embeddings_path, train_path, test_path, max_length, batch_size, test_size)
 		
 		self.model = None
 
@@ -76,7 +76,7 @@ class CNN_Model(Model_RRNN):
 			Predicción de las etiquetas de test.
 			Utilizamos algoritmo viterbi para obtener la mejor secuencia.
 		'''
-		logits = self.model.predict([self.x_test, np.array(self.sequence_lengths_test)])
+		logits = self.model.predict([self.x_train, np.array(self.sequence_lengths_train)])
 		trans_params = K.eval(self.loss_object.getTransitionParams())
 
 		viterbi_sequences = []
@@ -84,7 +84,7 @@ class CNN_Model(Model_RRNN):
 		array_lengths = np.repeat(65, self.batch_size)
 		sequence_lengths = K.constant(array_lengths, name = "sequence_lengths")
 
-		for logit, sequence_length in zip(logits, np.array(self.sequence_lengths_test)):
+		for logit, sequence_length in zip(logits, np.array(self.sequence_lengths_train)):
 			logit = logit[:sequence_length]
 			viterbi_seq, viterbi_score = tf.contrib.crf.viterbi_decode(logit, trans_params)
 			viterbi_sequences += [viterbi_seq]
