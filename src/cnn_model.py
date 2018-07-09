@@ -76,7 +76,7 @@ class CNN_Model(Model_RRNN):
 			Predicción de las etiquetas de test.
 			Utilizamos algoritmo viterbi para obtener la mejor secuencia.
 		'''
-		logits = self.model.predict([self.x_train, np.array(self.sequence_lengths_train)])
+		logits = self.model.predict([self.x_test, np.array(self.sequence_lengths_test)])
 		trans_params = K.eval(self.loss_object.getTransitionParams())
 
 		viterbi_sequences = []
@@ -89,6 +89,8 @@ class CNN_Model(Model_RRNN):
 			viterbi_seq, viterbi_score = tf.contrib.crf.viterbi_decode(logit, trans_params)
 			viterbi_sequences += [viterbi_seq]
 
-		return viterbi_sequences
+		self.predicted_labels = np.array(self.padding_truncate(viterbi_sequences))
+
+		return self.predicted_labels
 
 

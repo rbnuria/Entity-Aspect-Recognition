@@ -16,7 +16,7 @@ random.seed(123456)
 test_size = 0.3
 #Path de los datos
 train_path = 'data/Laptop_Train_v2.xml'
-test_path = 'data/ABSA_TestData_PhaseA/Laptops_Test_Data_PhaseA.xml'
+test_path = 'data/ABSA_Gold_TestData/Laptops_Test_Gold.xml'
 #Establecemos el tamaño máximo a 65
 MAX_LENGTH = 65
 #Definimos batch_size
@@ -34,6 +34,9 @@ cnn_model.fitModel(epochs = 30)
 
 pred = cnn_model.predictModel()
 
+cnn_model.calculateAccuracy()
+
+'''
 print(pred[0])
 print((cnn_model.getLabelsTrain())[0])
 
@@ -58,3 +61,4 @@ print("******************")
 
 print(pred[4])
 print((cnn_model.getLabelsTrain())[4])
+'''

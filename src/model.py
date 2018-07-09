@@ -17,6 +17,7 @@ class Model_RRNN:
 		self.x_test = None
 		self.y_train = None
 		self.y_test = None
+		self.predicted_labels = None
 		self.word_embeddings = None
 		self.sequence_lengths_train = []
 		self.sequence_lengths_test = []
@@ -131,20 +132,6 @@ class Model_RRNN:
 		print('Y_train shape:', self.y_train.shape)
 		print('Y_test shape;', self.y_test.shape)
 
-		print(self.x_train[0])
-		print(self.y_train[0])
-
-		print("************")
-
-		print(self.x_train[1])
-		print(self.y_train[1])
-
-		print("************")
-
-		print(self.x_train[2])
-		print(self.y_train[2])
-
-
 
 	def longerSentence(data):
 		max_sentence_length = 0
@@ -168,9 +155,12 @@ class Model_RRNN:
 	        if sent_size > self.max_length:
 	            training_sentences[i] = training_sentences[i][:self.max_length]
 	        elif sent_size < self.max_length:
-	        	list_sentence = training_sentences[i].tolist()
-	        	list_sentence += [0] * (self.max_length - sent_size)
-	        	training_sentences[i] = np.array(list_sentence)
+	        	if(isinstance(training_sentences[i], list)):
+		        	training_sentences[i] += [0] * (self.max_length - sent_size)
+		        else:
+		        	list_sentence = training_sentences[i].tolist()
+		        	list_sentence += [0] * (self.max_length - sent_size)
+		        	training_sentences[i] = np.array(list_sentence)
 
 	    return training_sentences 
 	            
@@ -254,6 +244,78 @@ class Model_RRNN:
 
 	def getLabelsTrain(self):
 		return self.y_train
+
+	def compute_precision(self,labels_predicted, labels):
+		precision = 0
+		for j in range(0, labels.shape[0]):
+			label = labels[j]
+			label_predicted = labels_predicted[j]
+			n_correct = 0
+			count = 0
+			for i in range(0, len(label)):
+				if label_predicted[i] == label[i]:
+					n_correct += 1
+
+				count += 1
+
+			if count  > 0:
+				precision+= float(n_correct)/count
+
+		return precision/labels.shape[0]
+
+	def compute_custom_precision(self,labels_predicted, labels):
+	    n_correct = 0
+	    count = 0
+	    indice = 0
+	    idx = 0
+	    precision_total = 0
+
+	    for indice in range(0, labels_predicted.shape[0]):
+	    	label_predicted = labels_predicted[indice]
+	    	label = labels[indice]
+
+	    	idx = 0
+	    	
+	    	for idx in range(0, len(label_predicted)):
+		        if label_predicted[idx] == 2: #He encontrado entidad
+		        	count += 1
+
+		        	if label_predicted[idx] == label[idx]:
+		        		idx += 1
+		        		found = True
+
+		        		while idx < len(label_predicted) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+		        			if label_predicted[idx] != label[idx]:
+		        				found = False
+
+		        			idx += 1
+
+		        		if idx < len(label_predicted):
+		        			if label[idx] == 3: #Si la entidad tenía más tokens de los predichos
+		        				found = False
+
+		        		if found: #Sumamos 1 al número de encontrados
+		        			n_correct += 1
+
+		        	else:
+		        		idx += 1
+
+		        else: 
+		        	idx += 1
+	    
+	    return (float(n_correct)/count if count > 0 else 0)
+
+
+	def calculateAccuracy(self):
+		print("**************************************")
+		print(str(self.compute_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_precision(self.predicted_labels, self.y_test)))
+
+
+
+
+
+
+
 
 
 
