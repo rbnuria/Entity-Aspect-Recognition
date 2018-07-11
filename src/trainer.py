@@ -1,6 +1,7 @@
 import model
 from cnn_model import *
 from lstm_model import *
+from combined_model import *
 import csv
 from keras.models import model_from_json
 
@@ -39,12 +40,24 @@ class Trainer:
 			
 			#Creamos modelo
 			self.model = CNN_Model(embeddings_path, train_path, test_path, max_length, batch_size, filtro_1, filtro_2, kernel_1, kernel_2, dropout_1, dropout_2)
-		else:
-			num_units = float(self.conf_data['units_lstm'])
+		elif(self.conf_data['type'] == "bilstm"):
+			num_units = int(self.conf_data['units_lstm'])
 
 			self.model = LSTM_Model(embeddings_path, train_path, test_path, max_length, batch_size, num_units)
 
-		
+		else:
+			print("Modelo combinado")
+
+			filtro_1 = int(self.conf_data['filtro_1'])
+			filtro_2 = int(self.conf_data['filtro_2'])
+			kernel_1 = int(self.conf_data['kernel_1'])
+			kernel_2 = int(self.conf_data['kernel_2'])
+			dropout_1 = float(self.conf_data['dropout_1'])
+			dropout_2 = float(self.conf_data['dropout_2'])
+			num_units = int(self.conf_data['units_lstm'])
+
+			self.model = Combined_Model(embeddings_path, train_path, test_path, max_length, batch_size, filtro_1, filtro_2, kernel_1, kernel_2, dropout_1, dropout_2, num_units)
+
 
 	def save(self):
 		self.configure()
@@ -55,15 +68,15 @@ class Trainer:
 		#Guardamos el modelo
 
 		print("Guardando el modelo...")
-		name_json = self.conf_data['name_json']
 
-		model_json = self.model.to_json()
-		with open(name_json, "w") as json_file:
-			json_file.write(model_json)
+		self.model.save_weights(self.conf_data['save_model_path'])
 
-
-		self.model.save_weights(self.conf_data['name_h5'])
 		print("Modelo guardado.")
+
+		self.model.predictModel()
+
+		self.model.saveData(self.conf_data['save_results_path'])
+
 
 
 if __name__ == "__main__":

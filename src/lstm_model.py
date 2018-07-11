@@ -93,6 +93,27 @@ class LSTM_Model(Model_RRNN):
 
 		return self.predicted_labels
 
+	def load_model(self, source):
+		input_size = self.max_length
+		
+		#Inputs y embeddings
+		sequence_input = Input(shape = (input_size, ), dtype = 'float64', name = "input_data")
+		sequence_input_lengths = Input(shape = (1, ), dtype = 'int32', name="input_sequence_lengths")
+		#Definimos función de pérdida -> en función de sequence_input_lengths
+		self.loss_object = Lossfunction(self.batch_size, sequence_input_lengths)
+
+		embedding_layer = Embedding(self.word_embeddings.shape[0], self.word_embeddings.shape[1], weights=[self.word_embeddings],trainable=False, input_length = input_size, name = "embeddings") #Trainable false
+		embedded_sequence = embedding_layer(sequence_input)
 	
+		#LSTM
+		x = Bidirectional(LSTM(units = 128, return_sequences=True))(embedded_sequence)
+		
+		#preds = Dense(4, name = "last_layer")(x)
+		preds = TimeDistributed(Dense(4, name = "last_layer"))(x)
 
 
+		self.model = Model(input = [sequence_input, sequence_input_lengths], output = [preds])
+
+		self.model.load_weights(source)
+
+		return self.model

@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 
 class Model_RRNN:
-	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size):
+	def __init__(self,embeddings_path = None, train_path = None, test_path = None, max_length = None, batch_size = None):
 		self.embeddings_path = embeddings_path
 		self.train_path = train_path
 		self.test_path = test_path
@@ -22,7 +22,8 @@ class Model_RRNN:
 		self.sequence_lengths_train = []
 		self.sequence_lengths_test = []
 
-		self.readData()
+		if(embeddings_path != None and train_path != None and test_path != None):
+			self.readData()
 		
 
 	def readData(self):
@@ -33,10 +34,10 @@ class Model_RRNN:
 		#Lectura de datos
 		embeddings = TXTEmbeddings(self.embeddings_path).getEmbeddings()
 		print("Leyendo datos de train...")
-		train = XMLData(self.train_path).getIobData()
+		self.train = XMLData(self.train_path).getIobData()
 		print("Datos de train leídos.")
 		print("Leyendo datos de test...")
-		test = XMLData(self.test_path).getIobData()
+		self.test = XMLData(self.test_path).getIobData()
 		print("Datos de test leídos.")
 
 
@@ -61,7 +62,7 @@ class Model_RRNN:
 		test_idx = []
 		ltest_idx = []
 
-		for sentence in train:
+		for sentence in self.train:
 			wordIndices = []
 			labelIndices = []
 			for word, label in sentence:
@@ -83,7 +84,7 @@ class Model_RRNN:
 			train_idx.append(np.array(wordIndices))
 
 
-		for sentence in test:
+		for sentence in self.test:
 			wordIndices = []
 			labelIndices = []
 			for word, label in sentence:
@@ -105,8 +106,8 @@ class Model_RRNN:
 
 
 		#Guardamos longitudes 
-		self.sequence_lengths_train = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in train]
-		self.sequence_lengths_test = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in test]
+		self.sequence_lengths_train = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in self.train]
+		self.sequence_lengths_test = [self.max_length if(len(tokens)>self.max_length) else len(tokens) for tokens in self.test]
 
 		#Padding a datos y etiquetas
 		tokens_train_prepared = np.array(self.padding_truncate(train_idx))
@@ -212,7 +213,7 @@ class Model_RRNN:
 
 	#FUNCIONES DE CÁLCULO DEL ERROR
 
-	def compute_custom_precision(self,labels_predicted, labels):
+	def compute_custom_recall(self,labels_predicted, labels):
 		'''
 			Función que calcula la precisión como entidades_encontradas / entidades_reales
 		'''
@@ -265,7 +266,7 @@ class Model_RRNN:
 
 		return total_precision/labels.shape[0]
 
-	def compute_custom_recall(self,labels_predicted, labels):
+	def compute_custom_precision(self,labels_predicted, labels):
 		'''
 			Función que calcula el recall como entidades_encontradas / entidades etiquetadas
 		'''
@@ -333,9 +334,6 @@ class Model_RRNN:
 
 
 	def calculateAccuracy(self):
-		print(self.predicted_labels[0])
-		print(self.y_test[0])
-
 		print("*************************** RESULTADOS **************************")
 		print("PRECISION\tRECALL\tF1")
 		print("ETIQUETADO PARCIAL:" )
@@ -345,11 +343,74 @@ class Model_RRNN:
 		print(str(self.compute_custom_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_f1(self.predicted_labels, self.y_test)))
 
 
+	def getAspects(self, frase):
+		indice = 0
+		aspectos = []
 
 
+		while indice < len(self.predicted_labels[frase]):
+			label = self.predicted_labels[frase][indice]
+			
+			#Si empieza una entidad
+			if(label == 2):
+				aspecto = self.test[frase][indice][0]
+
+				indice += 1
+				label = self.predicted_labels[frase][indice]
+
+				while(label == 3):
+					aspecto += " " + self.test[frase][indice][0]
+					indice += 1
+					label = self.predicted_labels[frase][indice]
+
+				aspectos.append(aspecto)
 
 
+			indice += 1
+
+		return aspectos
+	
+	def saveData(self, source):
+		with open(source, "w") as xmlfile:
+			xmlfile.write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n')
+			xmlfile.write('<sentences>\n')
+			count = 0
+			#Recorremos las oraciones del test
+			for sentence in self.test:
+				xmlfile.write('\t<sentence>\n')
+
+				#Texto
+				frase = ""
+				for word, label in sentence:
+					frase += word + " "
+
+				xmlfile.write('\t\t<text>' + frase + '</text>\n')
+
+				#Aspectos
+				aspectos = self.getAspects(count)
+				if aspectos != []:
+					xmlfile.write('\t\t<aspectTerms>\n')
+					for asp in aspectos:
+						xmlfile.write('\t\t\t<aspectTerm term="' + asp + '" />\n')
+
+					xmlfile.write('\t\t</aspectTerms>\n')
 
 
+				xmlfile.write('\t</sentence>\n')
+				count += 1
 
 
+			xmlfile.write('</sentences>')
+
+	def to_json(self):
+		return self.model.to_json()
+
+	def save_weights(self,source):
+		self.model.save_weights()
+
+	def save(self, source):
+		self.model.save(source)
+
+
+	def save_weights(self, source):
+		self.model.save_weights(source)
