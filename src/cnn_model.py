@@ -15,9 +15,16 @@ from keras.layers.convolutional import MaxPooling1D
 from keras.layers import GlobalMaxPooling1D
 
 class CNN_Model(Model_RRNN):
-	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size, test_size):
-		super(CNN_Model, self).__init__(embeddings_path, train_path, test_path, max_length, batch_size, test_size)
+	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size, filtro_1, filtro_2, kernel_1, kernel_2, dropout_1, dropout_2):
+		super(CNN_Model, self).__init__(embeddings_path, train_path, test_path, max_length, batch_size)
 		
+		self.filter_1 = filtro_1
+		self.filter_2 = filtro_2
+		self.kernel_1 = kernel_1
+		self.kernel_2 = kernel_2
+		self.dropout_1 = dropout_1
+		self.dropout_2 = dropout_2
+
 		self.model = None
 
 	def trainModel(self):
@@ -36,17 +43,19 @@ class CNN_Model(Model_RRNN):
 		embedded_sequence = embedding_layer(sequence_input)
 		
 		#Primera convolución
-		x = Conv1D(filters = 100, kernel_size = 2, padding="same", activation = "tanh", name ="first_convolution")(embedded_sequence)
+		x = Conv1D(filters = self.filter_1, kernel_size = self.kernel_1, padding="same", activation = "tanh", name ="first_convolution")(embedded_sequence)
 		x = MaxPooling1D(pool_size = 2, strides=1, padding="same", name = "first_max_pooling")(x)
-		x = Dropout(0.5, name = "first_dropout")(x)
+		x = Dropout(self.dropout_1, name = "first_dropout")(x)
 		
 		#Segunda
-		x = Conv1D(filters = 50, kernel_size = 3, padding="same", activation = "tanh", name = "second_convolution")(x)
+		x = Conv1D(filters = self.filter_2, kernel_size = self.kernel_2, padding="same", activation = "tanh", name = "second_convolution")(x)
 		x = MaxPooling1D(pool_size = 2, strides=1, padding="same", name = "second_max_pooling")(x)
-		x = Dropout(0.5, name = "second_dropout")(x)
+		x = Dropout(self.dropout_2, name = "second_dropout")(x)
 		
 		#Última capa
-		preds = Dense(4, activation = "tanh", name = "last_layer")(x)
+		preds = TimeDistributed(Dense(4, name = "last_layer"))(x)
+		#preds = Dense(4, activation = "tanh", name = "last_layer")(x)
+		#preds = Dense(4, name = "last_layer")(x)
 
 		#Creamos el modelo
 		self.model = Model(input = [sequence_input, sequence_input_lengths], output = [preds])
@@ -81,10 +90,10 @@ class CNN_Model(Model_RRNN):
 
 		viterbi_sequences = []
 
-		array_lengths = np.repeat(65, self.batch_size)
-		sequence_lengths = K.constant(array_lengths, name = "sequence_lengths")
+		#array_lengths = np.repeat(65, self.batch_size)
+		#sequence_lengths = K.constant(array_lengths, name = "sequence_lengths")
 
-		for logit, sequence_length in zip(logits, np.array(self.sequence_lengths_train)):
+		for logit, sequence_length in zip(logits, np.array(self.sequence_lengths_test)):
 			logit = logit[:sequence_length]
 			viterbi_seq, viterbi_score = tf.contrib.crf.viterbi_decode(logit, trans_params)
 			viterbi_sequences += [viterbi_seq]
@@ -93,4 +102,8 @@ class CNN_Model(Model_RRNN):
 
 		return self.predicted_labels
 
+	def to_json(self):
+		return self.model.to_json()
 
+	def save_weights(self,source):
+		self.model.save_weights()

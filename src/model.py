@@ -2,17 +2,17 @@ from csv_embeddings import *
 from txt_embeddings import *
 from xml_data import *
 import numpy as np
+import sklearn
 from sklearn.model_selection import train_test_split
 
 
 class Model_RRNN:
-	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size, test_size):
+	def __init__(self,embeddings_path, train_path, test_path, max_length, batch_size):
 		self.embeddings_path = embeddings_path
 		self.train_path = train_path
 		self.test_path = test_path
 		self.max_length = max_length
 		self.batch_size = batch_size
-		self.test_size = test_size
 		self.x_train = None
 		self.x_test = None
 		self.y_train = None
@@ -32,8 +32,12 @@ class Model_RRNN:
 
 		#Lectura de datos
 		embeddings = TXTEmbeddings(self.embeddings_path).getEmbeddings()
+		print("Leyendo datos de train...")
 		train = XMLData(self.train_path).getIobData()
+		print("Datos de train leídos.")
+		print("Leyendo datos de test...")
 		test = XMLData(self.test_path).getIobData()
+		print("Datos de test leídos.")
 
 
 		#Preparación vocabulario y embeddings_matrix
@@ -179,65 +183,7 @@ class Model_RRNN:
 
 		return aux
 
-	def fixTrainSize(self,train, labels):
-		'''
-			Método para aumentar el train repitiendo frases hasta llegar al primer número múltiplo de batch_size
-		'''
-
-		resto = len(train) % self.batch_size
-		#Número de frases que tenemos que añadir
-		num_sentences = self.batch_size-resto
-
-		#Elegimos estas frases de forma aleatoria (con distribución uniforme)
-		for i in range(0, num_sentences):
-			r = int(np.random.uniform(0, len(train)-1,1))
-			train.append(train[r])
-			labels.append(labels[r])
-
-		return train, labels
-
-	def dataPreparation(self,sentences, labels, word_to_index):
-		'''
-			Método que prepara los datos -> padding a las frases al tamaño de la frase más larga
-		'''
-
-		x_matrix = []
-		y_matrix = []
-
-		padding_index = word_to_index["PADDING"]
-		unkown_index = word_to_index["UNKOWN"]
-
-
-		for sentence in sentences:
-
-			wordIndices = []
-
-			for word in sentence:
-				if word in word_to_index:
-					wordIndices.append(word_to_index[word])
-				elif word.lower() in word_to_index:
-					wordIndices.append(word_to_index[word.lower()])
-				else:
-					wordIndices.append(unkown_index)
-
-			x_matrix.append(wordIndices)
-
-		#Padding a todas las frases
-		x_matrix = self.padding_truncate(x_matrix)
-
-
-		for fila_labels in labels:
-			labelIndices = []
-
-			for label in fila_labels:
-				labelIndices.append(self.labelsToIdx(label))
-
-			y_matrix.append(labelIndices)
-
-		#Padding a las etiquetas
-		#y_matrix = self.padding_truncate(y_matrix)
-
-		return (x_matrix, y_matrix)
+	
 
 	def getLabelsTest(self):
 		return self.y_test
@@ -263,52 +209,140 @@ class Model_RRNN:
 
 		return precision/labels.shape[0]
 
+
+	#FUNCIONES DE CÁLCULO DEL ERROR
+
 	def compute_custom_precision(self,labels_predicted, labels):
-	    n_correct = 0
-	    count = 0
-	    indice = 0
-	    idx = 0
-	    precision_total = 0
+		'''
+			Función que calcula la precisión como entidades_encontradas / entidades_reales
+		'''
 
-	    for indice in range(0, labels_predicted.shape[0]):
-	    	label_predicted = labels_predicted[indice]
-	    	label = labels[indice]
+		n_correct = 0
+		count = 0
+		indice = 0
+		idx = 0
+		precision_total = 0
 
-	    	idx = 0
-	    	
-	    	for idx in range(0, len(label_predicted)):
-		        if label_predicted[idx] == 2: #He encontrado entidad
-		        	count += 1
+		for indice in range(0, labels_predicted.shape[0]):
+			label_predicted = labels_predicted[indice]
+			label = labels[indice]
 
-		        	if label_predicted[idx] == label[idx]:
-		        		idx += 1
-		        		found = True
+			idx = 0
 
-		        		while idx < len(label_predicted) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
-		        			if label_predicted[idx] != label[idx]:
-		        				found = False
+			for idx in range(0, len(label)):
+				if label[idx] == 2: #He encontrado entidad
+					count += 1
 
-		        			idx += 1
+					if label_predicted[idx] == label[idx]:
+						idx += 1
+						found = True
 
-		        		if idx < len(label_predicted):
-		        			if label[idx] == 3: #Si la entidad tenía más tokens de los predichos
-		        				found = False
+						while idx < len(label_predicted) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+							if label_predicted[idx] != label[idx]:
+								found = False
 
-		        		if found: #Sumamos 1 al número de encontrados
-		        			n_correct += 1
+							idx += 1
 
-		        	else:
-		        		idx += 1
+						if idx < len(label_predicted):
+							if label[idx] == 3: #Si la entidad tenía más tokens de los predichos
+								found = False
 
-		        else: 
-		        	idx += 1
-	    
-	    return (float(n_correct)/count if count > 0 else 0)
+						if found: #Sumamos 1 al número de encontrados
+							n_correct += 1
+
+					else:
+						idx += 1
+
+				else:
+					idx += 1
+
+		return (float(n_correct)/count if count > 0 else 0)
+
+	def compute_precision(self, labels_predicted, labels):
+		total_precision = 0
+		for i in range(0, labels.shape[0]):
+			total_precision += sklearn.metrics.precision_score(self.predicted_labels[i], self.y_test[i], average = 'macro')
+
+		return total_precision/labels.shape[0]
+
+	def compute_custom_recall(self,labels_predicted, labels):
+		'''
+			Función que calcula el recall como entidades_encontradas / entidades etiquetadas
+		'''
+
+		n_correct = 0
+		count = 0
+		indice = 0
+		idx = 0
+		precision_total = 0
+
+		for indice in range(0, labels.shape[0]):
+			label_predicted = labels_predicted[indice]
+			label = labels[indice]
+
+			idx = 0
+
+			for idx in range(0, len(label_predicted)):
+				if label_predicted[idx] == 2: #He etiquetado entidad
+					count += 1
+
+					if label[idx] == label_predicted[idx]:
+						idx += 1
+						found = True
+
+						while idx < len(label) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+							if label[idx] != label_predicted[idx]:
+								found = False
+
+							idx += 1
+
+						if idx < len(label):
+							if label_predicted[idx] == 3: #Si la entidad tenía más tokens de los predichos
+								found = False
+
+						if found: #Sumamos 1 al número de encontrados
+							n_correct += 1
+
+					else:
+						idx += 1
+				else:
+					idx += 1
+
+		return (float(n_correct)/count if count > 0 else 0)
+
+
+	def compute_recall(self, labels_predicted, labels):
+		total_precision = 0
+		for i in range(0, labels.shape[0]):
+			total_precision += sklearn.metrics.recall_score(self.predicted_labels[i], self.y_test[i], average = 'macro')
+
+		return total_precision/labels.shape[0]
+
+	def compute_custom_f1(self, labels_predicted, labels):
+		p = self.compute_custom_precision(labels_predicted, labels)
+		r = self.compute_custom_recall(labels_predicted, labels)
+
+		return (2*(p*r)/(p+r) if (p+r) != 0 else 0)
+
+	def compute_f1(self, labels_predicted, labels):
+		p = self.compute_precision(labels_predicted, labels)
+		r = self.compute_recall(labels_predicted, labels)
+
+
+		return (2*(p*r)/(p+r) if (p+r) != 0 else 0)
 
 
 	def calculateAccuracy(self):
-		print("**************************************")
-		print(str(self.compute_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_precision(self.predicted_labels, self.y_test)))
+		print(self.predicted_labels[0])
+		print(self.y_test[0])
+
+		print("*************************** RESULTADOS **************************")
+		print("PRECISION\tRECALL\tF1")
+		print("ETIQUETADO PARCIAL:" )
+		print(str(self.compute_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_f1(self.predicted_labels, self.y_test)))
+		print
+		print("ETIQUETADO TOTAL:" )
+		print(str(self.compute_custom_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_f1(self.predicted_labels, self.y_test)))
 
 
 

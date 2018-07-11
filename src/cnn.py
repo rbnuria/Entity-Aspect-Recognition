@@ -2,7 +2,10 @@ import numpy as np
 from cnn_model import *
 import tensorflow as tf 
 import random
-
+from numpy.random import seed
+seed(123456)
+from tensorflow import set_random_seed
+set_random_seed(666)
 
 #Obtenemos word_embeddings
 #embeddings_path = '../deps.words.bz2'#
@@ -31,34 +34,15 @@ cnn_model = CNN_Model(embeddings_path, train_path, test_path, MAX_LENGTH, batch_
 
 cnn_model.trainModel()
 cnn_model.fitModel(epochs = 30)
-
 pred = cnn_model.predictModel()
-
 cnn_model.calculateAccuracy()
 
-'''
-print(pred[0])
-print((cnn_model.getLabelsTrain())[0])
 
-print("******************")
+print("**************** ANALISIS RESULTADOS ****************")
 
-print(pred[1])
-print((cnn_model.getLabelsTrain())[1])
-
-print("******************")
-
-print(pred[2])
-print((cnn_model.getLabelsTrain())[2])
+for i in range(0,15):
+	print("******** " + str(i) + " *********")
+	print(pred[i])
+	print((cnn_model.getLabelsTest())[i])
 
 
-print("******************")
-
-print(pred[3])
-print((cnn_model.getLabelsTrain())[3])
-
-
-print("******************")
-
-print(pred[4])
-print((cnn_model.getLabelsTrain())[4])
-'''
