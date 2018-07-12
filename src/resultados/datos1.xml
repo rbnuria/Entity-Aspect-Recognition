@@ -5,9 +5,6 @@
 	</sentence>
 	<sentence>
 		<text>tech support would not fix the problem unless I bought your plan for $ 150 plus . </text>
-		<aspectTerms>
-			<aspectTerm term="tech support" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>but in resume this computer rocks ! </text>
@@ -44,15 +41,9 @@
 	</sentence>
 	<sentence>
 		<text>Sure it 's not light and slim but the features make up for it 100 % . </text>
-		<aspectTerms>
-			<aspectTerm term="features" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I am pleased with the fast log on , speedy WiFi connection and the long battery life ( > 6 hrs ) . </text>
-		<aspectTerms>
-			<aspectTerm term="battery life" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The Apple engineers have not yet discovered the delete key . </text>
@@ -77,9 +68,6 @@
 	</sentence>
 	<sentence>
 		<text>Only problem that I had was that the track pad was not very good for me , I only had a problem once or twice with it , But probably my computer was a bit defective . </text>
-		<aspectTerms>
-			<aspectTerm term="track pad" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>And if you are switching from a pc I hilghy sugest this one . </text>
@@ -90,7 +78,7 @@
 	<sentence>
 		<text>But the mountain lion is just too slow . </text>
 		<aspectTerms>
-			<aspectTerm term="mountain lion" />
+			<aspectTerm term="mountain" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -99,7 +87,7 @@
 	<sentence>
 		<text>The battery life is excellent- 6-7 hours without charging . </text>
 		<aspectTerms>
-			<aspectTerm term="battery life" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -120,7 +108,7 @@
 	<sentence>
 		<text>The baterry is very longer . </text>
 		<aspectTerms>
-			<aspectTerm term="baterry" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -128,9 +116,6 @@
 	</sentence>
 	<sentence>
 		<text>Its size is ideal and the weight is acceptable . </text>
-		<aspectTerms>
-			<aspectTerm term="weight" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I know Apples are more expensive than PCs , but he thinks it is worth every penny . </text>
@@ -177,7 +162,7 @@
 	<sentence>
 		<text>It 's not inexpensive but the Hardware performance is impressive for a computer this small . </text>
 		<aspectTerms>
-			<aspectTerm term="Hardware performance" />
+			<aspectTerm term="Hardware" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -219,7 +204,8 @@
 	<sentence>
 		<text>Biggest complaint is Windows 8 . </text>
 		<aspectTerms>
-			<aspectTerm term="Windows 8" />
+			<aspectTerm term="Biggest" />
+			<aspectTerm term="is" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -234,7 +220,7 @@
 	<sentence>
 		<text>It has all the expected features and more +plus a wide screen and more than roomy keyboard . </text>
 		<aspectTerms>
-			<aspectTerm term="features" />
+			<aspectTerm term="expected" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -287,6 +273,7 @@
 		<text>But the performance of Mac Mini is a huge disappointment . </text>
 		<aspectTerms>
 			<aspectTerm term="performance" />
+			<aspectTerm term="Mac" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -297,9 +284,6 @@
 	</sentence>
 	<sentence>
 		<text>They do n't just look good ; they deliver excellent performance . </text>
-		<aspectTerms>
-			<aspectTerm term="performance" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I have had it over a year now with out a Glitch of any kind..I love the lit up keys and screen display ... this thing is Fast and clear as can be . </text>
@@ -309,9 +293,6 @@
 	</sentence>
 	<sentence>
 		<text>The Mountain Lion OS is not hard to figure out if you are familiar with Microsoft Windows . </text>
-		<aspectTerms>
-			<aspectTerm term="Windows" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>However , I can refute that OSX is `` FAST '' . </text>
@@ -346,14 +327,12 @@
 	<sentence>
 		<text>From the speed to the multi touch gestures this operating system beats Windows easily . </text>
 		<aspectTerms>
-			<aspectTerm term="Windows" />
+			<aspectTerm term="operating" />
+			<aspectTerm term="beats" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I really like the size and I 'm a fan of the ACERS . </text>
-		<aspectTerms>
-			<aspectTerm term="size" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This is by far thee best , most reliable computer I could find . </text>
@@ -418,7 +397,8 @@
 	<sentence>
 		<text>Apple removed the DVD drive Firewire port ( will work with adapter ) and put the SDXC slot in a silly position on the back . </text>
 		<aspectTerms>
-			<aspectTerm term="DVD drive" />
+			<aspectTerm term="DVD" />
+			<aspectTerm term="Firewire" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -444,9 +424,6 @@
 	</sentence>
 	<sentence>
 		<text>The specs are pretty good too . </text>
-		<aspectTerms>
-			<aspectTerm term="specs" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I am having a friend look at it , but will probably return it . </text>
@@ -474,10 +451,6 @@
 	</sentence>
 	<sentence>
 		<text>It is a great size and amazing windows 8 included ! </text>
-		<aspectTerms>
-			<aspectTerm term="size" />
-			<aspectTerm term="windows 8" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I would recommend to any one lloking for a first class computer ! </text>
@@ -497,7 +470,7 @@
 	<sentence>
 		<text>The macbook pro is really responsive . </text>
 		<aspectTerms>
-			<aspectTerm term="macbook pro" />
+			<aspectTerm term="macbook" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -534,14 +507,10 @@
 		<text>: ) Great product , great price , great delivery , and great service . </text>
 		<aspectTerms>
 			<aspectTerm term="price" />
-			<aspectTerm term="service" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>: ] It arrived so fast and customer service was great . </text>
-		<aspectTerms>
-			<aspectTerm term="customer service" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>tried windows 8 and hated it ! ! ! </text>
@@ -566,9 +535,6 @@
 	</sentence>
 	<sentence>
 		<text>I am still in the process of learning about its features . </text>
-		<aspectTerms>
-			<aspectTerm term="features" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>BTW , I checked online regarding the old laptop that 'died ' and found that I was not alone , far from it . </text>
@@ -609,13 +575,13 @@
 	<sentence>
 		<text>The sound is nice and loud ; I do n't have any problems with hearing anything . </text>
 		<aspectTerms>
-			<aspectTerm term="sound" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It is very slim , the track pad is very much impressed with me . </text>
 		<aspectTerms>
-			<aspectTerm term="track pad" />
+			<aspectTerm term="track" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -633,7 +599,7 @@
 	<sentence>
 		<text>The settings are not user-friendly either . </text>
 		<aspectTerms>
-			<aspectTerm term="settings" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -704,9 +670,6 @@
 	</sentence>
 	<sentence>
 		<text>thanks for great service and shipping ! </text>
-		<aspectTerms>
-			<aspectTerm term="service" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Deal of the year . </text>
@@ -833,9 +796,6 @@
 	</sentence>
 	<sentence>
 		<text>it 's exactly what i wanted , and it has all the new features and whatnot . </text>
-		<aspectTerms>
-			<aspectTerm term="features" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>You can do absolutely anything and is very fast and stylish . </text>
@@ -845,9 +805,6 @@
 	</sentence>
 	<sentence>
 		<text>Can you buy any laptop that matches the quality of a MacBook ? </text>
-		<aspectTerms>
-			<aspectTerm term="quality" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It feels cheap , the keyboard is not very sensitive . </text>
@@ -861,7 +818,8 @@
 	<sentence>
 		<text>Though please note that sometimes it crashes , and the sound quality isnt superb . </text>
 		<aspectTerms>
-			<aspectTerm term="sound" />
+			<aspectTerm term="quality" />
+			<aspectTerm term="superb" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -872,9 +830,6 @@
 	</sentence>
 	<sentence>
 		<text>The cons are more annoyances that can be lived with . </text>
-		<aspectTerms>
-			<aspectTerm term="cons" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Does everything I need it to , has a wonderful battery life and I could n't be happier . </text>
@@ -894,7 +849,7 @@
 	<sentence>
 		<text>I used windows XP , windows Vista , and Windows 7 extensively . </text>
 		<aspectTerms>
-			<aspectTerm term="Windows 7" />
+			<aspectTerm term="Windows" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -906,7 +861,8 @@
 	<sentence>
 		<text>I did add a SSD drive and memory </text>
 		<aspectTerms>
-			<aspectTerm term="SSD drive" />
+			<aspectTerm term="SSD" />
+			<aspectTerm term="and" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -929,14 +885,11 @@
 	</sentence>
 	<sentence>
 		<text>One more thing , this mac does NOT come with restore disks and I am not sure if you can make them direct from the mac like you can with newer PC 's , also the charging cables are made of the same cheap material as the iPhone/iPod touch cables . </text>
-		<aspectTerms>
-			<aspectTerm term="charging cables" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I bought it to my son who uses it for graphic design . </text>
 		<aspectTerms>
-			<aspectTerm term="design" />
+			<aspectTerm term="graphic" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -981,7 +934,6 @@
 	<sentence>
 		<text>it has all the features that we expected and the price was good , working well so far . </text>
 		<aspectTerms>
-			<aspectTerm term="features" />
 			<aspectTerm term="price" />
 		</aspectTerms>
 	</sentence>
@@ -1014,12 +966,12 @@
 	</sentence>
 	<sentence>
 		<text>The machine is speedy and efficient . </text>
+		<aspectTerms>
+			<aspectTerm term="The" />
+		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I think this is about as good as it gets at anything close to this price point . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>A *big* upgrade from my 13 '' 2006 macbook . </text>
@@ -1050,9 +1002,6 @@
 	</sentence>
 	<sentence>
 		<text>I 'm using this computer for word processing , web browsing , some gaming , and I 'm learning programming . </text>
-		<aspectTerms>
-			<aspectTerm term="web browsing" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It certainly does , but you rarely hear any of your friends with Mac 's complain about anything . </text>
@@ -1086,9 +1035,6 @@
 	</sentence>
 	<sentence>
 		<text>The on/off switch is a bit obscure in the rear corner . </text>
-		<aspectTerms>
-			<aspectTerm term="on/off switch" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It 's a nice little gadget . </text>
@@ -1107,6 +1053,7 @@
 		<aspectTerms>
 			<aspectTerm term="features" />
 			<aspectTerm term="signature" />
+			<aspectTerm term="of" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -1204,6 +1151,9 @@
 	</sentence>
 	<sentence>
 		<text>Web browsing is very quick with Safari browser . </text>
+		<aspectTerms>
+			<aspectTerm term="Web" />
+		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It could n't have been a better decision . </text>
@@ -1237,9 +1187,6 @@
 	</sentence>
 	<sentence>
 		<text>It 's fast , light , and is perfect for media editing , which is mostly why I bought it in the first place . </text>
-		<aspectTerms>
-			<aspectTerm term="media editing" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>However , the machine itself left a bit to be desired . </text>
@@ -1261,15 +1208,11 @@
 	</sentence>
 	<sentence>
 		<text>! Excelent performance , usability , presentation and time response . </text>
-		<aspectTerms>
-			<aspectTerm term="performance" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The smaller size was a bonus because of space restrictions . </text>
 		<aspectTerms>
-			<aspectTerm term="smaller size" />
-			<aspectTerm term="space" />
+			<aspectTerm term="smaller" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -1316,9 +1259,6 @@
 	</sentence>
 	<sentence>
 		<text>First off , I really do like my MBP ... once used to the OS it is pretty easy to get around , and the overall build is great ... eg the keyboard is one of the best to type on . </text>
-		<aspectTerms>
-			<aspectTerm term="overall build" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Does exactly what I bought it 4 . </text>
@@ -1367,9 +1307,6 @@
 	</sentence>
 	<sentence>
 		<text>It should n't happen like that , I do n't have any design app open or anything . </text>
-		<aspectTerms>
-			<aspectTerm term="design" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>MY TRACKPAD IS NOT WORKING . </text>
@@ -1388,9 +1325,6 @@
 	</sentence>
 	<sentence>
 		<text>Price was higher when purchased on MAC when compared to price showing on PC when I bought this product . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This was a great deal for a decked out MacBook Pro . </text>
@@ -1440,7 +1374,7 @@
 	<sentence>
 		<text>It was also suffering from hardware ( keyboard ) issues , relatively slow performance and shortening battery lifetime . </text>
 		<aspectTerms>
-			<aspectTerm term="performance" />
+			<aspectTerm term="slow" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -1472,9 +1406,6 @@
 	</sentence>
 	<sentence>
 		<text>Apple is aware of this issue and this is either old stock or a defective design involving the intel 4000 graphics chipset . </text>
-		<aspectTerms>
-			<aspectTerm term="design" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Stop living in the stone age and buy a mac , you will not be sorry at all ! ! </text>
@@ -1496,9 +1427,6 @@
 	</sentence>
 	<sentence>
 		<text>It is the perfect size and speed for me . </text>
-		<aspectTerms>
-			<aspectTerm term="size" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I am so addict to this laptop . </text>
@@ -1532,9 +1460,6 @@
 	</sentence>
 	<sentence>
 		<text>I like coming back to Mac OS but this laptop is lacking in speaker quality compared to my $ 400 old HP laptop . </text>
-		<aspectTerms>
-			<aspectTerm term="quality" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It is much better than the Acer ultrabook I had before . </text>
@@ -1547,9 +1472,6 @@
 	</sentence>
 	<sentence>
 		<text>The thunderbolt port is awesome ! </text>
-		<aspectTerms>
-			<aspectTerm term="thunderbolt" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>User friendly , fast and high tech It is amazing ! </text>
@@ -1557,7 +1479,7 @@
 	<sentence>
 		<text>The performance is definitely superior to any computer I 've ever put my hands on . </text>
 		<aspectTerms>
-			<aspectTerm term="performance" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -1575,9 +1497,6 @@
 	</sentence>
 	<sentence>
 		<text>There were small problems with Mac office . </text>
-		<aspectTerms>
-			<aspectTerm term="Mac office" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It is extremely fast and very compact . </text>
@@ -1605,9 +1524,6 @@
 	</sentence>
 	<sentence>
 		<text>Performance is much much better on the Pro , especially if you install an SSD on it . </text>
-		<aspectTerms>
-			<aspectTerm term="Pro" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Note , however , that any existing MagSafe accessories you have will not work with the MagSafe 2 connection . </text>
@@ -1623,10 +1539,6 @@
 	</sentence>
 	<sentence>
 		<text>The Mac mini is about 8x smaller than my old computer which is a huge bonus and runs very quiet , actually the fans are n't audible unlike my old pc </text>
-		<aspectTerms>
-			<aspectTerm term="Mac" />
-			<aspectTerm term="fans" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>MAYBE The Mac OS improvement were not The product they Want to offer . </text>
@@ -1636,9 +1548,6 @@
 	</sentence>
 	<sentence>
 		<text>I thought the transition would be difficult at best and would take some time to fully familiarize myself with the new Mac ecosystem . </text>
-		<aspectTerms>
-			<aspectTerm term="transition" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It 's absolutely wonderful and worth the price ! </text>
@@ -1672,9 +1581,6 @@
 	</sentence>
 	<sentence>
 		<text>Perfect for all my graphic design classes I 'm taking this year in college : - ) </text>
-		<aspectTerms>
-			<aspectTerm term="design" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Have used only Macs for years . </text>
@@ -1693,6 +1599,9 @@
 	</sentence>
 	<sentence>
 		<text>The OS is fast and fluid , everything is organized and it 's just beautiful . </text>
+		<aspectTerms>
+			<aspectTerm term="The" />
+		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It will make life so much easier next semester , just wish I had it last semester ! ! </text>
@@ -1781,7 +1690,7 @@
 	<sentence>
 		<text>The technical support was not helpful as well . </text>
 		<aspectTerms>
-			<aspectTerm term="technical support" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -1810,9 +1719,6 @@
 	</sentence>
 	<sentence>
 		<text>The sound was crappy even when you turn up the volume still the same results . </text>
-		<aspectTerms>
-			<aspectTerm term="sound" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>ive never had a problem with it ! </text>
@@ -1846,9 +1752,6 @@
 	</sentence>
 	<sentence>
 		<text>The unibody construction really does feel lot more solid than Apple 's previous laptops . </text>
-		<aspectTerms>
-			<aspectTerm term="unibody construction" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>i had to return it for a replacement . </text>
@@ -1858,6 +1761,9 @@
 	</sentence>
 	<sentence>
 		<text>It completely supports my home business and personal life . </text>
+		<aspectTerms>
+			<aspectTerm term="personal life" />
+		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>3D rendering slows it down considerably . </text>
@@ -1879,15 +1785,9 @@
 	</sentence>
 	<sentence>
 		<text>All the ports are much needed since this is my main computer . </text>
-		<aspectTerms>
-			<aspectTerm term="ports" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The Like New condition of the iMac MC309LL/A on Amazon is at $ 900+ level only , and it is a Quad-Core 2.5 GHz CPU ( similar to the $ 799 Mini ) , with Radeon HD 6750M 512MB graphic card ( this mini is integrated Intel 4000 card ) , and it even comes with wireless Apple Keyboard and Mouse , all put together in neat and nice package . </text>
-		<aspectTerms>
-			<aspectTerm term="graphic card" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Put a cover on it and is a little better but that is my only complaint . </text>
@@ -1897,9 +1797,6 @@
 	</sentence>
 	<sentence>
 		<text>This mac does come with an extender cable and I 'm using mine right now hoping the cable will stay nice for the many years I plan on using this mac . </text>
-		<aspectTerms>
-			<aspectTerm term="cable" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This is the third in a series of MacBooks starting with a Black MacBook . </text>
@@ -1936,15 +1833,9 @@
 	</sentence>
 	<sentence>
 		<text>My one complaint is that there was no internal CD drive . </text>
-		<aspectTerms>
-			<aspectTerm term="CD drive" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This newer netbook has no hard drive or network lights . </text>
-		<aspectTerms>
-			<aspectTerm term="hard drive" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This is the first time for me to use a Mac and I 'm really happy with the move . </text>
@@ -1978,9 +1869,6 @@
 	</sentence>
 	<sentence>
 		<text>The audio volume is quite low and virtually unusable in a room with any background activity . </text>
-		<aspectTerms>
-			<aspectTerm term="audio volume" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I am going to college next year and I needed a cheaper , quality computer for the goals I am trying to pursue . </text>
@@ -2017,15 +1905,9 @@
 	</sentence>
 	<sentence>
 		<text>The Macbook Pro is the premier choice for college students . </text>
-		<aspectTerms>
-			<aspectTerm term="Macbook" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Their products , including the MBP , are beautiful , sleek and clever . </text>
-		<aspectTerms>
-			<aspectTerm term="MBP" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The MBP is beautiful has many wonderful capabilities . </text>
@@ -2048,7 +1930,7 @@
 	<sentence>
 		<text>Boot-up slowed significantly after all Windows updates were installed . </text>
 		<aspectTerms>
-			<aspectTerm term="Windows" />
+			<aspectTerm term="Windows updates" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2059,18 +1941,12 @@
 	</sentence>
 	<sentence>
 		<text>It was important that it was powerful enough to do all of the tasks he needed on the internet , word processing , graphic design and gaming . </text>
-		<aspectTerms>
-			<aspectTerm term="design" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This computer is not cheap and represent an achievement for me . </text>
 	</sentence>
 	<sentence>
 		<text>I like the Mini Mac it was easy to setup and install , but I am learning as I go and could use a tutorial to learn how to use some of the features I was use to on the PC especially the right mouse click menu . </text>
-		<aspectTerms>
-			<aspectTerm term="features" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>GET THIS MACHINE </text>
@@ -2098,14 +1974,12 @@
 	</sentence>
 	<sentence>
 		<text>WiFi capability , disk drive and multiple USB ports to connect scale and printers was all that was required . </text>
-		<aspectTerms>
-			<aspectTerm term="disk drive" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The SD card reader is slightly recessed and upside down ( the nail slot on the card can not be accessed ) , if this was a self ejecting slot this would not be an issue , but its not . </text>
 		<aspectTerms>
-			<aspectTerm term="SD card" />
+			<aspectTerm term="The" />
+			<aspectTerm term="card reader" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2128,18 +2002,12 @@
 	</sentence>
 	<sentence>
 		<text>The Dell Inspiron is fast and has a number pad on the keyboard , which I miss on my Apple laptops . </text>
-		<aspectTerms>
-			<aspectTerm term="Dell Inspiron" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>wow the new macbook pro hanged as i tried to type this review . </text>
 	</sentence>
 	<sentence>
 		<text>The MacBook Pro is a great product which can meet the needs of the average consumer . </text>
-		<aspectTerms>
-			<aspectTerm term="MacBook Pro" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I was concerned that the downgrade to the regular hard drive would make it unacceptably slow but I need not have worried - this machine is the fastest I have ever owned ... </text>
@@ -2183,9 +2051,8 @@
 	<sentence>
 		<text>The power plug has to be connected to the power adaptor to charge the battery but wo n't stay connected . </text>
 		<aspectTerms>
-			<aspectTerm term="power plug" />
-			<aspectTerm term="power" />
-			<aspectTerm term="battery" />
+			<aspectTerm term="The" />
+			<aspectTerm term="plug" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2243,6 +2110,7 @@
 		<text>Needs a CD/DVD drive and a bigger power switch . </text>
 		<aspectTerms>
 			<aspectTerm term="CD/DVD drive" />
+			<aspectTerm term="bigger" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2281,9 +2149,6 @@
 	</sentence>
 	<sentence>
 		<text>Besides being elegant , the MacBooks are durable . </text>
-		<aspectTerms>
-			<aspectTerm term="MacBooks" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I switched to this because I wanted something different , even though I miss windows . </text>
@@ -2314,9 +2179,6 @@
 	</sentence>
 	<sentence>
 		<text>It just works out of the box and you have a lot of cool software included with the OS . </text>
-		<aspectTerms>
-			<aspectTerm term="software" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Good in every aspect . </text>
@@ -2338,9 +2200,6 @@
 	</sentence>
 	<sentence>
 		<text>Premium price for the OS more than anything else . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This was a gift for my grand son . </text>
@@ -2356,15 +2215,9 @@
 	</sentence>
 	<sentence>
 		<text>The track pad is a bit squirrely at times- sometimes too sensitive , and sometimes a bit unresponsive , but it 's usable . </text>
-		<aspectTerms>
-			<aspectTerm term="track pad" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>However , the experience was great since the OS does not become unstable and the application will simply shutdown and reopen . </text>
-		<aspectTerms>
-			<aspectTerm term="OS" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Then only FOUR months later , my great MacBook pro FAILED . </text>
@@ -2375,14 +2228,11 @@
 	<sentence>
 		<text>The battery is not as shown in the product photos . </text>
 		<aspectTerms>
-			<aspectTerm term="battery" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Even though I could have gotten a pc twice the speed for the same price I still think there 's nothing like a Mac . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Seems a much more economical way to get into Apple than their other computers . </text>
@@ -2404,9 +2254,6 @@
 	</sentence>
 	<sentence>
 		<text>The Mac Mini is probably the simplest example of compact computing out there . </text>
-		<aspectTerms>
-			<aspectTerm term="Mac Mini" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Instead , I 'll focus more on the actual performance and feature set of the hardware itself so you can make an educated decision on which Mac to buy . </text>
@@ -2441,14 +2288,11 @@
 	<sentence>
 		<text>Chatting with Acer support , I was advised the problem was corrupted operating system files . </text>
 		<aspectTerms>
-			<aspectTerm term="Acer support" />
+			<aspectTerm term="operating" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>It 's been a couple weeks since the purchase and I 'm struggle with finding the correct keys ( but that was expected ) . </text>
-		<aspectTerms>
-			<aspectTerm term="correct keys" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Many people complain about the new OS , and it 's urgent for Apple to fix it asap ! </text>
@@ -2473,9 +2317,6 @@
 	</sentence>
 	<sentence>
 		<text>The RAM memory is good but should have splurged for 8Mb instead of 4Mb . </text>
-		<aspectTerms>
-			<aspectTerm term="RAM memory" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>was debating to buy one for months , checked out different stuff on youtube , and read different articles and debates , I just didnt really wan na spend the money but Im glad that I did . </text>
@@ -2510,13 +2351,13 @@
 	<sentence>
 		<text>I was considering buying the Air , but in reality , this one has a more powerful performance and seems much more convenient , even though it 's about .20 inch thicker and 2 lbs heavier . </text>
 		<aspectTerms>
-			<aspectTerm term="performance" />
+			<aspectTerm term="powerful" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>At home and the office it gets plugged into an external 24 '' LCD screen , so built in screen size is not terribly important . </text>
 		<aspectTerms>
-			<aspectTerm term="screen size" />
+			<aspectTerm term="screen" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2549,7 +2390,7 @@
 	<sentence>
 		<text>the volume is really low to low for a laptopwas not expectin t volume to be so lowan i hate that about this computer </text>
 		<aspectTerms>
-			<aspectTerm term="volume" />
+			<aspectTerm term="the" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2566,9 +2407,6 @@
 	</sentence>
 	<sentence>
 		<text>I got this at an amazing price from Amazon and it arrived just in time . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Every time I log into the system after a few hours , there is this endlessly frustrating process that I have to go through . </text>
@@ -2584,18 +2422,19 @@
 	</sentence>
 	<sentence>
 		<text>The case is now slightly larger than the previous generation , but the lack of an external power supply justifies the small increase in size . </text>
-		<aspectTerms>
-			<aspectTerm term="size" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I had to buy a wireless mouse to go with it , as I am old school and hate the pad , but knew that before I bought it , now it works great , need to get adjusted to the key board , as I am used to a bigger one and pounding . </text>
 		<aspectTerms>
-			<aspectTerm term="key board" />
+			<aspectTerm term="key" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>When considering a Mac , look at the total cost of ownership and not just the initial price tag . </text>
+		<aspectTerms>
+			<aspectTerm term="initial" />
+			<aspectTerm term="tag" />
+		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Has all the other features I wanted including a VGA port , HDMI , ethernet and 3 USB ports . </text>
@@ -2617,9 +2456,6 @@
 	</sentence>
 	<sentence>
 		<text>I was really happy because it is a much better price on amazon.com than it was in the Mac store . </text>
-		<aspectTerms>
-			<aspectTerm term="price" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>The worst a Mac ever did to me was freeze up . </text>
@@ -2647,14 +2483,11 @@
 	</sentence>
 	<sentence>
 		<text>A lot of features and shortcuts on the MBP that I was never exposed to on a normal PC . </text>
-		<aspectTerms>
-			<aspectTerm term="features" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Was n't sure if I was going to like it much less love it so I went to a local best buy and played around with the IOS system on a Mac Pro and it was totally unique and different . </text>
 		<aspectTerms>
-			<aspectTerm term="IOS system" />
+			<aspectTerm term="IOS" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2662,9 +2495,6 @@
 	</sentence>
 	<sentence>
 		<text>air has higher resolution but the fonts are small . </text>
-		<aspectTerms>
-			<aspectTerm term="fonts" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>again this is just my personal honest opinion . </text>
@@ -2717,7 +2547,7 @@
 	<sentence>
 		<text>The battery life is excellent , the display is excellent , and downloading apps is a breeze . </text>
 		<aspectTerms>
-			<aspectTerm term="battery life" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2745,7 +2575,7 @@
 	<sentence>
 		<text>But with this laptop , the bass is very weak and the sound comes out sounding tinny . </text>
 		<aspectTerms>
-			<aspectTerm term="sound" />
+			<aspectTerm term="bass" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2757,13 +2587,13 @@
 	<sentence>
 		<text>The built quality is really good , I was so Happy and excited about this Product . </text>
 		<aspectTerms>
-			<aspectTerm term="built quality" />
+			<aspectTerm term="built" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I am loving the fast performance also . </text>
 		<aspectTerms>
-			<aspectTerm term="fast performance" />
+			<aspectTerm term="fast" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2771,9 +2601,6 @@
 	</sentence>
 	<sentence>
 		<text>Further , this Mac Mini has a sloppy Bluetooth interface ( courtesy of the Mac OS ) and the range is poor . </text>
-		<aspectTerms>
-			<aspectTerm term="range" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>Great deal on an amazing lap top ! </text>
@@ -2807,9 +2634,6 @@
 	</sentence>
 	<sentence>
 		<text>This by far beats any computer out on the market today built well , battery life AMAZING . </text>
-		<aspectTerms>
-			<aspectTerm term="battery life" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>I have n't used it for anything high tech yet , but I love it already . </text>
@@ -2817,7 +2641,7 @@
 	<sentence>
 		<text>The OS is easy , and offers all kinds of surprises . </text>
 		<aspectTerms>
-			<aspectTerm term="OS" />
+			<aspectTerm term="The" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2835,7 +2659,7 @@
 	<sentence>
 		<text>I like iTunes , the apparent security , the Mini form factor , all the nice graphics stuff . </text>
 		<aspectTerms>
-			<aspectTerm term="apparent security" />
+			<aspectTerm term="apparent" />
 		</aspectTerms>
 	</sentence>
 	<sentence>
@@ -2885,9 +2709,6 @@
 	</sentence>
 	<sentence>
 		<text>also ... - excellent operating system- size and weight for optimal mobility- excellent durability of the battery- the functions provided by the trackpad is unmatched by any other brand- </text>
-		<aspectTerms>
-			<aspectTerm term="size" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>This hardware seems to be better than the iMac in that it is n't $ 1400 and smaller . </text>
@@ -2897,9 +2718,6 @@
 	</sentence>
 	<sentence>
 		<text>I 've had it for about 2 months now and found no issues with software or updates . </text>
-		<aspectTerms>
-			<aspectTerm term="software" />
-		</aspectTerms>
 	</sentence>
 	<sentence>
 		<text>the latest version does not have a disc drive . </text>

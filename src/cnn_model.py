@@ -16,8 +16,8 @@ from keras.layers import GlobalMaxPooling1D
 
 class CNN_Model(Model_RRNN):
 
-	def __init__(self,embeddings_path = None, train_path = None, test_path = None, max_length = None, batch_size = None, filtro_1 = None, filtro_2 = None, kernel_1 = None, kernel_2 = None, dropout_1 = None, dropout_2 = None, model = None):
-		super(CNN_Model, self).__init__(embeddings_path, train_path, test_path, max_length, batch_size)
+	def __init__(self,embeddings = None, vocabulary = None, train_path = None, test_path = None, max_length = None, batch_size = None, filtro_1 = None, filtro_2 = None, kernel_1 = None, kernel_2 = None, dropout_1 = None, dropout_2 = None):
+		super(CNN_Model, self).__init__(embeddings, vocabulary, train_path, test_path, max_length, batch_size)
 		
 		self.filter_1 = filtro_1
 		self.filter_2 = filtro_2
@@ -26,11 +26,14 @@ class CNN_Model(Model_RRNN):
 		self.dropout_1 = dropout_1
 		self.dropout_2 = dropout_2
 
-		self.model = model
+		self.model = None
 
-	def trainModel(self):
+		self.configureModel()
+
+
+	def configureModel(self):
 		'''
-			Definición y compilación del modelo.
+			Creación de la arquitectura
 		'''
 		input_size = self.max_length
 		
@@ -63,6 +66,12 @@ class CNN_Model(Model_RRNN):
 
 		self.model.summary()
 
+	def trainModel(self):
+		'''
+			Definición y compilación del modelo.
+		'''
+		
+
 		self.model.compile(loss=self.loss_object.loss, optimizer = 'adam', metrics=['accuracy'])
 
 		#Build
@@ -82,20 +91,24 @@ class CNN_Model(Model_RRNN):
 		#Pasamos lista -> numpy array
 		y_train_categorical = np.array(y_train_categorical)
 
+
 		self.model.fit(x = {"input_data":self.x_train, "input_sequence_lengths": np.array(self.sequence_lengths_train)}, y = y_train_categorical, batch_size = self.batch_size, epochs = epochs, verbose = 1)
 
-	def predictModel(self):
+	def predictModel(self, transition_params = None):
 		'''
 			Predicción de las etiquetas de test.
 			Utilizamos algoritmo viterbi para obtener la mejor secuencia.
 		'''
+
+
 		logits = self.model.predict([self.x_test, np.array(self.sequence_lengths_test)])
-		trans_params = K.eval(self.loss_object.getTransitionParams())
+
+		if transition_params == None:
+			trans_params = K.eval(self.loss_object.getTransitionParams())
+		else:
+			trans_params = K.eval(transition_params)
 
 		viterbi_sequences = []
-
-		#array_lengths = np.repeat(65, self.batch_size)
-		#sequence_lengths = K.constant(array_lengths, name = "sequence_lengths")
 
 		for logit, sequence_length in zip(logits, np.array(self.sequence_lengths_test)):
 			logit = logit[:sequence_length]

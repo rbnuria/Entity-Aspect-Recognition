@@ -7,8 +7,9 @@ from sklearn.model_selection import train_test_split
 
 
 class Model_RRNN:
-	def __init__(self,embeddings_path = None, train_path = None, test_path = None, max_length = None, batch_size = None):
-		self.embeddings_path = embeddings_path
+	def __init__(self,embeddings = None, vocabulary = None, train_path = None, test_path = None, max_length = None, batch_size = None):
+		self.embeddings = embeddings
+		self.vocabulary = vocabulary
 		self.train_path = train_path
 		self.test_path = test_path
 		self.max_length = max_length
@@ -22,7 +23,7 @@ class Model_RRNN:
 		self.sequence_lengths_train = []
 		self.sequence_lengths_test = []
 
-		if(embeddings_path != None and train_path != None and test_path != None):
+		if(train_path != None and test_path != None):
 			self.readData()
 		
 
@@ -32,7 +33,8 @@ class Model_RRNN:
 		'''
 
 		#Lectura de datos
-		embeddings = TXTEmbeddings(self.embeddings_path).getEmbeddings()
+		embeddings_matrix = self.embeddings
+		vocabulary = self.vocabulary
 		print("Leyendo datos de train...")
 		self.train = XMLData(self.train_path).getIobData()
 		print("Datos de train leídos.")
@@ -40,21 +42,6 @@ class Model_RRNN:
 		self.test = XMLData(self.test_path).getIobData()
 		print("Datos de test leídos.")
 
-
-		#Preparación vocabulario y embeddings_matrix
-		vocabulary = {}
-		vocabulary["PADDING"] = len(vocabulary)
-		vocabulary["UNKOWN"] = len(vocabulary)
-
-		embeddings_matrix = []
-		embeddings_matrix.append(np.zeros(300))
-		embeddings_matrix.append(np.random.uniform(-0.25, 0.25, 300))
-
-
-		for word in embeddings.wv.vocab:
-			vocabulary[word] = len(vocabulary)
-			#Al mismo tiempo creamos matrix de embeddings
-			embeddings_matrix.append(embeddings[word])
 
 		#Word2Idx a test y train
 		train_idx = []
@@ -266,6 +253,54 @@ class Model_RRNN:
 
 		return total_precision/labels.shape[0]
 
+	def compute_custom_partial_precision(self,labels_predicted, labels):
+		'''
+			Función que calcula el recall como entidades_encontradas / entidades etiquetadas
+		'''
+
+		n_correct = 0
+		count = 0
+		indice = 0
+		idx = 0
+		precision_total = 0
+
+		for indice in range(0, labels.shape[0]):
+			label_predicted = labels_predicted[indice]
+			label = labels[indice]
+
+			idx = 0
+
+			for idx in range(0, len(label_predicted)):
+				if label_predicted[idx] == 2: #He etiquetado entidad
+					count += 1
+
+					if label[idx] == label_predicted[idx]:
+						idx += 1
+						found = True
+						n_correct +=1
+
+						'''
+						while idx < len(label) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+							if label[idx] != label_predicted[idx]:
+								found = False
+
+							idx += 1
+
+						if idx < len(label):
+							if label_predicted[idx] == 3: #Si la entidad tenía más tokens de los predichos
+								found = False
+
+						if found: #Sumamos 1 al número de encontrados
+							n_correct += 1
+						'''
+
+					else:
+						idx += 1
+				else:
+					idx += 1
+
+		return (float(n_correct)/count if count > 0 else 0)
+
 	def compute_custom_precision(self,labels_predicted, labels):
 		'''
 			Función que calcula el recall como entidades_encontradas / entidades etiquetadas
@@ -311,6 +346,54 @@ class Model_RRNN:
 
 		return (float(n_correct)/count if count > 0 else 0)
 
+	def compute_custom_precision(self,labels_predicted, labels):
+		'''
+			Función que calcula el recall como entidades_encontradas / entidades etiquetadas
+		'''
+
+		n_correct = 0
+		count = 0
+		indice = 0
+		idx = 0
+		precision_total = 0
+
+		for indice in range(0, labels.shape[0]):
+			label_predicted = labels_predicted[indice]
+			label = labels[indice]
+
+			idx = 0
+
+			for idx in range(0, len(label_predicted)):
+				if label_predicted[idx] == 2: #He etiquetado entidad
+					count += 1
+
+					if label[idx] == label_predicted[idx]:
+						idx += 1
+						found = True
+						n_correct += 1
+
+						'''
+						while idx < len(label) and label_predicted[idx] == 3: #Mientras sigo dentro de la misma entidad
+							if label[idx] != label_predicted[idx]:
+								found = False
+
+							idx += 1
+
+						if idx < len(label):
+							if label_predicted[idx] == 3: #Si la entidad tenía más tokens de los predichos
+								found = False
+
+						if found: #Sumamos 1 al número de encontrados
+							n_correct += 1
+						'''
+
+					else:
+						idx += 1
+				else:
+					idx += 1
+
+		return (float(n_correct)/count if count > 0 else 0)
+
 
 	def compute_recall(self, labels_predicted, labels):
 		total_precision = 0
@@ -325,6 +408,12 @@ class Model_RRNN:
 
 		return (2*(p*r)/(p+r) if (p+r) != 0 else 0)
 
+	def compute_custom_partial_f1(self, labels_predicted, labels):
+		p = self.compute_custom_partial_precision(labels_predicted, labels)
+		r = self.compute_custom_partial_recall(labels_predicted, labels)
+
+		return (2*(p*r)/(p+r) if (p+r) != 0 else 0)
+
 	def compute_f1(self, labels_predicted, labels):
 		p = self.compute_precision(labels_predicted, labels)
 		r = self.compute_recall(labels_predicted, labels)
@@ -336,12 +425,13 @@ class Model_RRNN:
 	def calculateAccuracy(self):
 		print("*************************** RESULTADOS **************************")
 		print("PRECISION\tRECALL\tF1")
-		print("ETIQUETADO PARCIAL:" )
+		print("MACRO:" )
 		print(str(self.compute_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_f1(self.predicted_labels, self.y_test)))
-		print
 		print("ETIQUETADO TOTAL:" )
 		print(str(self.compute_custom_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_f1(self.predicted_labels, self.y_test)))
 
+		print("ETIQUETADO PARCIAL:" )
+		print(str(self.compute_custom_partial_precision(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_partial_recall(self.predicted_labels, self.y_test)) + "\t" + str(self.compute_custom_f1(self.predicted_labels, self.y_test)))
 
 	def getAspects(self, frase):
 		indice = 0
@@ -406,11 +496,10 @@ class Model_RRNN:
 		return self.model.to_json()
 
 	def save_weights(self,source):
-		self.model.save_weights()
-
-	def save(self, source):
-		self.model.save(source)
-
-
-	def save_weights(self, source):
 		self.model.save_weights(source)
+
+	def load_weights(self, source):
+		self.model.load_weights(source)
+
+	def getTransitionParams(self):
+		return self.loss_object.getTransitionParams()

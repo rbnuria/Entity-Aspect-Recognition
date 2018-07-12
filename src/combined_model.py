@@ -107,39 +107,4 @@ class Combined_Model(Model_RRNN):
 		return self.predicted_labels
 
 
-	def load_model(self, source):
-		input_size = self.max_length
-		
-		#Inputs y embeddings
-		sequence_input = Input(shape = (input_size, ), dtype = 'float64', name = "input_data")
-		sequence_input_lengths = Input(shape = (1, ), dtype = 'int32', name="input_sequence_lengths")
-		#Definimos función de pérdida -> en función de sequence_input_lengths
-		self.loss_object = Lossfunction(self.batch_size, sequence_input_lengths)
-
-		embedding_layer = Embedding(self.word_embeddings.shape[0], self.word_embeddings.shape[1], weights=[self.word_embeddings],trainable=False, input_length = input_size, name = "embeddings") #Trainable false
-		embedded_sequence = embedding_layer(sequence_input)
-		
-		#Una primera capa con bi-LSTM
-		x = Bidirectional(LSTM(units = self.num_units, return_sequences=True))(embedded_sequence)
-
-		#Primera convolución
-		x = Conv1D(filters = self.filter_1, kernel_size = self.kernel_1, padding="same", activation = "tanh", name ="first_convolution")(x)
-		x = MaxPooling1D(pool_size = 2, strides=1, padding="same", name = "first_max_pooling")(x)
-		x = Dropout(self.dropout_1, name = "first_dropout")(x)
-		
-		#Segunda
-		x = Conv1D(filters = self.filter_2, kernel_size = self.kernel_2, padding="same", activation = "tanh", name = "second_convolution")(x)
-		x = MaxPooling1D(pool_size = 2, strides=1, padding="same", name = "second_max_pooling")(x)
-		x = Dropout(self.dropout_2, name = "second_dropout")(x)
-		
-		#Última capa
-		#preds = TimeDistributed(Dense(4, name = "last_layer"))(x)
-		#preds = Dense(4, activation = "tanh", name = "last_layer")(x)
-		preds = Dense(4, name = "last_layer")(x)
-
-		#Creamos el modelo
-		self.model = Model(input = [sequence_input, sequence_input_lengths], output = [preds])
-
-		self.model.load_weights(source)
-
-		return self.model
+	
