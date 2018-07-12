@@ -57,20 +57,23 @@ class CNN_Model(Model_RRNN):
 		x = Dropout(self.dropout_2, name = "second_dropout")(x)
 		
 		#Última capa
-		preds = TimeDistributed(Dense(4, name = "last_layer"))(x)
+		#preds = TimeDistributed(Dense(4, name = "last_layer"))(x)
 		#preds = Dense(4, activation = "tanh", name = "last_layer")(x)
-		#preds = Dense(4, name = "last_layer")(x)
+		preds = Dense(4, name = "last_layer")(x)
+
+
+		tbCallBack = keras.callbacks.TensorBoard(log_dir='./Graph', histogram_freq=0, write_graph=True, write_images=True)
 
 		#Creamos el modelo
-		self.model = Model(input = [sequence_input, sequence_input_lengths], output = [preds])
+		self.model = Model(input = [sequence_input, sequence_input_lengths], output = [preds], callbacks = [tbCallBack])
 
-		self.model.summary()
+		
 
 	def trainModel(self):
 		'''
 			Definición y compilación del modelo.
 		'''
-		
+		self.model.summary()
 
 		self.model.compile(loss=self.loss_object.loss, optimizer = 'adam', metrics=['accuracy'])
 

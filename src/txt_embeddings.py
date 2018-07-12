@@ -27,7 +27,7 @@ class TXTEmbeddings:
 		#	self.embeddings = [str.split(line) for line in txtfile]
 		#	print("Embeddings leídos.")
 
-		embeddings = KeyedVectors.load_word2vec_format(source, binary = False, limit = 1000)
+		embeddings = KeyedVectors.load_word2vec_format(source, binary = False, limit = 200000)
 
 
 		#Preparación vocabulario y embeddings_matrix
