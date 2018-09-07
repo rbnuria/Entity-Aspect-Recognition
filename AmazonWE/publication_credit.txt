@@ -1,9 +1,0 @@
-Thank you for using our sentiment embeddings!
-
-Please acknowledge the authors by citing the following publication
-in any research work or presentation containing results obtained
-in whole or in part through the use of the embeddings:
-
-S. Poria, E. Cambria, and A. Gelbukh.
-Aspect extraction for opinion mining with a deep convolutional neural network.
-Knowledge-Based Systems 108, pp. 42-49 (2016)
