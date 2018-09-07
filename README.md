@@ -1,2 +1,3 @@
-# TFG_compartido
-Repositorio para la supervisión del TFG.
+# Entity/Aspect recognition
+
+Repositorio para el desarrollo del proyecto TFG.
